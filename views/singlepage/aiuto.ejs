@@ -1,0 +1,97 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar2.ejs') %>
+
+  <div class="tutto2">
+    <div></div>
+    <div class="centroaiuto">
+      <h1><span class="piccolotitolo">Cos'è</span> Dhesìo <img src="/images/singlepage/help.png" style="width: 30px;">
+      </h1>
+      <p style="font-size:15px; text-align: center; margin-bottom: 2px;">Siamo una start up creata da 3 ragazzi. </p><p style="font-size:15px; text-align: center; margin-bottom: 2px;">Ogni settimana organizziamo contest insieme a dei brand di abbigliamento in cui, oltre alla possibilità di vincere premi, distribuiamo buoni sconto per tutti i partecipanti. </p><p style="font-size:15px; text-align: center; ">Tutto questo gratis.
+        </p>
+
+      <h2>F.a.q.</h2>
+      <h3>Come si partecipa?</h3>
+      <p>Clicca il tasto “partecipa” ed effettua la registrazione.<br>
+        Una volta effettuato l’accesso clicca nuovamente su “partecipa” e ottieni la spunta “V” di conferma.  (Tempo 30 sec)
+        </p>
+        <p>Per i contest successivi basterà cliccare il tasto "partecipa"</p>
+      <h3>Se vinco come faccio a riceve il premio?</h3>
+      <p>Ti contattatiamo in DM su Instagram entro 24h.</p>
+      <p style="margin-bottom: 5px;">Nel caso di gift card ti inviamo il codice da utilizzare.</p>
+        <p style="margin-top: 5px;">Nel caso di prodotto fisico ti inviamo un codice che ti da lo sconto del 100% sul prodotto vinto. 
+      </p>
+      <h3>Se vinco devo pagare spedizione o altro?</h3>
+      <p>Assolutamente no. Dhesìo è totalmente gratuito.</p>
+      <h3>Cos’è la sezione “i miei sconti”? </h3>
+      <p>Ogni volta che riuscirai a partecipare ad un contest riceverai uno sconto personalizzato da poter spendere nel sito di quel brand. <br>
+        Gli sconti verranno raccolti lì.
+        </p>
+      <h3>Quando si concludono i contest? </h3>
+      <p>Al raggiungimento del n. max di persone consentito per ogni singolo contest (rappresentato dalla barra di
+        completamento).</p>
+      <img src="/images/singlepage/helpbarra.png" style="width: 70%; margin-bottom: 10px;">
+      <!--immagine barra-->
+      <p>Nel caso in cui non sia raggiunto, si concluderanno comunque allo scadere del tempo indicato. </p>
+      <h6>es. <img src="/images/singlepage/helptimer.png" style="width: 50px;">
+        <!--immagine timer-->
+        Il contest sarà concluso tra 13h e 12min.
+      </h6>
+
+      <h3>Ogni quanto vengono inseriti i contest? </h3>
+      <p>Non c'è un calendario prefissato, solitamente ogni settimana, ma restate aggiornati su instagram <a href="https://www.instagram.com/dhesio_/" style="text-decoration: none;">@dhesio_</a> che ogni tanto potremmo farvi qualche sorpresa..</p>
+      <h3>Come avvengono le estrazioni?</h3>
+      <p style="margin-bottom: 0px;">Utilizziamo il sistema di estrazione casuale certificato </p>
+      <h6 style="margin-top: 0px;" >NIST FIPS 140-2 certified random number generator API <a href="https://csrng.net">https://csrng.net</a></h6>
+      <h3>Partecipare prima degli altri aumenta la possibilità di vincere?</h3>
+      <p>No. Ogni utente che riesce a partecipare ad un contest ha la stessa probabilità di vincita di
+        qualsiasi altro partecipante, indipendentemente dal momento di partecipazione.</p>
+      <!-- <h3>Come fate ad essere così fantastici? </h3>
+      <p>Questo grazie alla preparazione che ci permette l'aereonautica militare, grazie alla nostra esperienza, e anche
+        grazie alle mie due lauree in ingegneria e scienze della comunicazione conseguite entrambe con la lode, che mi
+        permettono di avere una comunicazione efficace, anche senza un "touch screen"</p> -->
+      <h3 style="margin-bottom: 0px;">Per qualsiasi altra domanda contattaci in direct <a
+          href="https://www.instagram.com/dhesio_/">dhesio_</a>
+      </h3>
+      <h3 style="margin-top: 0px;">o mandaci una mail <a href="mailto:help.dhesio@gmail.com">help.dhesio@gmail.com</a>
+      </h3>
+
+      <% if (autenticato) { %>
+      <div class="spacca2">
+        <div>
+          <form action="/logout?urlEvento=<%= urlEvento %>" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="buttonCustom" type="submit">Logout</button>
+          </form>
+        </div>
+        <div></div>
+        <div class="aiutopiange">
+          <img src="/images/singlepage/bimbo.png">
+        </div>
+        <div>
+          <form action="/Eliminazione_account?urlEvento=<%= urlEvento %>" method="get">
+            <button class="buttonCustom" type="submit">&nbsp;&nbsp;elimina account</button>
+          </form>
+        </div>
+      </div>
+      <% } else {%>
+        
+      <a href="/registrazione">
+        <br>
+        <div class="centralo">
+          <div></div>
+          <div class="questocrea">
+            Crea il tuo account
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+    <div></div>
+  </div>
+
+  <%- include('end.ejs') %>

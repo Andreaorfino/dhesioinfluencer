@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (prods.length > 0) { %>
+        <div class="grid">
+
+            <%- include('../includes/left-side.ejs') %>
+
+            <%- include('../includes/right-side.ejs') %>
+
+            <%- include('../includes/centro-index.ejs') %>
+
+
+            </div>
+            <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
+            <% } else { %>
+                
+            <h1>No Products Found!</h1>
+            <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>

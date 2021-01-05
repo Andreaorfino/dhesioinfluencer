@@ -1,0 +1,118 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/landingPage.css">
+
+</head>
+
+<body>
+
+
+    <%- include('topbarLanding.ejs', {iscriviti: true}) %>
+    <div class="grid_form_grande blocco_azzurro" style="width: 100%;">
+        <div></div>
+        <div class="blocco_azzurro" style="width: 100%;">
+            <div class="margine">
+                <div class="titolo_alto spazio_sopra_enorme spazio_sotto_piccolo">
+                    <span style="color:#FF9052">Dhesìo</span> <span class="scritte_blu">Influencer <br> sta
+                        arrivando.</span>
+                </div>
+
+                <div class="scritta_medio_piccola  scritte_blu">
+                    <div class="spazio_sotto_piccolo">
+                        Vogliamo rendere l'Influencer Marketing facile ed accessibile a tutti, creando così un'ambiente sano e di cooperazione tra Influencer ed aziende.
+                    </div>
+
+                    <div class="spazio_sotto_piccolo">
+                        Nel frattempo dal 10 Novembre al 10 Dicembre pubblicheremo aggiornamenti e consigli pratici sull' Influencer Marketing
+                    </div>
+                </div>
+
+                <div class="scritta_arancione scritta_media centro" style="font-weight: 400;">be faster.</div>
+
+
+                <form action="listaAttesa" class="listaAttesa spazio_sopra_grande" method="post" id="formLista">
+
+                    <input id="input1" type="text" name="nome" placeholder="Nome" onclick="rungtag('event', 'nome', {
+                    'event_label': 'Ha cliccato sul nome',
+                    'event_category': 'click form'
+                    });"></input>
+                    <input id="input2" type="text" name="nomeAzienda" placeholder="Nome Azienda"></input>
+                    <input id="input3" type="text" name="email" placeholder="Inserisci la tua email"></input>
+
+
+                    <input id="input5" type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                    <div class="spazio_sopra_medio spazio_sotto_piccolino">
+                        <input id="input4" type="checkbox" id="accetto" name="accetto" checked="checked"><label
+                            for="accetto">Compilando il form accetti
+                            la
+                            <a href="/privacy">Privacy Policy</a></label>
+                    </div>
+                    <button onclick="invia()" type="button" class="scritta_medio_piccola"
+                        style="font-weight: 400; margin-bottom: 5px">Iscriviti alla lista d'attesa</button>
+                    <div class="scritte_blu scritta_piccola centro spazio_sotto_piccolino ">Una mail a settimana di recap, no spam</div>
+
+                    <div class="centro" style="    font-weight: 400;
+                    padding-left: 5px;
+                    font-size: 15px;" onclick="rungtag('event', 'jump_iscrizione', {
+                                'event_label': 'click_gia_iscritto',
+                                'event_category': 'no_iscrizione_mailing_list'
+                                });">
+                        Ti sei già iscritto? Allora <a href="/aziende/dhesioinfluencer">clicca qui</a>
+                    </div>
+
+                </form>
+
+
+
+                <div class="scritte_blu scritta_piccola centro spazio_sopra_enorme">
+                    Non vuoi registrarti? Accedi ai contenuti pubblici sui nostri canali
+                </div>
+
+                <div class="centro icone">
+                    <a href="https://www.instagram.com/dhesioinfluencer/"><img src="/images/instagramBlu.png" alt=""></a> <a href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img src="/images/youtubeBlu.png" alt=""></a>
+                </div>
+
+            </div>
+
+            <div style="margin: 60px"></div>
+
+        </div>
+
+        <div></div>
+    </div>
+
+    <script>
+        var form = [
+            document.getElementById("input1"),
+            document.getElementById("input2"),
+            document.getElementById("input3"),
+            document.getElementById("input4")
+        ];
+        function invia() {
+            console.log('1')
+            for (let i = 0; i < form.length - 1; i++) {
+                if (form[i].value == "") {
+                    return false;
+                }
+            }
+            if (!form[form.length - 1].checked) {
+                return false;
+                
+            }
+            setCookie('cookieconsent_status','allow',365);
+            OptInTutto();
+            rungtag('event', 'iscrizione', {
+                                'event_label': document.getElementById("input3").value,
+                                'event_category': 'iscrizione_mailing_list'
+                                });
+            runfbq('track', 'CompleteRegistration' + document.getElementById("input3").value);
+            document.getElementById("formLista").submit();
+
+        }
+    </script>
+
+
+<%- include('../includes/cookiePrivacyAnalytics.ejs') %>
+</body>
+
+</html>

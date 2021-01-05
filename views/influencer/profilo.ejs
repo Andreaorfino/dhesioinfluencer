@@ -1,0 +1,687 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/registrazione.css">
+<link rel="stylesheet" href="/css/profilo.css">
+
+</head>
+
+<body>
+
+  <%- include('../singlepage/navbar3.ejs') %>
+<% if (pageTitle!='Profilo') { %>
+  <%- include('../includes/nomeUtente.ejs') %>
+  
+  <% } %>
+
+
+  <div class="tutto2">
+    <div></div>
+    <div class="benvenuto">
+      <% 
+        var intervalli = ['10k', '50k', '100k', '500k', '1000k'];
+        var intervalliVeri = ['10k&#8209;50k', '50k&#8209;100k', '100k&#8209;500k', '500k&#8209;1M', '>1M'];
+        var tiktokFollowers = intervalliVeri[intervalli.findIndex(function (x) { return influencer.numeroFollowersTiktok==x})];
+        var instagramFollowers = intervalliVeri[intervalli.findIndex(function (x) { return influencer.numeroFollowersInstagram==x})];
+        %> 
+      
+
+
+      <!-- dati del influencer -->
+      <div class="profilo_topLine">
+        <div></div>
+        <div id="modifica_profilo_trigger" class="modifica_profilo_chiusa_trigger onclick"><% if (pageTitle=='Profilo') { %>Modifica il tuo Profilo <img src="/images/edit.png" alt="" style="width:16px;" ><% } %></div>
+      </div>
+      <div id="influencer-lineaSopra" style="margin-top:10px;">
+        <div>
+          <div id="influencer-foto_nome">
+            <div class="imagecircle_profile circular--<%= influencer.landscape %>"><img 
+                src="<%= influencer.urlImage %>" alt=""></div>
+            <div><nobr><%= influencer.nicknameAccesso %> <% if (influencer.verificato) { %>
+              <img src="/images/verificato.png" alt="" class="verificato">
+              <% } %></nobr></div>
+          </div>
+          <div id="influencer-like_followers">
+            <div><img src="/images/like.png" alt=""> <div id="profilo_numero_like" style="display:inline-block; transform:translateY(3px)">&nbsp;&nbsp;<%= influencer.nLike||0 %></div> </div>
+            <script>
+              var numeroLikeProfilo = <%= influencer.nLike||0 %>;
+            </script>
+            <div class="stat"><img src="/images/tiktok.png" alt="">&nbsp;<span
+                id="backTiktok"><%- tiktokFollowers %></span></div>
+            <div class="stat"><img src="/images/instagram.png" alt="">&nbsp;<span
+                id="backInstagram"><%- instagramFollowers %></span></div>
+          </div>
+        </div>
+        <div hidden class="punteggio">
+          <div class="punteggio_text">punteggio</div>
+          <div class="punteggio_valore"><%= influencer.punteggio %></div>
+          <div class="influencer-punteggio-cosaSonoPunti" id="info_trigger">
+            <div class="information_I">i</div>
+            <div>Cosa sono e come si accumulano i punti?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="influencer_descrizioneProfilo"><% if (influencer.descrizione || pageTitle!='Profilo') { %>
+        <%= influencer.descrizione %>
+        <% } else { %>
+          Ciao, usa questo spazio per scrivere una piccola bio :)<br>Cerca di includere nome, città , età e tipo di contenuti... 
+        <% } %></div>
+
+        <% if (pageTitle=='Profilo') { %>
+      <div id="modifica_profilo" class="modifica_profilo_chiusa">
+        <form action="/influencer/aggiornaProfilo" method="post" enctype="multipart/form-data">
+          <div>
+
+            <div class="yourinfo"><span style="font-size: 10.5px;">UPLOAD</span> <span style="font-size: 9px;">FOTO</span></div>
+            <div class="scrittePiccoleMedie" style="text-align:left; padding-top:3%; font-size:14px">Se puoi inserisci la stessa di Tiktok o Instagram <img src="/images/fotodfg.png" style="width:30px"> </div>
+            <div class="scrittePiccoleMedie" style="text-align:left;">Inserisci una foto quadrata. <br>
+              Se non ce l'hai pronta in galleria puoi ritagliarla dal tuo telefono e riprendere da questo passaggio.</div>
+            <div style="text-align: center;">
+  
+              <p id="status"></p>
+              <div class="imaginet-grid">
+              <div id="imaginet-left"></div>
+              <div id="imaginet" class="circular">
+                  <label id="labelinput" for="file-selector"><img id="output"><img style="width:auto; height:100%" src="/images/singlepage/loadImage.png" alt=""></label>
+                  <input type="file" id="file-selector" name="image" style="width:100px">
+                  
+              </div>
+              <div id="imaginet-right"></div>
+          </div>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errImaginet"> inserisci foto</p>
+          </div>
+          <p><input id="landscape" type="hidden" placeholder="landscape" oninput="this.className = ''" name="landscape"
+            value="<% if(locals.landscape){ %><%= landscape %><% } %>"></p>
+            <input type="hidden" value="false" name="ciStaImmagine" id="ciStaImmagine">
+  
+          </div>
+
+        <p class="registrazione_titolotab" style="margin-top: 4%;">N.Followers&nbsp;su&nbsp;TikTok</p>
+        <div class="followerkgrid">
+          <div class="followerkgrid1">
+            <div id="scritta10k" class="onclick nonSelezionato" onclick="k10()">10&#8209;50k</div>
+            <div></div>
+            <div id="scritta50k" class="onclick nonSelezionato" onclick="k50()">50k&#8209;100k</div>
+            <div></div>
+            <div id="scritta100k" class="onclick nonSelezionato" onclick="k100()">100k&#8209;500k</div>
+          </div>
+          <div></div>
+          <div class="followerkgrid2">
+            <div id="scritta500k" class="onclick nonSelezionato" onclick="k500()">500k&#8209;1M</div>
+            <div></div>
+            <div id="scritta1000k" class="onclick nonSelezionato" onclick="k1000()">>1M</div>
+          </div>
+        </div>
+        <p><input type="hidden" id="followersTikTok" placeholder="followersTikTok" oninput="this.className = ''" name="followersTikTok"
+        value="<% if(locals.followersTikTok) { %><%= followersTikTok %><% } %>"></p>
+
+
+        <p class="registrazione_titolotab" style="margin-top: 4%;">N.Followers&nbsp;su&nbsp;Instagram</p>
+        <div class="followerkgrid">
+          <div class="followerkgrid1">
+            <div id="scrittaI10k" class="onclick nonSelezionato" onclick="kI10()">10&#8209;50k</div>
+            <div></div>
+            <div id="scrittaI50k" class="onclick nonSelezionato" onclick="kI50()">50k&#8209;100k</div>
+            <div></div>
+            <div id="scrittaI100k" class="onclick nonSelezionato" onclick="kI100()">100k&#8209;500k</div>
+          </div>
+          <div></div>
+          <div class="followerkgrid2">
+            <div id="scrittaI500k" class="onclick nonSelezionato" onclick="kI500()">500k&#8209;1M</div>
+            <div></div>
+            <div id="scrittaI1000k" class="onclick nonSelezionato" onclick="kI1000()">>1M</div>
+          </div>
+        </div>
+        <p><input type="hidden" id="followersInstagram" placeholder="followersInstagram" oninput="this.className = ''" name="followersInstagram"
+        value="<% if(locals.followersInstagram) { %><%= followersInstagram %><% } %>"></p>
+
+        <p class="registrazione_titolotab" style="margin-top: 4%;">Biografia</p>
+        <textarea placeholder="max 200 caratteri" maxlength = "200" oninput="this.className = ''" style="border: 1px solid #274674; border-radius: 2.5px;"
+        name="bio" type="text" rows="3"><%= influencer.descrizione %></textarea>
+
+        
+
+        <script>
+
+      const status = document.getElementById('status');
+      const output = document.getElementById('output');
+      const imaginet = document.getElementById('imaginet')
+      const landscape = document.getElementById('landscape');
+      const ciStaImmagine = document.getElementById('ciStaImmagine');
+      let marginimaginet = 0;
+
+      if (window.FileList && window.File && window.FileReader) {
+        document.getElementById('file-selector').addEventListener('change', event => {
+          output.src = '';
+          status.textContent = '';
+          const file = event.target.files[0];
+          if (!file.type) {
+            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            return;
+          }
+          if (!file.type.match('image.*')) {
+            status.textContent = 'Error: The selected file does not appear to be an image.'
+            return;
+          }
+          const reader = new FileReader();
+          reader.addEventListener('load', event => {
+            output.style.marginTop = 0;
+            output.style.marginLeft = 0;
+            ciStaImmagine.value = "true";
+
+            output.src = event.target.result;
+            setTimeout(function(){ 
+            if (output.naturalWidth>=output.naturalHeight) {
+                landscape.value = "landscape";
+                imaginet.classList.add('circular--landscape');
+                imaginet.classList.remove('circular--portrait');
+            } else {
+                landscape.value = "portrait";
+                imaginet.classList.remove('circular--landscape');
+                imaginet.classList.add('circular--portrait');
+
+            } 
+             }, 100);
+            });
+          reader.readAsDataURL(file);
+        }); 
+      }
+
+
+        </script>
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="loginbtn"><button class="buttonCustom" type="submit">Conferma</button></div>
+
+      </form>
+
+
+      </div>
+
+    <% } %>
+
+
+      <div class="blu_line"></div>
+
+      <% if (pageTitle=='Profilo') { %>
+      <div  id="recenzione_trigger" class="chiusa_freccia">
+      <div class="influencer-collaborazione-inserisci_text">
+        <div></div>
+        <div>
+          <div class="box-form">
+            inserisci collaborazione
+          </div>
+        </div>
+        <div><img style="width:100%" src="/images/singlepage/indietro.png" ></div>
+      </div>
+      </div>
+
+      <div id="inserisciTutto" class="chiusa_form">
+      <div class="influencer-collaborazione-istruzione_grid">
+        <div class="vertical_center">
+          <div class="number_list">1</div>
+        </div>
+        <div>Descrivi le collaborazioni/pubblicità che hai effettuato con le aziende (nel 2020) per raccoglierle sul tuo
+          profilo.</div>
+
+        <div class="vertical_center">
+          <div class="number_list">2</div>
+        </div>
+        <div>Recensisci l'azienda con cui hai collaborato per essere d'aiuto alla community. <!-- Gli altri potranno
+          esprimere il loro consenso commentando o lasciandoti un "like" conferendoti aumentando il tuo status in
+          termini di fiducia e credibilità. -->
+        </div>
+      </div>
+
+
+      <div id="collaborazione_appare" class="influencer-collaborazione-nuova chiusa_aperta">Crea una nuova collaborazione <img src="/images/singlepage/giu.png"
+          style="width:17px;" alt=""></div>
+
+      <form id="recenzioneForm" class="influencer-collaborazione" action="/collaborazioni/mettiRecensione<% if(aperta){ %>Modifica<% } %>" method="POST">
+        
+
+        <div class="influencer-collaborazione_sfondo">
+          <div class="influencer-nomedata_grid">
+            <div class="influencer-nomedata_nome">
+              <input type="hidden" name="collaborazioneId" value="<% if(aperta){ %><%= modCollab._id %><% } %>">
+              <input list="fornitori" name="fornitore" id="azienda" placeholder="nome Azienda" value="<% if(aperta){ %><%= modCollab.fornitore.nome %><% } %>" style="text-transform: capitalize">
+              <datalist id="fornitori">
+                <% for( let i = 0; i < fornitori.length; i++ ) { %>
+                  <option value="<%= fornitori[i].nome %>">                  
+                <% } %>
+              </datalist>
+
+            </div>
+            <div></div>
+            <div class="influencer-nomedata_data">
+            <input id="date" type="month" min="2020-01" value="<% if(aperta){ %><%= modCollab.data %><% } else { %>2020-01<% } %>" oninput="this.className = ''" name="data">
+              <div class="influencer-collaborazione_hint" style="margin-top:0px">(Quando è avvenuta?)</div>
+            </div>
+          </div>
+
+
+
+          <div class="influencer-collaborazione_titolo maiuscolo">BREVE DESCRIZIONE</div>
+          <div class="influencer-collaborazione_hint_big">apparirà in primo piano sul tuo profilo</div>
+          <div class="influencer-collaborazione_hint">es. "Duetto su TIkTok in cui ballavo indossando una loro felpa"
+          </div>
+          <div><textarea id="cosaFatto" maxlength = "120" placeholder="max 120 caratteri" oninput="this.className = ''" name="cosaFatto" type="text" rows="3"><% if(aperta){ %><%= modCollab.cosaFatto %><% } %></textarea></div>
+
+
+    <!--      <div class="influencer-collaborazione-socialUtilizzato_grid">
+            <input type="hidden" id="tiktok" placeholder="tiktok" oninput="this.className = ''" name="tiktok"
+              value="<% if(locals.tiktok) { %><%= tiktok %><% } %>">
+              <input type="hidden" id="instagram" placeholder="instagram" oninput="this.className = ''" name="instagram"
+              value="<% if(locals.instagram) { %><%= instagram %><% } %>">
+            <div class="influencer-collaborazione_titolo maiuscolo">SOCIAL UTILIZZATO</div>
+            <div></div>
+            <div id="tiktokScritta" style="text-align: center;" class="onclick " onclick="tiktok()"><img src="/images/tiktok.png" alt=""></div>
+            <div></div>
+            <div id="instagramScritta" style="text-align: center;" class="onclick " onclick="instagram()"><img src="/images/instagram.png" alt=""></div>
+            <div></div>
+            <div class="influencer-collaborazione_hint">(puoi selezionarli anche entrambi)</div>
+          </div> -->
+
+          <div class="influencer-collaborazione_titolo_big">Valuta la tua esperienza con questa azienda </div>
+          <div class="influencer-collaborazione_hint_big">Sarà di grande aiuto agli altri Influencer!</div>
+          <div id="brutta_recenzione_trigger" class="influencer-collaborazione_hint_big brutta_recenzione_chiusa_trigger"><span style="color:#F95F62; padding-top:2px">Non avere timore
+              di lasciare recensioni negative</span> &nbsp;&nbsp;<div class="influencer-collaborazione_hint"
+              style="display: inline;width:80px"><nobr>scopri&nbsp;di&nbsp;più&nbsp;<img src="/images/redTriangleDown.png" alt=""></nobr></div>
+          </div>
+          <div id="brutta_recenzione" class="brutta_recenzione_chiusa">
+            <div class="influencer-collaborazione_hint_big">le recensioni negative sono le più utili e preziose per la community perchè eviterai che altri
+              Influencer
+              si ritrovino nella tua stessa situazione.. e loro faranno lo stesso per te!
+            </div>
+<!--             <div class="influencer-collaborazione_hint_big">Inoltre se ciò che racconti è successo anche ad altri, riceverai tantie commenti che rafforzeranno la
+              tua
+              recensione e il tuo status di portavoce degli Influencer</div> -->
+          </div>
+
+          
+
+          <div class="influencer-collaborazione_titolo">Valutazione complessiva</div>
+          <div class="rating" >
+            <img src="/images/starEmpty.png" id="star1" alt="" onclick="toggleStar1()">
+            <img src="/images/starEmpty.png" id="star2" alt="" onclick="toggleStar2()">
+            <img src="/images/starEmpty.png" id="star3" alt="" onclick="toggleStar3()">
+            <img src="/images/starEmpty.png" id="star4" alt="" onclick="toggleStar4()">
+            <img src="/images/starEmpty.png" id="star5" alt="" onclick="toggleStar5()">
+            <img hidden src="/images/starFull.png" alt="">
+            <input type="hidden" id="starText" name="stelle">
+          </div>
+          <div class="influencer-collaborazione_titolo">Titolo della recensione</div>
+          <div class="influencer-collaborazione_hint_big">Riassumi la tua esperienza o concentrati su un aspetto in
+            particolare</div>
+          <div class="influencer-collaborazione_hint">es. "Esperienza super positiva" o "Gentili ma spesso non
+            rispondono al telefono"</div>
+          <div><textarea id="titolo" placeholder="max 30 caratteri" maxlength = "30" oninput="this.className = ''" name="titolo" value="" rows="3"><% if(aperta){ %><%= modCollab.titolo %><% } %></textarea></div>
+
+
+          <div class="influencer-collaborazione_titolo">Recensione</div>
+          <div class="influencer-collaborazione_hint_big">Racconta la tua esperienza consigliando (o sconsigliando)
+            un'eventuale collaborazione con quell'azienda.</div>
+          <div class="influencer-collaborazione_hint">es. "Ho fatto questo su questa piattaforma, mi trovo sempre
+            benissimo con loro, questa è la 4 collaborazione che facciamo insieme e devo dire non ho mai avuto nessun
+            tipo di problema" </div>
+          <div class="influencer-collaborazione_hint_big">es. "Ho dovuto fare questo in queste modalità, all'inizio
+            sembravano gentili e disponibili, ma dopo 5-6 giorni hanno cominciato a non rispondere al telefono. Mi hanno
+            ricontattato il mese dopo"</div>
+          <div><textarea id="recensione" placeholder="max 1000 caratteri" maxlength = "1000" oninput="this.className = ''" name="recensione" type="text" rows="5"><% if(aperta){ %><%= modCollab.recensione %><% } %></textarea>
+          </div>
+
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="loginbtn"><button class="buttonCustom" type="button" onclick="controllaEInvia()">Inoltra</button></div>
+        <div hidden id="testoErrore" style="font-size:13px; color:grey">Controlla di aver compilato tutti i campi</div>
+      </form>
+    </div>
+  <% } %>
+    <div class="collaborazione_scritta">
+    <% if(collaborazioni.length!=0){ %>Collaborazioni<% } %>
+    </div>
+
+    <% for( let i = 0; i < collaborazioni.length; i++ ) { %>
+      <%- include('../recenzione.ejs', {home: false, profilo:true, collaborazione: collaborazioni[i] , n: i}) %>
+    <% } %>
+
+
+
+    </div>
+    <div></div>
+  </div>
+
+  <!-- inizio info -->
+  <div id="myModal" class="modal">
+
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div>
+          <span class="close">&times;</span>
+        </div>
+        <div>Shhhtupido che non capisci</div>
+        <div>ps. Da leggere alla tony effe</div>
+      </div>
+
+    </div>
+  
+  </div>
+  <!-- fine info -->
+
+  <script>
+
+
+
+    var collaborazioneTrigger = document.getElementById("recenzione_trigger");
+    var collaborazioneForm = document.getElementById("inserisciTutto");
+    var stelleInput = document.getElementById("starText");
+    var aperta = true;
+    var star = [];
+    for (var i = 1; i < 6; i++){
+      star.push({
+        star: document.getElementById('star' + i),
+        selezionata: false,
+        accendi: function(){
+          this.star.src = '/images/starFull.png';
+          this.selezionata = true;
+        },
+        spegni: function(){
+          this.star.src = '/images/starEmpty.png';
+          this.selezionata = false;
+        },
+        cambiaStella:  function(){
+          if(this.selezionata){
+              this.star.src = '/images/starEmpty.png';
+            } else {
+              this.star.src = '/images/starFull.png';
+            }
+            this.selezionata = !this.selezionata;
+          }
+        })
+    }
+
+    <% for( let i = 1; i < 6; i++ ) { %>
+      function toggleStar<%= i %>() {
+        stelleInput.value = "<%= i %>";
+        for (i = 0; i < <%= i %>; i++) {
+          star[i].accendi();
+        }
+        for (i = <%= i %>; i < star.length; i++) {
+          star[i].spegni();
+        }
+      }
+    <% } %>
+
+    <% if(aperta){ %>
+      toggleStar<%= modCollab.stelle %>()
+    <% } %>
+
+    function apriChiudiInserisciCollaborazione(){ 
+      collaborazioneTrigger.classList.toggle('chiusa_freccia');
+      collaborazioneTrigger.classList.toggle('aperta_freccia');      
+      collaborazioneForm.classList.toggle('aperta_form');
+      collaborazioneForm.classList.toggle('chiusa_form');
+    }
+
+    <% if (pageTitle=='Profilo') { %>collaborazioneTrigger.addEventListener("click", apriChiudiInserisciCollaborazione )<% } %>
+
+
+    // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var infroTrigger = document.getElementById("info_trigger");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+infroTrigger.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+var modificaProfilo = document.getElementById('modifica_profilo');
+var modificaProfiloTrigger = document.getElementById('modifica_profilo_trigger')
+
+modificaProfiloTrigger.addEventListener('click', function() {
+  modificaProfilo.classList.toggle('modifica_profilo_chiusa');
+  modificaProfilo.classList.toggle('modifica_profilo_aperta');
+  modificaProfiloTrigger.classList.toggle('modifica_profilo_aperta_trigger');
+  modificaProfiloTrigger.classList.toggle('modifica_profilo_chiusa_trigger');
+})
+
+var bruttaRecenzione = document.getElementById('brutta_recenzione');
+var bruttaRecenzioneTrigger = document.getElementById('brutta_recenzione_trigger')
+
+bruttaRecenzioneTrigger.addEventListener('click', function() {
+  bruttaRecenzione.classList.toggle('brutta_recenzione_chiusa');
+  bruttaRecenzione.classList.toggle('brutta_recenzione_aperta');
+  bruttaRecenzioneTrigger.classList.toggle('brutta_recenzione_aperta_trigger');
+  bruttaRecenzioneTrigger.classList.toggle('brutta_recenzione_chiusa_trigger');
+})
+
+    var scegliSocialInstagramText = document.getElementById("instagram");
+    var scegliSocialTikTokText = document.getElementById("tiktok");
+
+    function instagram() {
+      scegliSocialInstagramText.value = document.getElementById("instagram").value=="" ? "instagram" : ""
+      document.getElementById("instagramScritta").classList.toggle("selezionato_profilo");
+    }
+
+    function tiktok() {
+      scegliSocialTikTokText.value = document.getElementById("tiktok").value=="" ? "tiktok" : ""
+      document.getElementById("tiktokScritta").classList.toggle("selezionato_profilo");
+    }
+
+    <% if(aperta&&false){ %>
+      <% var social = ['tiktok', 'instagram'] %>
+      <% for( let i = 0; i < modCollab.social.length; i++ ) { %>
+        <% if (modCollab.social.includes(social[i])) { %>
+          <%= social[i] %>();
+        <% } %>
+      <% } %>
+    <% } %>
+
+
+    /* validator form */
+    var formRecenzione = document.getElementById('recenzioneForm');
+    /* scegliSocialInstagramText */
+    /* scegliSocialTikTokText */
+    /* stelleInput */
+    var dataText = document.getElementById("date");
+    var aziendaText = document.getElementById('azienda');
+    var cosaFattoText = document.getElementById('cosaFatto');
+    var titoloText = document.getElementById('titolo');
+    var recensioneText = document.getElementById('recensione');
+    var tuttiText = [stelleInput, dataText, aziendaText, cosaFattoText, titoloText, recensioneText];
+
+    var fnValidate = function (x){ x.value!="" };
+    function controllaEInvia(){
+      var completo = true;
+      for (let i = 0; i < tuttiText.length; i++) {
+        const element = tuttiText[i].value;
+        completo = completo && (element !="");
+      }
+      console.log(completo);
+      completo = completo /* && ((scegliSocialTikTokText.value+scegliSocialInstagramText.value) !="") */;
+      if (completo){
+        formRecenzione.submit();
+      } else {
+        document.getElementById("testoErrore").removeAttribute('hidden');
+      }
+    }
+
+
+    /* profilo edit */
+
+
+    var followersTikTok = document.getElementById("followersTikTok");
+    var scrittaTik10k = document.getElementById("scritta10k");
+    var scrittaTik50k = document.getElementById("scritta50k");
+    var scrittaTik100k = document.getElementById("scritta100k");
+    var scrittaTik500k = document.getElementById("scritta500k");
+    var scrittaTik1000k = document.getElementById("scritta1000k");
+
+    var followersInstagram = document.getElementById("followersInstagram");
+    var scrittaInsta10k = document.getElementById("scrittaI10k");
+    var scrittaInsta50k = document.getElementById("scrittaI50k");
+    var scrittaInsta100k = document.getElementById("scrittaI100k");
+    var scrittaInsta500k = document.getElementById("scrittaI500k");
+    var scrittaInsta1000k = document.getElementById("scrittaI1000k");
+
+    function k10() {
+      followersTikTok.value = '10k'
+      scrittaTik10k.classList.add("selezionato");
+      scrittaTik50k.classList.remove("selezionato");
+      scrittaTik100k.classList.remove("selezionato");
+      scrittaTik500k.classList.remove("selezionato");
+      scrittaTik1000k.classList.remove("selezionato");
+      scrittaTik50k.classList.add("nonSelezionato");
+      scrittaTik100k.classList.add("nonSelezionato");
+      scrittaTik500k.classList.add("nonSelezionato");
+      scrittaTik1000k.classList.add("nonSelezionato"); 
+      scrittaTik10k.classList.remove("nonSelezionato");
+    }
+    function k50() {
+      followersTikTok.value = '50k'
+      scrittaTik10k.classList.remove("selezionato");
+      scrittaTik50k.classList.add("selezionato");
+      scrittaTik100k.classList.remove("selezionato");
+      scrittaTik500k.classList.remove("selezionato");
+      scrittaTik1000k.classList.remove("selezionato"); 
+      scrittaTik10k.classList.add("nonSelezionato");
+      scrittaTik100k.classList.add("nonSelezionato");
+      scrittaTik500k.classList.add("nonSelezionato");
+      scrittaTik1000k.classList.add("nonSelezionato"); 
+      scrittaTik50k.classList.remove("nonSelezionato");
+    }
+    function k100() {
+      followersTikTok.value = '100k'
+      scrittaTik10k.classList.remove("selezionato");
+      scrittaTik50k.classList.remove("selezionato");
+      scrittaTik100k.classList.add("selezionato");
+      scrittaTik500k.classList.remove("selezionato");
+      scrittaTik1000k.classList.remove("selezionato"); 
+      scrittaTik50k.classList.add("nonSelezionato");
+      scrittaTik10k.classList.add("nonSelezionato");
+      scrittaTik500k.classList.add("nonSelezionato");
+      scrittaTik1000k.classList.add("nonSelezionato"); 
+      scrittaTik100k.classList.remove("nonSelezionato");
+    }
+    function k500() {
+      followersTikTok.value = '500k'
+      scrittaTik10k.classList.remove("selezionato");
+      scrittaTik50k.classList.remove("selezionato");
+      scrittaTik100k.classList.remove("selezionato");
+      scrittaTik500k.classList.add("selezionato");
+      scrittaTik1000k.classList.remove("selezionato"); 
+      scrittaTik50k.classList.add("nonSelezionato");
+      scrittaTik100k.classList.add("nonSelezionato");
+      scrittaTik10k.classList.add("nonSelezionato");
+      scrittaTik1000k.classList.add("nonSelezionato"); 
+      scrittaTik500k.classList.remove("nonSelezionato");
+    }
+    function k1000() {
+      followersTikTok.value = '1000k'
+      scrittaTik10k.classList.remove("selezionato");
+      scrittaTik50k.classList.remove("selezionato");
+      scrittaTik100k.classList.remove("selezionato");
+      scrittaTik500k.classList.remove("selezionato");
+      scrittaTik1000k.classList.add("selezionato"); 
+      scrittaTik50k.classList.add("nonSelezionato");
+      scrittaTik100k.classList.add("nonSelezionato");
+      scrittaTik500k.classList.add("nonSelezionato");
+      scrittaTik10k.classList.add("nonSelezionato"); 
+      scrittaTik1000k.classList.remove("nonSelezionato");
+    }
+
+    function kI10() {
+      followersInstagram.value = '10k'
+      scrittaInsta10k.classList.add("selezionato");
+      scrittaInsta50k.classList.remove("selezionato");
+      scrittaInsta100k.classList.remove("selezionato");
+      scrittaInsta500k.classList.remove("selezionato");
+      scrittaInsta1000k.classList.remove("selezionato");
+      scrittaInsta50k.classList.add("nonSelezionato");
+      scrittaInsta100k.classList.add("nonSelezionato");
+      scrittaInsta500k.classList.add("nonSelezionato");
+      scrittaInsta1000k.classList.add("nonSelezionato"); 
+      scrittaInsta10k.classList.remove("nonSelezionato");
+    }
+    function kI50() {
+      followersInstagram.value = '50k'
+      scrittaInsta10k.classList.remove("selezionato");
+      scrittaInsta50k.classList.add("selezionato");
+      scrittaInsta100k.classList.remove("selezionato");
+      scrittaInsta500k.classList.remove("selezionato");
+      scrittaInsta1000k.classList.remove("selezionato"); 
+      scrittaInsta10k.classList.add("nonSelezionato");
+      scrittaInsta100k.classList.add("nonSelezionato");
+      scrittaInsta500k.classList.add("nonSelezionato");
+      scrittaInsta1000k.classList.add("nonSelezionato"); 
+      scrittaInsta50k.classList.remove("nonSelezionato");
+    }
+    function kI100() {
+      followersInstagram.value = '100k'
+      scrittaInsta10k.classList.remove("selezionato");
+      scrittaInsta50k.classList.remove("selezionato");
+      scrittaInsta100k.classList.add("selezionato");
+      scrittaInsta500k.classList.remove("selezionato");
+      scrittaInsta1000k.classList.remove("selezionato"); 
+      scrittaInsta50k.classList.add("nonSelezionato");
+      scrittaInsta10k.classList.add("nonSelezionato");
+      scrittaInsta500k.classList.add("nonSelezionato");
+      scrittaInsta1000k.classList.add("nonSelezionato"); 
+      scrittaInsta100k.classList.remove("nonSelezionato");
+    }
+    function kI500() {
+      followersInstagram.value = '500k'
+      scrittaInsta10k.classList.remove("selezionato");
+      scrittaInsta50k.classList.remove("selezionato");
+      scrittaInsta100k.classList.remove("selezionato");
+      scrittaInsta500k.classList.add("selezionato");
+      scrittaInsta1000k.classList.remove("selezionato"); 
+      scrittaInsta50k.classList.add("nonSelezionato");
+      scrittaInsta100k.classList.add("nonSelezionato");
+      scrittaInsta10k.classList.add("nonSelezionato");
+      scrittaInsta1000k.classList.add("nonSelezionato"); 
+      scrittaInsta500k.classList.remove("nonSelezionato");
+    }
+    function kI1000() {
+      followersInstagram.value = '1000k'
+      scrittaInsta10k.classList.remove("selezionato");
+      scrittaInsta50k.classList.remove("selezionato");
+      scrittaInsta100k.classList.remove("selezionato");
+      scrittaInsta500k.classList.remove("selezionato");
+      scrittaInsta1000k.classList.add("selezionato"); 
+      scrittaInsta50k.classList.add("nonSelezionato");
+      scrittaInsta100k.classList.add("nonSelezionato");
+      scrittaInsta500k.classList.add("nonSelezionato");
+      scrittaInsta10k.classList.add("nonSelezionato"); 
+      scrittaInsta1000k.classList.remove("nonSelezionato");
+    }
+
+    var intervalliFnTik = [k10,k50,k100,k500,k1000];
+    var intervalliFnInsta = [kI10,kI50,kI100,kI500,kI1000];
+    var intervalli = ['10k', '50k', '100k', '500k', '1000k'];
+    intervalliFnTik[intervalli.findIndex(function (x) { return '<%= influencer.numeroFollowersTiktok %>'==x})]();
+    intervalliFnInsta[intervalli.findIndex(function (x) { return '<%= influencer.numeroFollowersInstagram %>'==x})]();
+
+    <% if(aperta||collaborazioni.length<1){ %>apriChiudiInserisciCollaborazione()<% } %>
+
+  </script>
+
+
+  <%- include('../includes/end.ejs') %>

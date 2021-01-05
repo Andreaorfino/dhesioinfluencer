@@ -1,0 +1,50 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar2.ejs') %>
+
+
+    <div style="padding: 20px;"></div>
+
+  <div class="tutto2">
+    <div></div>
+    <div style="text-align: center;">
+
+
+
+      <h1>numero utenti:  -- <%= utenti.length %> -- </h1>
+      <h2>maschi: <%= maschi %><br>
+        femmine: <%= femmine %></h2>
+      <h2>meno di 14: <%= e1 %><br>
+        tra 14 e 18: <%= e2 %><br>
+        tra 19 e 25: <%= e3 %><br>
+        più di 25: <%= e4 %></h2>
+      
+      
+        <% for(var i=0; i<utenti.length; i++) { %>
+          <form id="logForm" action="/admin/eccoVincitore" method="POST"><button class="buttonCustom" type="submit" >Vincitore</button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input  type="hidden" name="nickname" value="<%= utenti[i].userId.nickname %>" >
+            <input  type="hidden" name="nIscrizione" value="<%= utenti[i].userId.niscrizione %>" >
+            <input  name="lotteriaId" type="hidden" value="<%= lotteriaId %>">
+            <a href="https://www.instagram.com/<%= utenti[i].userId.nickname %>"> <%= utenti[i].userId.nickname %></a>
+            
+            
+            
+          </form>
+            
+        <% } %>
+
+        
+
+
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('end.ejs') %>

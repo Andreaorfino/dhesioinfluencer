@@ -1,0 +1,34 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/home.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+
+    <%- include('../includes/nomeUtente.ejs') %>
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+            <div class="aziende">
+                <div style="margin-bottom: 10px; margin-top: 20px;"><img src="/images/casaOrange.png" alt=""></div>
+                Home
+            </div>
+            <div class="leggiRecenzioni" style="margin-bottom: 10px;">
+                Leggi le recensioni appena inserite e supporta con un <br>"sono d'accordo" <img src="/images/nolike.png" style="width:14px; transform:translateY(-2px)"> le tue preferite
+            </div>
+
+            <div class="blu_line" style="margin-bottom: 20px;"></div>
+
+
+
+            <% for( let i = 0; i < collaborazioni.length; i++ ) { %>
+                <%- include('../recenzione.ejs', {home: true, profilo:true, collaborazione: collaborazioni[i] , n: i}) %>
+              <% } %>
+        </div>
+        <div></div>
+    </div>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,74 @@
+<div class="rightSide">
+    <% if (isAuthenticated) { %>
+    <div class="rightSide_Favorite">
+            <%-include('../includes/heart.ejs') %>
+    </div>
+    <br>
+    <br>
+    <div class="grid_joined">
+
+        <div class="grid_joined_title">
+            Your Lottery
+        </div>
+        <div class="rightSide_joined">
+            <% if (uSproducts.length > 0) { %>
+            <ul class="rightSide_joined_list">
+                <% uSproducts.forEach(p => { %>
+                <li class="rightSide_joined_list_item"><%= p.productId.title %>
+                    <a href="/products/<%= p.productId._id %>" class="btn"><i class='fas fa-info'></i></a>
+                </li>
+                <% }) %>
+            </ul>
+            <% } else { %>
+            <p class="ap">
+                <h2 style="text-align: center">No lottery</h2>
+            </p>
+            <% } %>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="grid_joined">
+        <div class="grid_joined_title">
+            Your friends activity
+        </div>
+        <div class="rightSide_activity">
+            <% eventi.forEach(e => { %>
+            <p class="ap"><b><%= e.a %></b><%= e.b %><b><%= e.c %></b> <%= e.d %></p>
+            <% }) %>
+        </div>
+    </div>
+    
+    <% } else { %>
+        <form class="login-fake" action="/login" method="POST">
+            <div class="form-control-fake">
+                
+                <input 
+                   
+                    type="hidden" 
+                    name="email" 
+                    id="email" 
+                    value="test@test.com">
+            </div>
+            <div class="form-control">
+                
+                <input 
+                    
+                    type="hidden" 
+                    name="password" 
+                    id="password" 
+                    value="password">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Login with test account</button>
+        </form>
+        <br>
+        <a href="/loginInstagram">Login w/ Instagram</a>
+    <% } %>
+    <!--
+    <div class="rightSide_ranking">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus asperiores nulla pariatur laboriosam reprehenderit illum quam nemo, quia natus perferendis?
+    </div>
+    -->
+</div>

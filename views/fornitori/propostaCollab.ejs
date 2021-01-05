@@ -1,0 +1,20 @@
+<% if (propostaCollaborazione.visibile||user.admin) { %>
+<div>
+    <div class="proposta-nome_fornitore"><%= propostaCollaborazione.fornitore %></div>
+    <div class="proposta-sfondo" style="<%= propostaCollaborazione.visibile ? '' : 'background-color:rgb(255, 195, 195);' %>">
+
+        <div class="proposta-titolo">
+            <nobr><%= propostaCollaborazione.titolo  %></nobr>
+        </div>
+        <div class="proposta-descrizione"><%= propostaCollaborazione.descrizione %> </div>
+
+        <% if (user.admin) { %>
+        <form action="/aziende/svela" method="post">
+            <input type="hidden" name="idProposta" value="<%= propostaCollaborazione._id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" style="border: 1px solid black; background-color:<%= !propostaCollaborazione.visibile ? 'rgba(0, 166, 255, 0.05);' : 'rgb(255, 195, 195);' %>; padding: 3px 5px"><%= propostaCollaborazione.visibile ? 'rendi invisibile' : 'rendi visibile' %> </button>
+        </form>
+        <% } %>
+    </div>
+</div>
+<% } %>

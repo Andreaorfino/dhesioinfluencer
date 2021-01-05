@@ -1,0 +1,47 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/registrazione.css">
+</head>
+
+<body>
+
+  <div class="navbar">
+
+    <div class="listasotto" style="background-color: #ffffff;">
+      <div style="text-align: center;padding-top: 4px;      padding-left: 10px;">
+
+      </div>
+      <div></div>
+      <div><a id="logo1" href="/"><img src="/images/singlepage/logo.png"></a><img hidden id="logo2" src="/images/singlepage/logo.png"></div>
+      <div></div>
+      <div id="aiutoid">
+
+
+        <form action="/aiuto" method="get">
+          <button class="btnCustom" type="submit" style="padding: 0em;"><img src="/images/singlepage/help.png"
+              style="width: 27px;padding-top: 5px;"></button>
+        </form>
+        <div style="color: rgba(71, 82, 94, 0.67); font-family: Josefin Sans; font-size: 9px; margin-top:3px">come funziona</div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <div style="padding: 2.6rem;"></div>
+
+
+  <div class="tutto2">
+    <div></div>
+    <div class="benvenuto">
+        Benvenuto <span><%= influencer.nome %></span>
+        <div class="imagecircle circular--<%= influencer.landscape %>" >
+          <img src="<%= influencer.urlImage %>" style="margin-top:<%= influencer.marginTop %>px; margin-left:<%= influencer.marginLeft %>px; ">
+        </div>
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('../includes/end.ejs') %>

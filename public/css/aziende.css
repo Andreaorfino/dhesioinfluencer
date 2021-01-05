@@ -1,0 +1,42 @@
+.aziende {
+    text-align: center;
+}
+
+.aziende img {
+    width: 25px;
+}
+
+.leggiRecenzioni {
+    color: #969FAA;
+    font-size: 13px;
+    text-align: center;
+}
+
+.aggiornamentoContinuo{
+    color: #5A6978;
+    font-family: Josefin Sans;
+    text-align: center;
+    font-size: 13px;
+}
+
+.grid_line{
+    display: grid;
+    grid-template-columns: 3fr 90px 2fr;
+}
+
+.nomeazienda{
+    color: #343f4bd0;
+  font-size: 14px;
+}
+
+.leggi{
+    padding-top: 5px;
+    color: #343F4B;
+    font-size: 13px;
+    text-align: right;
+}
+
+.rating, .collaborazioni_nrecenzioni{
+    text-align: center;
+}
+

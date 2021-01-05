@@ -1,0 +1,353 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <div class="navbar">
+
+    <div class="listasotto" style="background-color: #ffffff;">
+      <div style="text-align: center;padding-top: 4px;      padding-left: 10px;">
+
+      </div>
+      <div></div>
+      <div><a id="logo1" href="/"><img src="/images/singlepage/logo.png"></a><img hidden id="logo2" src="/images/singlepage/logo.png"></div>
+      <div></div>
+      <div id="aiutoid">
+
+
+        <form action="/aiuto" method="get">
+          <button class="btnCustom" type="submit" style="padding: 0em;"><img src="/images/singlepage/help.png"
+              style="width: 27px;padding-top: 5px;"></button>
+        </form>
+        <div style="color: rgba(71, 82, 94, 0.67); font-family: Josefin Sans; font-size: 9px; margin-top:3px">come funziona</div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <div style="padding: 2.6rem;"></div>
+
+
+  <div class="tutto2">
+    <div></div>
+    <div class="benvenuto">
+
+      <h1>Benvenuto su Dhesìo</h1>
+      <p style="font-size:18px">partecipa <u><strong>gratis</strong></u> ai contest.</p>
+      <p>L’iscrizione è riservata a profili che rappresentano persone.
+        Pagine e/o profili sospetti verranno esclusi dalle estrazioni.</p>
+
+      <div class="creaAccount" style="padding-top:15px">
+        <div class="creadiv2">
+          <div>
+          <div class="accountcreaancora">
+            Crea il tuo account in 20 sec<img src="/images/singlepage/giu.png" style="width: 22px;">
+          </div>
+          <div class="registrazione_creaAccount-pocotempo">(non ti chiederemo nulla di fastidioso) </div>
+        </div>
+          <div class="prev">
+            <button type="button" class="buttonCustom" id="prevBtn" onclick="nextPrev(-1)"><img src="/images/singlepage/indietro.png"
+                style="width: 100%;"></button>
+          </div>
+        </div>
+      </div>
+
+      <form id="regForm" action="/registrazione" method="POST">
+
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+          <div class="cliccasuuna">
+            <p>clicca su una delle seguenti opzioni per continuare</p>
+          </div>
+          <p class="registrazione_titolotab">Sesso</p>
+          <div class="sessogrid">
+            <div><img onclick="Maschio()" src="/images/singlepage/M.png"></div>
+            <div></div>
+            <div><img onclick="Femmina()" src="/images/singlepage/F.png"></div>
+          </div>
+          <p><input type="hidden" id="sesso" placeholder="Sesso" oninput="this.className = ''" name="sesso"
+              value="<%= sesso %>"></p>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        </div>
+        <div class="tab">
+          <div class="cliccasuuna">
+            <p>clicca su una delle seguenti opzioni per continuare</p>
+          </div>
+          <p class="registrazione_titolotab">Età</p>
+          <div class="etagrid">
+            <div><img onclick="e1()" src="/images/singlepage/e1.png"></div>
+            <div></div>
+            <div><img onclick="e2()" src="/images/singlepage/e2.png"></div>
+            <div></div>
+            <div><img onclick="e3()" src="/images/singlepage/e3.png"></div>
+            <div></div>
+            <div><img onclick="e4()" src="/images/singlepage/e4.png"></div>
+          </div>
+          <p><input id="eta" type="hidden" placeholder="Eta" oninput="this.className = ''" name="eta"
+              value="<%= eta %>"></p>
+
+        </div>
+        <div class="tab">
+          <p class="registrazione_titolotab">Nome Utente Instagram</p>
+          <p><input placeholder="Nome Instagram..." oninput="this.className = ''" name="uname" style="text-transform: lowercase;"></p>
+          <div class="tabidinsta" style="padding-bottom: 1.5rem; ">
+            <% if (errore) { %> <p style="color: red;">oops sembra che un utente si sia già registrato con <strong><%= idinsta %></strong>... è il tuo username di Instagram? scrivici in direct</p><% } %>
+            <p><strong>inserisci il tuo nome utente Instagram <u
+                  style="text-decoration: underline; color: rgb(0, 207, 0);">correttamente</u> perchè in caso di vincita
+                ti contattiamo in direct.</strong>
+            </p>
+
+            <div class="errorini">
+              <p hidden>Inserisci una Nome Utente Instagram valido</p>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="tab">
+          <p class="registrazione_titolotab">Password</p>
+          <div class="cliccasuuna"><p>(La password può essere diversa da quella usata per Instagram)</p></div>
+          <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
+          <p><input placeholder="Conferma Password..." oninput="this.className = ''" name="confermapassword"
+              type="password"></p>
+
+          <div class="tabidinsta">
+            <div class="errorini">
+              <p hidden>La Password deve essere di almeno 5 caratteri</p>
+            </div>
+            <div class="errorini">
+              <p hidden>Le Password non coincidono</p>
+            </div>
+          </div>
+        </div>
+        <div style="overflow:auto;">
+          <div style="text-align: center; padding-bottom: 1rem;">
+
+            <button class="buttonCustom" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </div>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center; padding-top: 2rem; ">
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10%" aria-valuemin="0"
+              aria-valuemax="100" style="width:10%">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="termini" class="termini" style="display: none;">
+        <div class="termini1">
+          Premendo su "fatto!" dichiari di aver letto e accettato
+        </div>
+        <div class="termini2">
+          <a href="/regolamento" target="_blank">Termini del Servizio</a> & <a href="/privacy" target="_blank">Privacy
+            Policy</a>
+        </div>
+      </div>
+      <div class="giaaccount">
+        <p>Hai già un account? <strong><a href="/accedi">Accedi</a></strong></p>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+
+  <script>
+    var currentTab = <%= tab %>; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+      // This function will display the specified tab of the form...
+      var x = document.getElementsByClassName("tab");
+      x[n].style.display = "block";
+      //... and fix the Previous/Next buttons:
+      if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("aiutoid").removeAttribute("hidden");
+        document.getElementById("logo1").removeAttribute("hidden");
+        document.getElementById("logo2").setAttribute("hidden","");
+      }
+      if (n == 1) {
+        document.getElementById("prevBtn").style.display = "inline";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("aiutoid").setAttribute("hidden","");
+        document.getElementById("logo1").setAttribute("hidden","");
+        document.getElementById("logo2").removeAttribute("hidden");
+      }
+      if (n > 1) {
+        document.getElementById("prevBtn").style.display = "inline";
+        document.getElementById("nextBtn").style.display = "inline";
+      }
+      if (n == (x.length - 1)) {
+        document.getElementById("nextBtn").innerHTML = "fatto!";
+        document.getElementById("termini").style.display = "inline";
+      } 
+      else {
+        document.getElementById("nextBtn").innerHTML = "next";
+      }
+      //... and run a function that will display the correct step indicator:
+      fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+      // This function will figure out which tab to display
+      var x = document.getElementsByClassName("tab");
+      // Exit the function if any field in the current tab is invalid:
+      if (n == 1 && !validateForm()) return false;
+      // Hide the current tab:
+      x[currentTab].style.display = "none";
+      // Increase or decrease the current tab by 1:
+      
+      
+      currentTab = currentTab + n;
+      
+      // if you have reached the end of the form...
+
+      if (currentTab >= x.length) {
+        // ... the form gets submitted:
+        document.getElementById("regForm").submit();
+        document.body.style.display = "none";
+        return false;
+      }
+      // Otherwise, display the correct tab:
+     
+      showTab(currentTab);
+      
+    }
+
+    function validateForm() {
+      // This function deals with validation of the form fields
+      var x, y, i, valid = true;
+      var valid2 = true;
+      x = document.getElementsByClassName("tab");
+      y = x[currentTab].getElementsByTagName("input");
+      // A loop that checks every input field in the current tab:
+      if (y.uname) {
+        for (i = 0; i < y.length; i++) {
+          // If a field is empty...
+          if (y[i].value.length < 4) {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+          }
+        }
+        if (!valid) {
+          let p = document.getElementsByTagName('p');
+          let myText;
+
+          for (i = 0; i < p.length; i++) {
+            if (p[i].innerHTML == "Inserisci una Nome Utente Instagram valido") {
+              // console.log(myText, p[0].innerHTML);
+              myText = p[i];
+              break;
+            }
+          }
+
+          myText.removeAttribute("hidden");
+        }
+      }
+
+      if (y.password) {
+        for (i = 0; i < y.length; i++) {
+          // If a field is empty...
+          if (y[i].value.length < 5) {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+          }
+        }
+        if (!valid) {
+          let p = document.getElementsByTagName('p');
+          let myText2;
+
+          for (i = 0; i < p.length; i++) {
+            if (p[i].innerHTML == "La Password deve essere di almeno 5 caratteri") {
+              // console.log(myText2, p[0].innerHTML);
+              myText2 = p[i];
+              break;
+            }
+          }
+
+          myText2.removeAttribute("hidden");
+        }
+      }
+      if (y.password) {
+        let FirstPassword = y[0].value;
+        for (i = 1; i < y.length; i++) {
+          // If a field is empty...
+
+          if (y[i].value != FirstPassword) {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid2 = false;
+          }
+        }
+        if (!valid2) {
+          let p = document.getElementsByTagName('p');
+          let myText3;
+
+          for (i = 0; i < p.length; i++) {
+            if (p[i].innerHTML == "Le Password non coincidono") {
+              // console.log(myText3, p[0].innerHTML);
+              myText3 = p[i];
+              break;
+            }
+          }
+
+          myText3.removeAttribute("hidden");
+        }
+      }
+      // If the valid status is true, mark the step as finished and valid:
+
+
+      return valid && valid2; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+      // This function removes the "active" class of all steps...
+      var x = document.getElementsByClassName("progress-bar");
+      //... and adds the "active" class on the current step:
+      var lunghezza = 10 + n * 30;
+      x[0].style.width = lunghezza + "%";
+    }
+
+    function Maschio() {
+      document.getElementById("sesso").value = 'M'
+      nextPrev(1)
+    }
+
+    function Femmina() {
+      document.getElementById("sesso").value = 'F'
+      nextPrev(1)
+    }
+
+    function e1() {
+      document.getElementById("eta").value = 'e1'
+      nextPrev(1)
+    }
+    function e2() {
+      document.getElementById("eta").value = 'e2'
+      nextPrev(1)
+    }
+    function e3() {
+      document.getElementById("eta").value = 'e3'
+      nextPrev(1)
+    }
+    function e4() {
+      document.getElementById("eta").value = 'e4'
+      nextPrev(1)
+    }
+
+
+
+  </script>
+
+  <%- include('end.ejs') %>

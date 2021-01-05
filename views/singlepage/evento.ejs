@@ -1,0 +1,229 @@
+<div id="overlay<%= n %>" class="elemento">
+
+    <div class="firstline">
+        <div class="logonegozio">
+            <img src="/images/singlepage/L/L-<%= prodotto.fornitore %>.png">
+        </div>
+        <div class="nomenegozio">
+            <%= prodotto.fornitore %>
+        </div>
+        <div class="timeout">
+            <% if(prodotto.chiusa){ %>
+            <p>END</p>
+            <% } else { %>
+            <span id="hours<%= n %>" style="text-align: left;"></span><span id="minutes<%= n %>"
+                style="text-align: center;"></span><small><span id="seconds<%= n %>"
+                    style="text-align: right;"></span></small>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="scene" id="scene<%= n %>">
+        <div class="card fronte" id="card<%= n %>">
+            <div class="card__face card__face--front" id="front<%= n %>">
+                <div class="dettagliadestra">
+                    <div></div>
+                    <div id="dettagli<%= n %>">
+                        <img src="/images/singlepage/dettagliBianco.png" alt="dettagli">
+                    </div>
+                </div>
+                <img src="https://i.ibb.co/sRwBm7k/cecilia-Cantarano.png" alt="ceciliaCantarano"></div>
+            <div class="card__face card__face--back" id="back<%= n %>">dettagli con tutto</div>
+        </div>
+    </div>
+    
+    <div class="
+    <% if (prodotto.chiusa) { %>
+        vincitoreEbarra_win
+    <% } else { %>
+        vincitoreEbarra_open
+    <% } %>
+    ">
+        <% if(prodotto.chiusa){ %>
+
+        <div class="vincitoreInfluenzer">
+            <div class="vincitoreInfluenzer-vincitore"> 
+                vincitore:
+            </div>
+            <div class="vincitoreInfluenzer_grid">
+            <div></div>
+            <div>
+              <img src="/images/singlepage/tiktok.png">
+            </div>
+            <div class="vincitore-link"><a
+                href="https://www.instagram.com/<%= prodotto.instagramid %>"><%= prodotto.instagramid %></a></div>
+    
+            <div></div>
+        </div>
+        </div>
+        
+        <div class="progress">
+  
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= prodotto.barra %>"
+            aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color: #77d353;">
+          </div>
+        </div>
+        <% } else { %>
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= prodotto.barra %>"
+            aria-valuemin="0" aria-valuemax="100" style="width:<%= prodotto.barra %>%">
+          </div>
+        </div>
+        <% } %>
+  
+      </div>
+      <div class="undercard 
+        <% if (prodotto.chiusa) { %>
+            undercard_win
+        <% } else { %>
+            undercard_open
+        <% } %>   
+      ">
+      <% if (!prodotto.chiusa) { %>
+          <div class="undercard-cosapuoivincere     undercard-cosapuoivincere_open"> Partecipa e vinci:
+
+          </div>
+        <% } %> 
+          <div class="undercard-listacosapuoivincere">
+            <% for( let index = 0; index < prodotto.vincite.items.length; index++ ) { %>
+            
+            
+                <div><span class="dot
+                    <% if (prodotto.chiusa) { %>
+                        dot_win
+                    <% } else { %>
+                        dot_open
+                    <% } %>   
+                    "></span></div>
+                    <div><%= prodotto.vincite.items[index].elem %></div>
+                    <% } %>
+
+          </div>
+      </div>
+
+
+    
+      <div class="pulsante" id="partecipa<%= n %>">
+        <% if (autenticato) { %>
+
+            <% if (prodotto.joined) { %>
+                <img src="/images/singlepage/joined.png">
+                <% if (giaPartecipato) { %>
+                    <div class="haigiapartecipato"> Hai già partecipato a questo evento. </div>
+                <% } %>
+            <% } else { %>
+                <% if(prodotto.chiusa && primoElemento){ %>
+                    <div class="questoevento">
+                        <!-- <p>questo contest si è appena concluso</p> -->
+                    </div>
+                <% } %> 
+                <% if(!prodotto.chiusa){ %>
+                <form action="/cart" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btnCustom buttonCustom" type="submit"><img src="/images/singlepage/partecipa.png"></button>
+                    <input type="hidden" name="productId" value="<%= prodotto._id %>">
+                    <input type="hidden" name="urlPagina" value="<%= urlPagina %>">
+                </form>
+            <% } %> 
+            <% } %> 
+
+        <% } else { %>
+
+                <% if(prodotto.chiusa && primoElemento){ %>
+                    <div class="questoevento">
+                     <!--    <p>questo contest si è appena concluso</p> -->
+                    </div>
+                <% } %> 
+                <% if(!prodotto.chiusa){ %>
+            <img onclick="nicknameTikTok<%= n %>()" src="/images/singlepage/partecipa.png">
+            <div id="form<%= n %>" class="nicknameTikTok">
+                <div class="nicknameTikTok-inserisci">Inserisci il tuo nome utente TikTok</div>
+              <form method="post" action="/postButtamiDentro">
+                <input type="text" name="nicknameTikTok">
+                <input type="hidden" name="urlPagina" value="<%= urlPagina %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="productId" value="<%= prodotto._id %>">
+                <button class="btnCustom buttonCustom" type="submit">CONFERMA</button>
+              </form>
+            </div>
+            <% } %> 
+        <% } %> 
+        </div>
+
+        <div class="pulsante" id="indietro<%= n %>" style="display: none;">
+            <img src="/images/singlepage/back.png" alt="back">
+        </div>
+
+        <% if (autenticato) { %>
+            <% if (prodotto.joined) { %>
+                <% if(mostraFrasetta) { %>
+                    <div class="frasettaJoin" style="padding-top: 5px;">
+                
+                
+                    <div>Ben fatto! Vai a guardare la sezione “I miei sconti”</div>
+                    <div><img style="width:70%" src="/images/singlepage/teddybear.png"></div>
+                
+                
+                    </div>
+                    <div class="frasettaJoin">
+                
+                
+                    <div style="padding-top: 6px;"><%= prodotto.frase1 %></div>
+                    <div><img src="/images/singlepage/F/F-<%= prodotto.fraseimg1 %>.png"></div>
+                
+                
+                    </div>
+                <% } %>
+            <% } %>
+        <% } %>
+<div style="margin: 30px"></div>
+</div>
+
+<script>
+    var dettagli<%= n %> = document.querySelector('#dettagli<%= n %>');
+    var indietro<%= n %> = document.querySelector('#indietro<%= n %>');
+    var partecipa<%= n %> = document.querySelector('#partecipa<%= n %>');
+    var front<%= n %> = document.querySelector('#front<%= n %>');
+    var back<%= n %> = document.querySelector('#back<%= n %>');
+    var scene<%= n %> = document.querySelector('#scene<%= n %>')/* 
+    scene<%= n %>.style.height = (front<%= n %>.offsetHeight ) + "px"; */
+
+    var retro<%= n %> = false;
+
+    window.addEventListener('resize', function () {
+        if (retro<%= n %>)  {
+            front<%= n %>.style.display = 'block';
+            back<%= n %>.style.height = (front<%= n %>.offsetHeight ) + "px";
+            front<%= n %>.style.display = 'none';
+    }
+    }); 
+    
+    dettagli<%= n %>.addEventListener('click', function () {
+        back<%= n %>.style.height = (front<%= n %>.offsetHeight ) + "px";
+        front<%= n %>.style.display = 'none';
+        partecipa<%= n %>.style.display = 'none'
+        back<%= n %>.style.display = 'block';
+        indietro<%= n %>.style.display = 'block';
+        retro<%= n %> = true;
+    });
+
+    indietro<%= n %>.addEventListener('click', function () {
+        console.log('ciao');
+        back<%= n %>.style.display = 'none';
+        indietro<%= n %>.style.display = 'none';
+        front<%= n %>.style.display = 'block';
+        partecipa<%= n %>.style.display = 'block'
+        retro<%= n %> = false;
+    });
+    
+</script>
+
+<script>
+    function nicknameTikTok<%= n %> (){
+      var elem = document.getElementById("form<%= n %>");
+      elem.style.height = "80px";
+      elem.style.visibility = "visible";
+    }
+  </script>
+  
+  <%- include('timer.ejs',{n:n}) %>

@@ -1,0 +1,35 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/fornitori.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+
+    <%- include('../includes/nomeUtente.ejs') %>
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+            <div class="aziende">
+                <div style="margin-bottom: 10px; margin-top: 20px;"><img src="/images/stretta.jpg" alt=""></div>
+                Proposte di Collab
+            </div>
+            <div class="leggiRecenzioni" style="margin-bottom: 10px;">
+                Seleziona quella più adatta a te e mettiti in contatto con l'azienda!
+            </div>
+
+            <div class="blu_line" style="margin-bottom: 20px;"></div>
+
+
+
+            <% for( let i = 0; i < proposteCollaborazione.length; i++ ) { %>
+                <%- include('propostaCollab.ejs', {propostaCollaborazione: proposteCollaborazione[i] , n: i}) %>
+              <% } %>
+        </div>
+        <div></div>
+    </div>
+
+<%- include('../includes/end.ejs') %>

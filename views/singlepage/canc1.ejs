@@ -1,0 +1,40 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar3.ejs') %>
+
+
+
+
+  <div class="tutto2">
+    <div></div>
+    <div>
+      <div style="padding: 30px;"></div>
+      <div class="seiSicuro">
+        <h1>Sei proprio sicuro?</h1>
+      </div>
+      <div style="padding: 20px;"></div>
+
+
+
+      <div class="zonabimbi">
+        <div><img src="/images/singlepage/bimbo.png"></div>
+        <div><img src="/images/singlepage/bimbo.png"></div>
+        <div><img src="/images/singlepage/bimbo.png"></div>
+      </div>
+      <div style="text-align: center;">
+        <form action="/influencer/eliminatoAccount" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="buttonCustom btnCustom" type="submit">&nbsp;&nbsp;Elimina account</button>
+        </form>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('end.ejs') %>

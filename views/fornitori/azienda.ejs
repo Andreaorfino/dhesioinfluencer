@@ -1,0 +1,49 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/aziende.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+    <%- include('../includes/nomeUtente.ejs') %>
+
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+            <div style="text-align: center; font-size:24px; color:#5A6978; margin:20px">
+                <%= fornitore.nome %> 
+            </div>
+
+            <div>
+                <div class="rating rating_incollab" style="margin:0px">
+                    <% var stelline = fornitore.rating/fornitore.collaborazioni.length  %> 
+                    <% for( let i = 0; i < stelline - 0.5; i++ ) { %>
+                    <img src="/images/starFull.png" style="width:20px;">
+
+                    <% } %>
+                    <% for( let i = 0; i <= 5 - stelline - 0.5; i++ ) { %>
+                    <img src="/images/starEmpty.png" style="width:20px;">
+
+                    <% } %>
+                </div>
+                <div>
+                    <div class="collaborazioni_nrecenzioni" style="font-size:15px; margin-bottom:10px">
+                        <%= collaborazioni.length %>&nbsp;recension<% if (collaborazioni.length==1) { %>e<% } else { %>i<% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blu_line" style="margin-bottom: 20px;"></div>
+
+
+
+            <% for( let i = 0; i < collaborazioni.length; i++ ) { %>
+                <%- include('../recenzione.ejs', {home: false, profilo:false, collaborazione: collaborazioni[i] , n: i}) %>
+              <% } %>
+        </div>
+        <div></div>
+    </div>
+
+<%- include('../includes/end.ejs') %>

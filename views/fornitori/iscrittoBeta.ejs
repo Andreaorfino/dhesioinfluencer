@@ -1,0 +1,1155 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/landingPage.css">
+
+</head>
+
+<body>
+
+
+    <%- include('topbarLanding.ejs', {iscriviti: true}) %>
+    <div class="grid_form_grande blocco_azzurro" style="width: 100%;">
+        <div></div>
+        <div class="blocco_azzurro" style="width: 100%;">
+            <div class="margine">
+                <div class="titolo_alto spazio_sopra_enorme spazio_sotto_piccolo">
+                    <span style="color:#FF9052">Dhesìo</span> <span class="scritte_blu">Influencer <br> sta
+                        arrivando.</span>
+                </div>
+
+                <div class="scritta_medio_piccola  scritte_blu">
+                    <div class="spazio_sotto_piccolo">
+                        Vogliamo rendere l'Influencer Marketing facile ed accessibile a tutti, creando così un'ambiente
+                        sano e di cooperazione tra Influencer ed aziende.
+                    </div>
+
+                    <div class="contenuto_spazio_mezzo"></div>
+                    <div class="contenuto_spazio_mezzo"></div>
+
+
+                    <div class="spazio_sotto_piccolo">
+                        Nel frattempo pubblicheremo aggiornamenti e consigli pratici
+                        sull' Influencer Marketing
+                    </div>
+                </div>
+
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+
+
+                <div class="scritta_arancione scritta_media centro" style="font-weight: 400;">be faster.</div>
+
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+                <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                <div class="scritta_medio_piccola spazio_sotto_grande" style="font-weight: 300;">
+                    Guarda il video per saperne di più
+                </div>
+
+                <!-- (1) video wrapper -->
+                <div class="youtube" data-embed="mgYI7kZGcaw">
+
+
+
+                    <!-- (2) the "play" button -->
+                    <div class="play-button">
+                    </div>
+
+                </div>
+                <div class="scritta_privacy">
+                    Cliccando sul video accetti la nostra <a href="/privacyAzienda">Privacy Policy</a>
+                </div>
+
+                <script>
+                    var youtube = document.querySelectorAll(".youtube");
+                    // loop
+                    for (var i = 0; i < youtube.length; i++) {
+
+                        // thumbnail image source.
+                        var source = "https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg";
+
+                        // Load the image asynchronously
+                        var image = new Image();
+                        image.src = source;
+                        image.addEventListener("load", function () {
+                            youtube[i].appendChild(image);
+                        }(i));
+
+                        youtube[i].addEventListener("click", function () {
+
+                            setCookie('cookieconsent_status','allow',365);
+                            OptInTutto();
+                            rungtag('event', 'click_video', {
+                                'event_label': 'click_video_1',
+                                'event_category': 'click_video'
+                                });
+
+                            var iframe = document.createElement("iframe");
+
+                            iframe.setAttribute("frameborder", "0");
+                            iframe.setAttribute("allowfullscreen", "");
+                            iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.embed + "?rel=0&showinfo=0&autoplay=1");
+
+                            this.innerHTML = "";
+                            this.appendChild(iframe);
+                        });
+
+                    }
+
+
+                </script>
+
+                <div class="scritte_blu" style="margin-top: 20px;">
+
+                    <div class="spazio_sopra_grande scritta_medio_piccola spazio_sotto_piccolo"
+                        style="font-weight: 400;">
+                        Lista dei contenuti pubblicati
+                    </div>
+
+                    <div class="scritta_piccola2 spazio_sotto_piccolo">
+                        Dal 10 Novembre qui potrai trovare la lista aggiornata dei contenuti pubblicati.
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <div style="padding-bottom: 6px;cursor: pointer;" id="triggerContenuto1"
+                            onclick="toggleContenuto1()" class="chiusoTriggerContenuto">
+                            <div class="contenuto_titolo"">
+                            1. Qual' è il vero valore dell'Influencer <nobr>Marketing?&nbsp;&nbsp;&nbsp;<img src="
+                                /images/contenuti/bluTriangleDown.png" alt="" style="width: 26px;">
+                                <!-- <div class="cliccami">(cliccami!)</div> -->
+                                </nobr>
+                            </div>
+                            <div class="contenuto_pubblicazioniOfonti">
+                                Pubblicato martedì 10 Novembre
+                            </div>
+                        </div>
+                        <div id="contenuto1" class="chiusoContenuto">
+
+
+
+                            <div class="contenuto_scritta_normale">
+                                Analizziamo insieme la <b>situazione attuale</b> del mercato <b>Influencer Marketing
+                                    (IM)</b> e vediamo subito alcune cose interessanti:
+                            </div>
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div>
+                                    <img src="/images/contenuti/binocolo.png" alt="binocolo">
+                                </div>
+                                <div class="contenuto_Intestazioni_maiuscolo">
+                                    UNO SGUARDO AL FUTURO
+                                </div>
+                            </div>
+
+                            <div class="contenuto_scritte_grassetto">
+                                Ogni anno
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                questo settore cresce <b>più del 50% rispetto all'anno precedente</b>, si stima che nel
+                                2022 le aziende arriveranno ad investire fino a <b>$15B</b> (circa 13 miliardi €).
+                            </div>
+
+                            <div class="contenuto_frasiNostre">
+                                Interessante, no?
+                            </div>
+
+                            <div class="contenuto_grafico">
+                                <img src="/images/contenuti/graph2.png" alt="">
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Si registra infatti un <b>indice di soddisfazione (>90%)</b> (circa + 13% rispetto
+                                all'anno scorso) accompagnato da un sostanziale <b>aumento del budget</b> destinato
+                            </div>
+
+                            <div class="contenuto_grafico">
+                                <img src="/images/contenuti/graph1.png" alt="">
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Probabilmente ciò deriva dal ROI (Ritorno sugli Investimenti) dell'<b>8,22%</b> che
+                                viene registrato in questo settore.
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                In media, per <b>ogni euro</b> speso ne <nobr>ritornano <b>8,22</b> <img
+                                        src="/images/contenuti/dindi.png" style="width:30px"></nobr>
+                            </div>
+
+                            <div class="contenuto_frasiNostre">
+                                Non male, vero?
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div>
+                                    <img src="/images/contenuti/surf.png" alt="surf">
+                                </div>
+                                <div class="contenuto_Intestazioni_maiuscolo">
+                                    CHI STA CAVALCANDO QUEST ONDA?
+                                </div>
+                            </div>
+
+                            <div class="contenuto_elenco">
+                                <div class="contenuto_scritta_normale">
+                                    Settori come:
+                                </div>
+                                <div class="contenuto_palla"></div>
+                                <div class="contenuto_scritte_grassetto">
+                                    Fashion & Beauty
+                                </div>
+
+                                <div></div>
+                                <div class="contenuto_palla"></div>
+                                <div class="contenuto_scritte_grassetto">
+                                    Health & Fitness
+                                </div>
+
+                                <div></div>
+                                <div class="contenuto_palla"></div>
+                                <div class="contenuto_scritte_grassetto">
+                                    Food & Beverage
+                                </div>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Restano ancora in testa, ma ultimamente se ne stanno affacciando tanti altri.
+                            </div>
+
+                            <div class="contenuto_elenco">
+                                <div class="contenuto_scritta_normale">
+                                    Come ad es.
+                                </div>
+                                <div class="contenuto_palla"></div>
+                                <div class="contenuto_scritte_grassetto">Sport & Gaming</div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div><img src="/images/contenuti/negozioBlu.png" alt="" style="width: 35px;"></div>
+                                <div class="contenuto_Intestazioni_maiuscolo" style="padding-top: 10px;">NON SOLO LE
+                                    GRANDI
+                                    AZIENDE</div>
+                            </div>
+
+                            <div class="contenuto_immagine_destra">
+                                <div class="contenuto_scritta_normale"> Sta incrementando <b>vertiginosamente</b>
+                                    il numero di <b>Piccole e Medie imprese</b> che hanno compreso il vero valore
+                                    dell'<b>Influencer Marketing</b>
+                                </div>
+                                <div style="padding-top: 15px;"><img src="/images/contenuti/graficoCrescita.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="destra contenuto_pubblicazioniOfonti">
+                                Fonti: InfluencerMarketingHub, ONIM
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_frasiNostre">
+                                “Beh, a noi sembra abbastanza chiara la direzione verso cui si sta andando, tu che ne
+                                pensi?”
+                            </div>
+
+                            <div class="contenuto_scritta_normale" style="margin-bottom: 20px;">
+                                Grazie per essere arrivato fin qui :)
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Facci sapere la tua opinione sui nostri canali
+                            </div>
+
+                            <div class="contenuto_icone spazio_sotto_piccolo">
+                                &nbsp;&nbsp;<a href="https://www.instagram.com/dhesioinfluencer/"><img
+                                        src="/images/instagramBlu.png" alt=""></a> &nbsp;&nbsp;<a
+                                    href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img
+                                        src="/images/youtubeBlu.png" alt=""></a>
+                            </div>
+
+                            <div class="contenuto_ps">
+                                P.s. presto arriveranno altri contenuti!
+                            </div>
+                        </div>
+                        <script>
+                            var apertoContenuto1 = false;
+                            var triggerContenuto1 = document.getElementById("triggerContenuto1");
+                            var contenuto1 = document.getElementById("contenuto1");
+                            var contenuto1Height = contenuto1.scrollHeight;
+
+                            function toggleContenuto1() {
+
+                                triggerContenuto1.classList.toggle("chiusoTrigg{erContenuto");
+                                triggerContenuto1.classList.toggle("apertoTriggerContenuto");
+                                contenuto1.classList.toggle("chiusoContenuto");
+                                contenuto1.classList.toggle("apertoContenuto");
+
+                                var paramGtag = { 'event_label': 'click' };
+
+                                if (apertoContenuto1) {
+                                    contenuto1.setAttribute("style", 'max-height: 0px;');
+                                    paramGtag['event_category'] = 'Chiusura_contenuto';
+                                } else {
+                                    contenuto1.setAttribute("style", `max-height: ${contenuto1Height * 1.8}px;`);
+                                    paramGtag['event_category'] = 'Apertura_contenuto';
+                                }
+                                rungtag('event', 'click_contenuto_1', paramGtag);
+
+                                apertoContenuto1 = !apertoContenuto1;
+                            }
+                        </script>
+
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <div style="padding-bottom: 6px;cursor: pointer;" id="triggerContenuto2"
+                            onclick="toggleContenuto2()" class="chiusoTriggerContenuto">
+                            <div class="contenuto_titolo">
+                                2. Errori comuni nell'Influencer <nobr>Marketing (IM)&nbsp;&nbsp;&nbsp;<img src="
+                            /images/contenuti/bluTriangleDown.png" alt="" style="width: 26px;">
+                                    <!-- <div class="cliccami">(cliccami!)</div> -->
+                                </nobr>
+                            </div>
+                            <div class="contenuto_pubblicazioniOfonti">
+                                Pubblicato giovedì 12 Novembre
+                            </div>
+                        </div>
+                        <div id="contenuto2" class="chiusoContenuto">
+
+                            <div class="contenuto_scritta_normale">
+                                Bene, abbiamo capito che l'<b>IM</b> è una <b>"Hot Industry"</b>, ma come fare a
+                                <b>massimizzare i risultati?</b>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Beh, innanzitutto bisogna prendere alcune accortezze ed evitare questi <b>errori
+                                    comuni:</b>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_x">
+                                <div>
+                                    <img src="/images/contenuti/x.png" alt="x" style="width: 20px;">
+                                </div>
+                                <div class="contenuto_x_scritta">
+                                    PRIORIZZARE LA COPERTURA RISPETTO AL CONTESTO
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Troppe</b> aziende collaborano con gli Influencer <b>solo in base al n. di
+                                    Followers</b>
+                                finendo col trascurare le due metriche più importanti:
+                            </div>
+
+                            <div class="contenuto_scritte_grassetto">
+                                1. Content Fit <img src="/images/contenuti/bersaglio.png" alt="bersaglio"
+                                    style="width:30px;transform: translateY(-5px);">
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Quando i contenuti dell'influencer sono in linea con il tuo Brand.
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_frasiNostre">
+                                <l>"Meglio arrivare a 100mila persone a cui non frega niente del tuo prodotto</l>
+                                <b>oppure
+                                    a 10mila super interessate?</b>"
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_scritte_grassetto">
+                                2. Engagement Rate <img src="/images/contenuti/cuore.png" alt="cuore"
+                                    style="width:35px">
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale" style="margin-bottom: 5px;">
+                                Quanto l'audience o fanbase sia realmente
+                                ingaggiata (e quindi influenzata) dallo stesso Influencer.
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo">
+                                P.s tool come Ninjalitics possono aiutarti in questo.
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_x">
+                                <div>
+                                    <img src="/images/contenuti/x.png" alt="x" style="width: 20px;">
+                                </div>
+                                <div class="contenuto_x_scritta">
+                                    GUARDARE SOLO ALLE VENDITE
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                Abbiamo già detto nello scorso articolo che
+                                l'Influencer Marketing vanta di un <b>ROI medio elevato...</b>&nbsp;&nbsp; ma è giusto
+                                concentrarsi <b>solo</b> su questo?
+                            </div>
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div>
+                                    <img src="/images/contenuti/clessidra.png" alt="clessidra" style="width: 40px;">
+                                </div>
+                                <div class="contenuto_frasiNostre">
+                                    Non tirare le somme troppo presto!
+                                </div>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Questi <b>solo alcuni degli effetti</b> di questa <b>potente</b> strategia di marketing.
+                            </div>
+
+                            <div class="contenuto_scritte_grassetto">
+                                <div class="contenuto_palla"></div>
+                                Brand Awareness
+                            </div>
+                            <div class="contenuto_scritte_grassetto">
+                                <div class="contenuto_palla"></div>
+                                Procuct Trust
+                            </div>
+                            <div class="contenuto_scritte_grassetto">
+                                <div class="contenuto_palla"></div>
+                                Earned media
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Troppo spesso</b>
+                                si è portati a valutare i risultati delle collaborazioni con Influencer solo nel breve
+                                periodo.
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Non</b>
+                                tenendo in considerazione di altri <b>obiettivi fondamentali</b>
+                                che inevitabilmente porteranno comunque alle vendite,
+                                ma nel <b>lungo periodo</b>
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_x">
+                                <div>
+                                    <img src="/images/contenuti/x.png" alt="x" style="width: 20px;">
+                                </div>
+                                <div class="contenuto_x_scritta">
+                                    NON LASCIARE SPAZIO ALLA CREATIVITA'
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                Dare indicazioni si, <b>ma non troppo.</b>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Gli <b>Influencer</b> conoscono la loro Fanbase sicuramente più di te!
+                            </div>
+
+                            <div class="contenuto_immagine_destra">
+                                <div class="contenuto_scritta_normale">
+                                    <b>Lasciali liberi</b> di creare il contenuto
+                                    che meglio coinvoilgerà il loro pubblico.
+                                </div>
+                                <div>
+                                    <img src="/images/contenuti/matitaMagica.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="contenuto_immagine_sinistra" style="margin-bottom: 0px;">
+                                <div>
+                                    <img src="/images/contenuti/atomoCuore.png" alt="">
+                                </div>
+                                <div class="contenuto_scritta_normale">
+                                    Spiega e racconta loro i <b>valori del tuo Brand</b>
+                                    ma dagli spazio di rappresentare il tuo prodotto <b>a modo loro,</b>
+                                </div>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Altrimenti</b> la collaborazione risulterà <b>troppo "finta"</b> e non produrrà
+                                l'effetto
+                                desiderato.
+                            </div>
+
+                            <div class="destra contenuto_pubblicazioniOfonti">
+                                Fonti: nealschaffer.com
+                            </div>
+
+                            <div>
+                                <b>“Conosci altri errori che vengono commessi nelle collaborazioni con Influencer?"</b>
+                            </div>
+
+                            <div class="contenuto_scritta_normale" style="margin-bottom: 20px;">
+                                Grazie per essere arrivato fin qui :)
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Facci sapere la tua opinione sui nostri canali
+                            </div>
+
+                            <div class="contenuto_icone spazio_sotto_piccolo">
+                                &nbsp;&nbsp;<a href="https://www.instagram.com/dhesioinfluencer/"><img
+                                        src="/images/instagramBlu.png" alt=""></a> &nbsp;&nbsp;<a
+                                    href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img
+                                        src="/images/youtubeBlu.png" alt=""></a>
+                            </div>
+
+                            <div class="contenuto_ps">
+                                P.s. presto arriveranno altri contenuti!
+                            </div>
+
+                        </div>
+                        <script>
+                            var apertoContenuto2 = false;
+                            var triggerContenuto2 = document.getElementById("triggerContenuto2");
+                            var contenuto2 = document.getElementById("contenuto2");
+                            var contenuto2Height = contenuto2.scrollHeight;
+
+                            function toggleContenuto2() {
+
+                                triggerContenuto2.classList.toggle("chiusoTrigg{erContenuto");
+                                triggerContenuto2.classList.toggle("apertoTriggerContenuto");
+                                contenuto2.classList.toggle("chiusoContenuto");
+                                contenuto2.classList.toggle("apertoContenuto");
+
+                                var paramGtag = { 'event_label': 'click' };
+
+                                if (apertoContenuto2) {
+                                    contenuto2.setAttribute("style", 'max-height: 0px;');
+                                    paramGtag['event_category'] = 'Chiusura_contenuto';
+                                } else {
+                                    contenuto2.setAttribute("style", `max-height: ${contenuto2Height * 1.8}px;`);
+                                    paramGtag['event_category'] = 'Apertura_contenuto';
+                                }
+                                rungtag('event', 'click_contenuto_1', paramGtag);
+
+                                apertoContenuto2 = !apertoContenuto2;
+                            }
+                        </script>
+
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <div style="padding-bottom: 6px;cursor: pointer;" id="triggerContenuto3"
+                            onclick="toggleContenuto3()" class="chiusoTriggerContenuto">
+                            <div class="contenuto_titolo">
+                                3. Content Marketing vs Influencer <nobr>Marketing &nbsp;&nbsp;&nbsp;<img src="
+                            /images/contenuti/bluTriangleDown.png" alt="" style="width: 26px;">
+                                    <!-- <div class="cliccami">(cliccami!)</div> -->
+                                </nobr>
+                            </div>
+                            <div class="contenuto_pubblicazioniOfonti">
+                                Pubblicato sabato 14 Novembre
+                            </div>
+                        </div>
+                        <div id="contenuto3" class="chiusoContenuto">
+
+                            <div class="contenuto_frasiNostre">
+                                Qual'è la strategia migliore?
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class=" contenuto_scritta_normale">
+                                OK, prima cosa qualche <b>definizione:</b>
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_immagine_45">
+                                CONTENT <nobr>MARKETING&nbsp;&nbsp; <img src="/images/contenuti/connection.png"
+                                        alt="connessioni">
+                                </nobr>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Tu</b> (Azienda) crei e distribuisci <b>contenuti di valore</b>,
+                                al fine di attirare sul tuo sito web o social network
+                                un pubblico di riferimento <b>creando una relazione</b>
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_immagine_45">
+                                INFLUENCER <nobr>MARKETING (IM) &nbsp;&nbsp;<img src="/images/contenuti/comincare.png"
+                                        alt="">
+                                </nobr>
+                            </div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                Una persona al di fuori della tua azienda <b>ma in grado di influenzare
+                                    comportamenti e scelte altrui</b> scrive, parla, condivide, mostra il tuo prodotto e
+                                <b>il tuo Brand</b>, <b>incrementando l'approvazione</b> presso un pubblico più vasto
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_frasiNostre">
+                                Ma gli obiettivi sono così diversi??
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Beh in realtà no.. <br>
+                                <b>Entrambe le strategie</b> nel lungo periodo (se eseguite correttamente) <b>porteranno
+                                    all'incremento delle vendite</b>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div><img src="/images/contenuti/indicazioni.png" alt="" style="width: 70px;"></div>
+                                <div class="contenuto_frasiNostre" style="padding-top: 28px;">E allora quale utilizzare?
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                La Soluzione è <b>Entrambe!</b><br>
+                                Non c'è una strategia migliore dell'altra.
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Per far sì</b> che la tua strategia di <b>Influencer Marketing (IM)</b> abbia
+                                successo è necessario investire prima nella costruzione della tua <nobr>
+                                    influenza&nbsp;&nbsp;&nbsp;<b>=&nbsp;&nbsp;&nbsp;Content Marketing</b></nobr>
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo" style="font-weight: 300;">
+                                (e in un certo senso questo va anche "contro" di noi :)&nbsp; ndr.
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_frasiNostre">
+                                “Altrimenti le persone che vengono attratte
+                                dal tuo Brand tramite un Influencer,
+                                una volta atterrati sui tuoi canali, cosa trovano?"
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="centro">
+                                <img src="/images/contenuti/deserto.png" alt="" style="width: 30%; margin: auto;">
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_scritta_normale">
+                                <b>Ricorda che</b> le aziende che meglio sfruttano le <b>potenzialità</b>
+                                dell'Influencer Marketing (IM) sono quelle che si dedicano
+                                prima alla <b>creazione di contenuti di valore</b>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="">
+                                <div class="contenuto_scritta_normale" style="width: 60%; margin: auto;">
+                                    "Content is your marketing baseline,
+                                    Influencers give it a boost!"
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_immagine_destra">
+                                <div class="contenuto_scritta_normale">
+                                    <b>Inoltre</b> più alta sarà la <b>qualità dei contenuti</b> che crei e più alto
+                                    sarà il <b>numero e qualità di Influencer</b> che vorranno collaborare con te
+                                </div>
+                                <div>
+                                    <img src="/images/contenuti/calamita.png" alt="">
+                                </div>
+                            </div>
+
+
+                            <div class="contenuto_pubblicazioniOfonti destra">
+                                Fonti: Influence&Co
+                            </div>
+
+                            <div class="contenuto_ps">
+                                <b>p.s.</b> "se non sai come creare contenuti per la tua azienda passa sulla piattaforma
+                                <b>Learnn</b>, troverai un corso dedicato di altissimo valore."
+                            </div>
+
+                            <div class="contenuto_scritta_normale" style="margin-bottom: 20px;">
+                                Grazie per essere arrivato fin qui :)
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_scritta_normale">
+                                Facci sapere la tua opinione sui nostri canali
+                            </div>
+
+                            <div class="contenuto_icone spazio_sotto_piccolo">
+                                &nbsp;&nbsp;<a href="https://www.instagram.com/dhesioinfluencer/"><img
+                                        src="/images/instagramBlu.png" alt=""></a> &nbsp;&nbsp;<a
+                                    href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img
+                                        src="/images/youtubeBlu.png" alt=""></a>
+                            </div>
+
+                            <div class="contenuto_ps">
+                                P.s. presto arriveranno altri contenuti!
+                            </div>
+
+                        </div>
+                        <script>
+                            var apertoContenuto3 = false;
+                            var triggerContenuto3 = document.getElementById("triggerContenuto3");
+                            var contenuto3 = document.getElementById("contenuto3");
+                            var contenuto3Height = contenuto3.scrollHeight;
+
+                            function toggleContenuto3() {
+
+                                triggerContenuto3.classList.toggle("chiusoTrigg{erContenuto");
+                                triggerContenuto3.classList.toggle("apertoTriggerContenuto");
+                                contenuto3.classList.toggle("chiusoContenuto");
+                                contenuto3.classList.toggle("apertoContenuto");
+
+                                var paramGtag = { 'event_label': 'click' };
+
+                                if (apertoContenuto3) {
+                                    contenuto3.setAttribute("style", 'max-height: 0px;');
+                                    paramGtag['event_category'] = 'Chiusura_contenuto';
+                                } else {
+                                    contenuto3.setAttribute("style", `max-height: ${contenuto3Height * 1.8}px;`);
+                                    paramGtag['event_category'] = 'Apertura_contenuto';
+                                }
+                                rungtag('event', 'click_contenuto_1', paramGtag);
+
+                                apertoContenuto3 = !apertoContenuto3;
+                            }
+                        </script>
+
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <div style="padding-bottom: 6px;cursor: pointer;" id="triggerContenuto4"
+                            onclick="toggleContenuto4()" class="chiusoTriggerContenuto">
+                            <div class="contenuto_titolo">
+                                4. Quale è il punto di vista degli <nobr>Influencer &nbsp;&nbsp;&nbsp;<img src="
+                            /images/contenuti/bluTriangleDown.png" alt="" style="width: 26px;">
+                                    <!-- <div class="cliccami">(cliccami!)</div> -->
+                                </nobr>
+                            </div>
+                            <div class="contenuto_pubblicazioniOfonti">
+                                Pubblicato domenica 15 Novembre
+                            </div>
+                        </div>
+                        <div id="contenuto4" class="chiusoContenuto">
+
+                            <div class="contenuto_frasiNostre">
+                                Vi raccontiamo i risultati di più di 50
+                                interviste che abbiamo fatto negli ultimi 2 mesi
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_immagine_65">
+                                QUALCHE <nobr>DATO&nbsp;&nbsp; <img src="/images/contenuti/cont4/schermoGrafici.png"
+                                        alt="schermo grafici" style="transform: translateY(-3px);">
+                                </nobr>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                I ragazzi con cui abbiamo avuto il piacere di parlare
+                                hanno un età media di 19/20 anni, 50% M e 50% F,
+                                e le piattaforme principali da loro utilizzate sono
+                                <b>Instagram</b> e <b>TikTok</b>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_immagine_sinistra centro contenuto_immagine_65" style="margin-left: 5%;">
+                                <div>
+                                    <img src="/images/contenuti/cont4/insta.png" alt="">
+                                </div>
+                                <div class="contenuto_scritta_normale" style="    transform: translateY(15px);">
+                                    media Fanbase <b>10k-100k</b>
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_immagine_destra centro contenuto_immagine_65" style="margin-right: 5%;">
+                                <div class="contenuto_scritta_normale" style="    transform: translateY(17px);">
+                                    media Fanbase <b>100k-500k</b>
+                                </div>
+                                <div>
+                                    <img src="/images/contenuti/cont4/tiktok.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_immagine_45">
+                                NUM. DI COLLABORAZIONE <nobr>AL MESE&nbsp;&nbsp; <img
+                                        src="/images/contenuti/cont4/mani.png" alt="mani" style="    transform: translateY(-2px);">
+                                </nobr>
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_scritta_normale">
+                                La maggior parte dei ragazzi effettua <b>dall'1 alle 3 collaborazioni mensili</b> con i
+                                Brand.
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_immagine_sinistra">
+                                <div> <img src="/images/contenuti/cont4/tetto.png" alt="" style="    transform: translateY(-5px);"></div>
+                                <div class="contenuto_scritta_normale">
+                                    Abbiamo capito che il <b>"tetto massimo"</b> è di <b>7 al mese</b>
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_frasiNostre">
+                                Perché?
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Beh, superato questo limite c'è il rischio
+                                di <b>perdita di credibilità</b> dell'Influencer stesso sommato a quello di
+                                <b>non ottenere il risultato desiderato</b>
+                            </div>
+
+                            <div class="contenuto_Intestazioni_maiuscolo contenuto_immagine_45">
+                                LE RAGIONI CHE FANNO ACCETTARE <nobr>UNA PROPOSTA&nbsp;&nbsp; <img
+                                        src="/images/contenuti/cont4/yes.png" alt="yes">
+                                </nobr>
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+
+                            <div class="contenuto_listina">
+                                <div class="contenuto_palla"></div>
+                                <div>
+                                <div class="contenuto_scritta_normale">
+                                    Reputazione e professionalità del Brand
+                                </div>
+                                <div class="contenuto_pubblicazioniOfonti">
+                                    Non è importante quanto grande, ciò che conta è quanto la tua azienda sia <b>ben
+                                        gestita</b> e <b>professionale.</b>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_immagine_destra">
+                                <div class="contenuto_listina">
+                                    <div class="contenuto_palla"></div>
+                                    <div>
+                                    <div class="contenuto_scritta_normale">
+                                        Compenso economico (e non)
+                                    </div>
+                                    <div class="contenuto_pubblicazioniOfonti">
+                                        Beh, ovviamente anche quello è importante!
+                                    </div>
+                                </div>
+                                </div>
+                                <img src="/images/contenuti/cont4/manosoldi.png" alt="">
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_listina" ">
+                                <div class="contenuto_palla"></div>
+                                <div>
+                                <div class="contenuto_scritta_normale">
+                                    Quanto l'azienda <b>è in linea </b> con i contenuti dell'Influencer
+                                </div>
+                                <div class="contenuto_pubblicazioniOfonti">
+                                    <b>E' di fondamentale importanza chiedersi quanto il prodotto o servizio che sto
+                                        offrendo rispecchi quel ragazzo/a con cui avrei piacere di collaborare. </b>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_listina">
+                                <div class="contenuto_palla"></div>
+                                <div class="contenuto_scritta_normale">
+                                    Buona impressione nel primo contatto :)
+                                </div>
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            
+
+
+                            <div class="contenuto_Intestazioni_maiuscolo ">
+                                CHI CONTATTA <nobr>CHI?&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/contenuti/cont4/omini.png"
+                                        alt="yes" style="width: 60px;">
+                                </nobr>
+                            </div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+
+                            <div class="contenuto_scritta_normale">
+                                Nella maggior parte dei casi è <br>
+                                l'azienda a contattare l'Influencer
+                            </div>
+
+                            <div class="contenuto_frasiNostre" style="font-size: 28px;">
+                                Ma
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Abbiamo scoperto che c'é <b>totale disponibilità</b> da parte degli Influencer stessi
+                                <b>a fare il primo passo</b> per collaborare con le <b>aziende giuste</b>
+                            </div>
+
+                            <div class="contenuto_scritta_normale">
+                                Se solo ci fosse uno strumento che lo permettesse...
+                            </div>
+
+                            <div class="contenuto_pubblicazioniOfonti destra">
+                                Fonti: DhesìoInfluencer
+                            </div>
+
+                            <div class="contenuto_scritta_normale" style="margin-bottom: 20px;">
+                                Grazie per essere arrivato fin qui :)
+                            </div>
+
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+                            <div class="contenuto_spazio_mezzo"></div>
+
+                            <div class="contenuto_frasiNostre">
+                                "Conosci qualche altra prospettiva interessante?"
+                            </div>
+
+                            <div class="contenuto_icone spazio_sotto_piccolo">
+                                &nbsp;&nbsp;<a href="https://www.instagram.com/dhesioinfluencer/"><img
+                                        src="/images/instagramBlu.png" alt=""></a> &nbsp;&nbsp;<a
+                                    href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img
+                                        src="/images/youtubeBlu.png" alt=""></a>
+                            </div>
+
+                            <div class="contenuto_ps">
+                                P.s. presto arriveranno altri contenuti!
+                            </div>
+
+                        </div>
+                        <script>
+                            var apertoContenuto4 = false;
+                            var triggerContenuto4 = document.getElementById("triggerContenuto4");
+                            var contenuto4 = document.getElementById("contenuto4");
+                            var contenuto4Height = contenuto4.scrollHeight;
+
+                            function toggleContenuto4() {
+
+                                triggerContenuto4.classList.toggle("chiusoTrigg{erContenuto");
+                                triggerContenuto4.classList.toggle("apertoTriggerContenuto");
+                                contenuto4.classList.toggle("chiusoContenuto");
+                                contenuto4.classList.toggle("apertoContenuto");
+
+                                var paramGtag = { 'event_label': 'click' };
+
+                                if (apertoContenuto4) {
+                                    contenuto4.setAttribute("style", 'max-height: 0px;');
+                                    paramGtag['event_category'] = 'Chiusura_contenuto';
+                                } else {
+                                    contenuto4.setAttribute("style", `max-height: ${contenuto4Height * 1.8}px;`);
+                                    paramGtag['event_category'] = 'Apertura_contenuto';
+                                }
+                                rungtag('event', 'click_contenuto_1', paramGtag);
+
+                                apertoContenuto4 = !apertoContenuto4;
+                            }
+                        </script>
+
+                    </div>
+
+                    <div class="spazio_sopra_grande scritta_medio_piccola spazio_sotto_piccolo"
+                        style="font-weight: 400;">
+                        Se vuoi avere anticipazioni sul nostro servizio prima degli altri iscriviti alla lista d'attesa!
+                    </div>
+
+                </div>
+
+
+                <form action="listaAttesa" class="listaAttesa spazio_sopra_grande" method="post" id="formLista">
+
+                    <input id="input1" type="text" name="nome" placeholder="Nome" onclick="rungtag('event', 'nome', {
+                    'event_label': 'Ha cliccato sul nome',
+                    'event_category': 'click form'
+                    });"></input>
+                    <input id="input2" type="text" name="nomeAzienda" placeholder="Nome Azienda"></input>
+                    <input id="input3" type="text" name="email" placeholder="Inserisci la tua email"></input>
+
+
+                    <input id="input5" type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                    <div class="spazio_sopra_medio spazio_sotto_piccolino">
+                        <input id="input4" type="checkbox" id="accetto" name="accetto" checked="checked"><label
+                            for="accetto">Compilando il form accetti
+                            la
+                            <a href="/privacy">Privacy Policy</a></label>
+                    </div>
+                    <button onclick="invia()" type="button" class="scritta_medio_piccola"
+                        style="font-weight: 400; margin-bottom: 5px">Iscriviti alla lista d'attesa</button>
+                    <div class="scritte_blu scritta_piccola centro spazio_sotto_piccolino ">Una mail a settimana di
+                        recap, no spam</div>
+
+                    <div class="centro" style="    font-weight: 400;
+                    padding-left: 5px;
+                    font-size: 15px;" onclick="rungtag('event', 'jump_iscrizione', {
+                                'event_label': 'click_gia_iscritto',
+                                'event_category': 'no_iscrizione_mailing_list'
+                                });">
+                        Ti sei già iscritto? Allora <a href="/aziende/dhesioinfluencer">clicca qui</a>
+                    </div>
+
+                </form>
+
+
+
+                <div class="scritte_blu scritta_piccola centro spazio_sopra_enorme">
+                    Non vuoi registrarti? Accedi ai contenuti pubblici sui nostri canali
+                </div>
+
+                <div class="centro icone">
+                    <a href="https://www.instagram.com/dhesioinfluencer/"><img src="/images/instagramBlu.png"
+                            alt=""></a> <a href="https://www.youtube.com/channel/UCB00kViN2jJNbK2ctM-ts2w"><img
+                            src="/images/youtubeBlu.png" alt=""></a>
+                </div>
+
+            </div>
+
+            <div style="margin: 60px"></div>
+
+        </div>
+
+        <div></div>
+    </div>
+
+    <script>
+        var form = [
+            document.getElementById("input1"),
+            document.getElementById("input2"),
+            document.getElementById("input3"),
+            document.getElementById("input4")
+        ];
+        function invia() {
+            console.log('1')
+            for (let i = 0; i < form.length - 1; i++) {
+                if (form[i].value == "") {
+                    return false;
+                }
+            }
+            if (!form[form.length - 1].checked) {
+                return false;
+
+            }
+            setCookie('cookieconsent_status', 'allow', 365);
+            OptInTutto();
+            rungtag('event', 'iscrizione', {
+                'event_label': document.getElementById("input3").value,
+                'event_category': 'iscrizione_mailing_list'
+            });
+            runfbq('track', 'CompleteRegistration' + document.getElementById("input3").value);
+            document.getElementById("formLista").submit();
+
+        }
+    </script>
+
+
+    <%- include('../includes/cookiePrivacyAnalytics.ejs') %>
+</body>
+
+</html>

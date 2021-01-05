@@ -1,0 +1,202 @@
+<% if (!collaborazione.nonVisibile) { %>
+<div style="margin-bottom:30px">
+    <div class="collaborazione_grid_edit">
+
+        <div class="collaborazione">
+            <% if((pageTitle=='Dhesìo')) { %>
+
+<%- include('includes/lineaNome.ejs') %>
+                <div style="height: 5px;"></div>
+            <% } %>
+            <% if(profilo) { %>
+                <!--  <% if (collaborazione.social.length<3) { %>style="padding-bottom:6px"<% } %> -->
+            <div class="collaborazione-orange">
+                <div class="collaborazione-orange-head">
+                    <div>
+                        <div class="collaborazione-orange-text">
+                            Collaborazione con <div class="collaborazione-orange-fornitore_nome" style="display:inline-block;"><nobr><a href="/aziende/profilo/<% if(profilo) { %><%= collaborazione.fornitore.nome %><% } else { %><%= fornitore.nome %><% } %>" style="color: #343F4B"><% if(profilo) { %><%= collaborazione.fornitore.nome %><% } else { %><%= fornitore.nome %><% } %></a></nobr></div>
+                        </div>
+                        <div class="collaborazione-orange-fornitore">
+                            <div style="display:inline-block;"><span
+                    style="color: #FF9052;font-size: 10px;text-transform: uppercase;"><nobr><%= collaborazione.titolo %></nobr></span></div>
+                    <nobr>
+                            <div class="rating rating_incollab rating_traslate" style="margin:0px; display:inline-block;">
+                                
+                        <!--        <% if(profilo) {
+                                    var stelline = collaborazione.fornitore.rating/collaborazione.fornitore.collaborazioni.length
+                                  } else {
+                                    var stelline = fornitore.rating/fornitore.collaborazioni.length
+                                  } %> -->
+                                  
+                                <% for( let i = 0; i < collaborazione.stelle - 0.5; i++ ) { %>
+                                <img src="/images/starFull.png" style="width:12px;">
+
+                                <% } %>
+                                <% for( let i = 0; i <= 5 - collaborazione.stelle - 0.5; i++ ) { %>
+                                <img src="/images/starEmpty.png" style="width:12px;">
+
+                                <% } %>
+                               
+                            </div>
+                            <div class="numero_like" style="transform:translateY(-2px); display:inline-block;">
+                                <img src="/images/nolike.png" alt="" style="width: 15px;"><div id="numero_like<%= n %>" style="display:inline-block; transform:translateY(3px)">&nbsp;<%= collaborazione.likes.length %></div>
+                            </div>
+                            </nobr>
+<!--                            <div class="collaborazioni_nrecenzioni">
+                                <% if(profilo) { %>
+                                    &nbsp;<%= collaborazione.fornitore.collaborazioni.length %>&nbsp;recension<% if (collaborazione.fornitore.collaborazioni.length==1) { %>e<% } else { %>i<% } %>
+                                <% } else { %>
+                                    &nbsp;<%= fornitore.collaborazioni.length %>&nbsp;recension<% if (fornitore.collaborazioni.length==1) { %>e<% } else { %>i<% } %>
+                                <% } %> 
+                            </div> -->
+                        </div>
+                    </div>
+                    <div>
+                        <div class="collaborazione-orange-data">
+                            <% collaborazione.data = collaborazione.data.split('-').reverse().join('/') %> 
+                            <%= collaborazione.data %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collaborazione-orange-cosaFatto">
+                    <%= collaborazione.cosaFatto %>
+                </div>
+                <div class="collaborazione-orange-social">
+
+                </div>
+
+            </div>
+            <% } %>
+
+
+
+        </div>
+
+
+        <div><% if(profilo&&(pageTitle=='Profilo')) { %><a href="/influencer/modificaCollaborazione/<%= collaborazione._id %>"><img src="/images/edit.png" alt="" width="16px" style="padding-left:3px"></a><% } %>
+        </div>
+
+
+
+    </div>
+    <% if(profilo) { %>
+        <div id="triggerRecensione<%= n %>" class="collaborazione-chiusa_collab collaborazione-aprichiudi" >
+            apri recensione <img src="/images/giu.png" style="width:12px;">
+            </div>
+            <% } %>
+
+    <div id="recensione<%= n %>" class="collaborazione-recensione <% if(profilo) { %>collaborazione-recensione_chiusa<% } else { %>collaborazione-recensione_aperta<% } %>">
+        <% if(!(profilo)) { %>
+            <%- include('includes/lineaNome.ejs') %>
+        <% } %>
+        <div class="collaborazione-noorange">
+            <div><%- profilo ? '<!--' : '' %><span
+                    style="color: #FF9052;font-size: 10px;text-transform: uppercase;"><%= collaborazione.titolo %>&nbsp;</span>
+                    
+                <div class="rating rating_incollab" style="margin:0px;display: inline;">
+                    <nobr>
+                    <% for( let i = 0; i < collaborazione.stelle - 0.5; i++ ) { %>
+                    <img src="/images/starFull.png" style="width:12px;">
+
+                    <% } %>
+                    <% for( let i = 0; i <= 5 - collaborazione.stelle - 0.5; i++ ) { %>
+                    <img src="/images/starEmpty.png" style="width:12px;">
+
+                    <% } %>
+                    </nobr>
+                </div>
+                
+                <div class="numero_like">
+                                 <img src="/images/nolike.png" alt="" style="width: 15px;"><div id="numero_like<%= n %>" style="display:inline-block; transform:translateY(3px)">&nbsp;<%= collaborazione.likes.length %></div>
+                             </div>
+                             <%- profilo ? '-->' : '' %>
+            </div> 
+
+            <div class="collaborazione-recensione_testo <%- profilo ? 'noTrasla' : '' %>"><%= collaborazione.recensione %></div>
+        </div>
+    </div>
+    <% if(locals.user){ %>
+<div class="like_button">
+    <button class="mio_bottone" onclick="like<%= n %>()">
+
+    <%  
+        var like = (user.likes.includes(collaborazione._id)) ? 'like' : 'nolike'; 
+        var nolike = (user.likes.includes(collaborazione._id)) ? 'nolike' : 'like';
+    
+    %>
+    <img id="like_nolike<%= n %>" src="/images/<%= like %>.png" alt="">
+    <img hidden src="/images/<%= nolike %>.png" alt=""><div style="display:inline-block; transform:translateY(3px)">d'accordo</div></button>
+</div>
+
+
+    <script>    
+        var numeroLike<%= n %> = <%= collaborazione.likes.length %>;
+        var numeroLikeTesto<%= n %> = document.getElementById('numero_like<%= n %>');
+        var likeAutore<%= n %> = document.getElementsByClassName('profilo_numero_like-<%= collaborazione.autore.nicknameAccesso %>');
+        var numeroLikeAutore<%= collaborazione.autore.nicknameAccesso.replace(/\./g, '_') %> = <%= collaborazione.autore.nLike||0 %>;
+        function like<%= n %>() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "/collaborazioni/like", true);
+            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                likeUp<%= n %>(this.responseText);
+                }
+            };
+
+            xhttp.send('_csrf=<%= csrfToken %>&collaborazione=<%= collaborazione._id %>');
+        }
+
+        var imgLike<%= n %> = document.getElementById('like_nolike<%= n %>');
+
+        function likeUp<%= n %>(nome){
+            <% if(pageTitle=='Dhesìo'||!profilo) { %>
+            var numeroVeroLikeAutore<%= n %> = parseInt(likeAutore<%= n %>[0].innerText);
+            for (let item of likeAutore<%= n %>) {
+                item.innerHTML = nome == 'like' ? `${numeroVeroLikeAutore<%= n %> + 1}` : `${numeroVeroLikeAutore<%= n %> - 1}`;
+            }
+            <% } %>
+
+            imgLike<%= n %>.src=`/images/${nome}.png`;
+            numeroLikeTesto<%= n %>.innerHTML = nome == 'like' ? `&nbsp;${numeroLike<%= n %> + 1}` : `&nbsp;${numeroLike<%= n %> - 1}`;
+            numeroLike<%= n %> = nome == 'like' ? numeroLike<%= n %> + 1 : numeroLike<%= n %> - 1;
+            <% if(profilo&&(pageTitle!='Dhesìo')){ %>
+                document.getElementById('profilo_numero_like').innerHTML = nome == 'like' ? `&nbsp;&nbsp;${numeroLikeProfilo + 1}` : `&nbsp;&nbsp;${numeroLikeProfilo - 1}`;
+                numeroLikeProfilo = nome == 'like' ? numeroLikeProfilo + 1 : numeroLikeProfilo - 1;
+            <% } %>
+        }
+    </script>
+    <% } %>
+
+</div>
+
+<script>
+    var apertaRecenzione<%= n %> = false;
+    var recensione<%= n %> = document.getElementById("recensione<%= n %>");
+    var triggerRecensione<%= n %> = document.getElementById("triggerRecensione<%= n %>");
+    var recensioneHeight<%= n %> = recensione<%= n %>.scrollHeight;
+
+    function apriRecensione<%= n %>(){
+        
+        recensione<%= n %>.classList.toggle("collaborazione-recensione_chiusa");
+        recensione<%= n %>.classList.toggle("collaborazione-recensione_aperta");
+        triggerRecensione<%= n %>.classList.toggle("collaborazione-aperta_collab");
+        triggerRecensione<%= n %>.classList.toggle("collaborazione-chiusa_collab");
+        if(!apertaRecenzione<%= n %>) {
+            recensione<%= n %>.setAttribute("style", "max-height:"+ (recensioneHeight<%= n %> +20) +"px;");
+        } else {
+            recensione<%= n %>.setAttribute("style", "max-height:"+ 0 +"px;");
+        }
+        apertaRecenzione<%= n %> = !apertaRecenzione<%= n %>
+
+    }
+
+    
+    triggerRecensione<%= n %>.addEventListener("click",apriRecensione<%= n %>);
+
+</script>
+
+
+
+<% } %>

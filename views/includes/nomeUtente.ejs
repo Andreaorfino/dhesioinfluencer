@@ -1,0 +1,20 @@
+<% if (isAuthenticated) { %>
+<a href="/influencer/profilo">
+<div class="collaborazione-recensione_lineaNome lineaNomeAccesso">
+    <div class="imagecircle_collaborazione circular--<%= user.landscape %>"><img
+            src="<%= user.urlImage %> " alt=""></div>
+            <% user.nome = user.nome.replace(/ /g, '&nbsp;'); %> 
+    <div style="padding-top: 2.5px;"><%- user.nome %> </div>
+    <% if (user.verificato) { %>
+     <div style="padding-top: 1.5px"><img src="/images/verificato.png" alt="" width="100%"></div>
+     <% } %>
+</div>
+</a>
+<% } else {%>
+    <nobr><a href="/influencer/accedi" style="display:inline-block;"><div class="nome_linea-entra" style="display:inline-block;">
+        accedi
+    </div></a>
+    <a href="/influencer/registrazione" style="display:inline-block;"><div class="nome_linea-entra" style="display:inline-block;">
+        Registrati
+    </div></a></nobr>
+<% } %>

@@ -1,0 +1,41 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/registrazione.css">
+</head>
+
+<body>
+
+<%- include('../singlepage/navbar3.ejs') %>
+
+
+  <div class="tutto2">
+    <div></div>
+    <div class="benvenuto">
+        <div style="text-align: center;">
+      <div class="presto">Bentornato</div>
+      <div class="ominociao"><img src="/images/singlepage/F/F-salutinoConMano.png"></div>
+      <div class="giro">Usa il tuo nome TikTok</div>
+    </div>
+      <form id="logForm" action="/influencer/accedi" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="textInput">
+        <p><input placeholder="nome utente TikTok..." oninput="this.className = ''" name="nickname" value="<% if (locals.nickname) { %><%= nickname %><% } %>" style="text-transform: lowercase;"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
+      </div>
+        <div class="messaggettilogin">
+
+        </div>
+        <div class="loginbtn"><button class="buttonCustom" type="submit" >Accedi</button></div>
+      </form>
+
+
+
+
+
+      
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('../includes/end.ejs') %>

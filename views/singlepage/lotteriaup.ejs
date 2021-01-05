@@ -1,0 +1,109 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar2.ejs') %>
+  <div class="tutto">
+  <div></div>
+  <div>
+    <div style="padding-top: 60px;"></div>
+    <% if(fatto=="Fattooooo") { %>
+      <%= fatto %>
+      <br><hr><br>
+      <%- include('elements.ejs', {prodotto: prodotto, n: 0, mostraFrasetta: true, dettagliaperta: "dettagliaperta"}) %>
+      <br><hr><br>
+      <%- include('elementdetails.ejs') %>
+      <br><hr><br>
+      <% }  %>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="tutto2">
+    <div></div>
+    <div>
+      <div style="padding: 30px;"></div>
+      <div class="seiSicuro">
+        <h1>Upload Lotteria</h1>
+      </div>
+      <div style="padding: 20px;"></div>
+      
+
+      <div class="utentecancella">eddaje, emmettilo sto cosooo!!!!
+      </div>
+      <div class="aggiungilotteria">
+
+
+
+        <div style="text-align: center;">
+          <form action="/admin/uppoloLotteria" method="post" >
+            <p>Metti sta lotteria</p>
+            <p>Valore</p>
+            <select name="Valore">
+              <% for(var i=0; i<valori.length; i++) { %>
+                <option value="<%= valori[i] %>"><%= valori[i] %></option>
+                <% } %>
+            </select>
+            <select name="periodo">
+              <% for(var i=periodi.length-1; i>-1; i--) { %>
+                <option value="<%= periodi[i]._id %>"><%= new Date(parseInt(periodi[i].inizio)).toString().substring(0,24) %></option>
+                <% } %>
+            </select>
+            <p>visibile</p>
+            <input type="date" placeholder="visibile" oninput="this.className = ''" name="visibile">
+            <input type="time" placeholder="visibileOra" oninput="this.className = ''" name="visibileOra">
+            <p>timeout</p>
+            <input type="date" placeholder="timeout" oninput="this.className = ''" name="timeout">
+            <input type="time" placeholder="timeoutOra" oninput="this.className = ''" name="timeoutOra">
+            <p>timeoutUtenti</p>
+            <input type="date" placeholder="timeoutUtenti" oninput="this.className = ''" name="timeoutUtenti">
+            <input type="time" placeholder="timeoutUtentiOra" oninput="this.className = ''" name="timeoutUtentiOra">
+            <p>totaleOre</p>
+            <input type="number" placeholder="totaleOre" oninput="this.className = ''" name="totaleOre">
+            <p>fornitore</p>
+            <select name="fornitore">
+              <% for(var i=0; i<fornitori.length; i++) { %>
+                <option value="<%= fornitori[i]._id %>"><%= fornitori[i].nome %></option>
+                <% } %>
+            </select>
+            <p>frase</p>
+            <input type="text" placeholder="frase" oninput="this.className = ''" name="frase">
+            
+            <p>urlLink</p>
+            <input type="text" placeholder="urlLink" oninput="this.className = ''" name="urlLink">
+            <p>fraseimmagine</p>
+            <select name="fraseimmagine">  
+            <% for(var i=0; i<frasette.length; i++) { %>
+                <option value="<%= frasette[i] %>"><%= frasette[i] %></option>
+                <% } %>
+            </select>
+            <select name="tipoLotteria">
+              <option value="gift">gift card</option>
+              <option value="fisico">bene fisico</option>
+            </select>
+
+            <br>
+
+
+
+
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button style="margin: 20px" type="submit">UPPA STO COSO</button>
+
+          </form>
+        </div>
+        <div>
+
+ 
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('end.ejs') %>

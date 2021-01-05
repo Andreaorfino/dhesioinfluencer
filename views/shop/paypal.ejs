@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="centered">
+
+        <div class="product-main-grid">
+            <div> </div>
+
+            <div class="centered">
+                <h1>Get Your Coin</h1>
+                <table class="traspose">
+
+                    <tr>
+                        <td><img src="/images/gettone111.png"><br>1 Normal Coin<br>0.90$</td>
+                        <td>
+                            <form action="/pay1n" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn" type="submit">Buy</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="/images/gettoni.png"><br>5 Normal Coin<br>2.50$</td>
+                        <td>
+                            <form action="/pay5n" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn" type="submit">Buy</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="/images/gettone222.png"><br>1 Special Coin<br>1.50$</td>
+                        <td>
+                            <form action="/pay1s" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn" type="submit">Buy</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div> </div>
+        </div>
+
+
+
+
+
+    </main>
+    <%- include('../includes/end.ejs') %>

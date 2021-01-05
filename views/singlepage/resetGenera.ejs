@@ -1,0 +1,32 @@
+<%- include('head.ejs') %>
+<link rel="stylesheet" href="/css/sconti.css">
+</head>
+
+<body>
+
+    <%- include('navbar2.ejs') %>
+    <div style="margin: 20px"></div>
+
+    <div class="tutto2">
+        <div></div>
+        <div class="centroaiuto">
+
+            <div style="text-align: center;">
+                <form action="/influencer/resetpassword" method="post" enctype="multipart/form-data">
+                    <p>email</p>
+                    <input type="text" name="email">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                    <button style="margin: 20px" type="submit">GENERA LINK</button>
+                </form>
+
+               
+                </div>
+
+            </div>
+        </div>
+            <div></div>
+        </div>
+
+
+        <%- include('end.ejs') %>

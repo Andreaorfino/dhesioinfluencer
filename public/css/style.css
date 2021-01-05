@@ -1,0 +1,366 @@
+.selezionato {
+    border: 1.5px solid #274674;
+    border-radius: 2.5px;
+    margin: auto;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.selezionato_profilo {
+    border: 1.5px solid #FF9052;
+    border-radius: 2.5px;
+    padding-bottom: 1px;
+}
+
+.information_I {
+    border: 0.5px solid #8492A6;
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+}
+
+.blu_line {
+    background-color: #274674;
+    border-radius: 1px;
+    width: 100%;
+    height: 2px;
+}
+
+.number_list {
+    background-color: rgba(255, 144, 82, 0);
+    border: 1px solid #274674;
+    border-radius: 100%;
+    color: #FF9052;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.vertical_center {
+    display: flex;
+    align-items: center;
+}
+
+.collaborazione_scritta {
+    color: rgba(39, 70, 116, 0.45);
+    font-family: Josefin Sans;
+    font-size: 11.5px;
+    text-align: center;
+}
+
+.imagecircle_collaborazione {
+    display: inline-block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img.collaborazione_social {
+    width: 16px;
+}
+
+.collaborazione-orange {
+    background-color: rgba(255, 144, 82, 0.07);
+    border-radius: 1px;
+    padding: 7px 0px 0px 15px;
+    border-bottom: 4px solid white;
+}
+
+.collaborazione-orange-text {
+    color: #5a6978e0;
+    font-size: 11px;
+}
+
+.collaborazione-orange-fornitore {
+    color: #343F4B;
+    font-size: 16px;
+    transform:translateY(-2px);
+}
+
+.rating_traslate{
+    transform: translateY(-2px);
+}
+
+.rating_incollab img {
+    width: 16px;
+}
+
+.collaborazione-orange-fornitore_nome {
+    padding-top: 2px;
+    padding-right: 8px;
+    color: #343F4B;
+    font-size: 16px;
+}
+
+.collaborazioni_nrecenzioni {
+    color: #47525E;
+    font-size: 11px;
+    padding-top: 5.5px;
+}
+
+.collaborazione-orange-head {
+    display: grid;
+    grid-template-columns: auto 55px;
+}
+
+.collaborazione_grid_edit {
+    display: grid;
+    grid-template-columns: auto min-content
+}
+
+.collaborazione-orange-data {
+    color: #47525E;
+    font-size: 11px;
+    background-color: white;
+    width: 60px;
+    border-radius: 3px;
+    transform: translate(-15px, 0px);
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.collaborazione-orange-cosaFatto {
+    color: #47525ee1;
+    font-size: 12px;
+    padding-right: 10px;
+    margin-top:1px
+}
+
+.scrittePiccole {
+    color: #5A6978;
+    font-size: 9px;
+    text-align: justify
+}
+
+.followerkgrid {
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: auto 10px auto;
+    text-align: center;
+}
+
+@media screen and (max-width: 460px) {
+    .followerkgrid {
+        display: block;
+    }
+}
+
+.followerkgrid1 {
+    display: grid;
+    grid-template-columns: 10fr 1fr 10fr 1fr 10fr;
+}
+
+.followerkgrid2 {
+    display: grid;
+    grid-template-columns: 10fr 1fr 10fr;
+}
+
+p.registrazione_titolotab {
+    background-color: rgba(39, 70, 116, 0.08);
+    border-radius: 2px;
+    color: rgba(52, 63, 75, 0.46);
+    font-size: 12px;
+    text-align: center;
+    width: min-content;
+    margin: auto;
+    padding: 2px 7px
+}
+
+.collaborazione-orange-social {
+    text-align: right;
+    padding-right: 10px;
+    height: 5px;
+  /*   transform: translateY(-7px); */
+}
+
+
+.collaborazione-aprichiudi {
+    color: #274674;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.collaborazione-recensione_lineaNome {
+    display: grid;
+    grid-template-columns: 25px min-content 10px auto ; 
+    column-gap: 4px;
+    color: #343f4bd3;
+    font-size: 13px;
+    padding-left: 3px;
+    padding-top: 4px;
+}
+
+.collaborazione-noorange {
+    padding: 0px 33px 0px 33px;
+}
+
+.collaborazione-recensione_testo {
+    color: #969FAA;
+    font-family: Josefin Sans;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.collaborazione-recensione_testo, .collaborazione-noorange {
+    transform: translateY(-4px)
+}
+
+.onclick {
+    cursor: pointer;
+}
+
+.collaborazione-chiusa_collab img {
+    -webkit-transition: 1.5s;
+    -moz-transition: 1.5s;
+    -ms-transition: 1.5s;
+    -o-transition: 1.5s;
+    transition: 1.5s;
+    transform: rotate(0deg);
+}
+
+.collaborazione-aperta_collab img {
+    -webkit-transition: 1.5s;
+    -moz-transition: 1.5s;
+    -ms-transition: 1.5s;
+    -o-transition: 1.5s;
+    transition: 1.5s;
+    transform: rotate(180deg);
+}
+
+.collaborazione-recensione_chiusa {
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+    transition: 2s;
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.collaborazione-recensione_aperta {
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+    transition: 2s;
+    /* 
+    max-height: 150px; */
+    opacity: 1;
+    overflow: hidden;
+}
+
+.lineaNomeAccesso {
+    background-color: rgba(0, 166, 255, 0.07);
+    border-radius: 30px;
+    width: min-content;
+    padding: 4px 4px 4px 4px;
+    margin: 7px 0 0 13px;
+    font-size: 14px;
+}
+
+.nome_linea-entra {
+    padding: 4px 8px 4px 8px;
+    margin: 7px 0 0 13px;
+    border-radius: 30px;
+    width: min-content;
+    border: 1.5px solid #FF9052;
+    font-size: 15px;
+    color: #5b5d5f;
+}
+
+.like_button img {
+    width: 22px;
+}
+
+.like_button {
+    color: #47525E;
+    font-size: 12px;
+    font-style: oblique;
+    margin-left: 16px;
+    opacity: 0.7;
+
+}
+
+button.mio_bottone {
+    border: transparent;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+}
+
+button.mio_bottone:focus {
+    border: transparent;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    outline-style: none;
+}
+
+.numero_like {
+    color: #47525E;
+    font-size: 12px;
+    display: inline-block;
+    transform: translateY(-2px);
+    margin-right: 20px;
+    margin-top:2px;
+    margin-left: 10px;
+}
+
+.noTrasla{
+    transform: translateY(3px);
+}
+
+.recensione_stat{
+    font-size: 12px;
+    display: inline-block;
+}
+
+.recensione_stat img{
+    width: 12px;
+}
+
+.recensione_stat>div{
+    display: inline-block;
+    margin: 0 6px 0 6px;
+}
+
+.social_stat{
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 2px 3px 2px 3px;
+}
+
+.social_stat img{
+    transform: translateY(-1px)
+}
+
+.tiktok_recenzione_stat {
+    background-color: rgba(255, 146, 82, 0.178);
+}
+
+.instagram_recenzione_stat{
+    background-color: rgba(39, 70, 116, 0.123);
+}
+
+
+/* cookie banner */
+.cc-revoke, .cc-window {
+    font-family: Josefin Sans;
+    font-weight: 400 !important;
+}
+
+.cc-window.cc-banner {
+    padding: 0 10px 0 10px
+}
+.cc-btn{
+    padding: 1px 5px;
+    margin: 5px 0px;
+}

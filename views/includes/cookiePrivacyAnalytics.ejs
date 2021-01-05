@@ -1,0 +1,260 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"
+    data-cfasync="false"></script>
+
+
+<img height="1" width="1" src="" id="fbPixel" />
+
+<script>
+
+    function encodeParams(obj) {
+        var str = "";
+        for (var key in obj) {
+            if (str != "") {
+                str += "&";
+            }
+            str += key + "=" + encodeURIComponent(obj[key]);
+        }
+        return str
+    }
+
+    function postHttps(url, paramEncoded) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(`_csrf=<%= csrfToken %>&${paramEncoded}`);
+    }
+
+
+    let isInitialized = false;
+    let gaMeasurementId = undefined;
+
+    const register = (gaMeasurementIdValue) => {
+        throwIfInvalidGAMeasurementId(gaMeasurementIdValue);
+        gaMeasurementId = gaMeasurementIdValue;
+    };
+
+    const throwIfInvalidGAMeasurementId = (value) => {
+        if (!value) {
+            throw new Error('gtag-opt-in: invalid value passed to `register` method. Make sure to use a valid Analytics ID.');
+        }
+    };
+
+    const optOut = () => {
+        throwIfUnregistered();
+        window[`ga-disable-${gaMeasurementId}`] = true;
+    };
+
+    const optIn = () => {
+        throwIfUnregistered();
+        initGTagIfNeeded();
+        window[`ga-disable-${gaMeasurementId}`] = false;
+    };
+
+    const throwIfUnregistered = () => {
+        if (!gaMeasurementId) {
+            throw new Error('gtag-opt-in: no value found for Analytics ID. Make sure to register before by calling the `register` method.');
+        }
+    };
+
+    const initGTagIfNeeded = () => {
+        if (!isInitialized) {
+            initGTag();
+            isInitialized = true;
+        }
+    };
+
+    const initGTag = () => {
+        const gtag = getGtagAPI();
+        setInitialValuesToGtag(gtag);
+    };
+
+    const getGtagAPI = () => {
+        window.dataLayer = window.dataLayer || [];
+        return function () { dataLayer.push(arguments); };
+    };
+
+    const setInitialValuesToGtag = (gtag) => {
+        gtag('js', new Date());
+        gtag('config', gaMeasurementId, { 'anonymize_ip': true });
+    };
+
+    register('UA-159126033-1');
+
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function delete_cookie(name, path, domain) {
+        if (get_cookie(name)) {
+            document.cookie = name + "=" +
+                ((path) ? ";path=" + path : "") +
+                ((domain) ? ";domain=" + domain : "") +
+                ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+        }
+    }
+
+    function get_cookie(name) {
+        return document.cookie.split(';').some(c => {
+            return c.trim().startsWith(name + '=');
+        });
+    }
+
+    function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#000000",
+                "text": "#ffffff"
+            },
+            "button": {
+                "background": "#FF9052",
+                "text": "#ffffff"
+            }
+        },
+        "type": "opt-in",
+        "content": {
+            "message": "Questo sito utilizza i cookie per garantirti la migliore esperienza.",
+            "dismiss": "Capito",
+            "allow": "Accetto",
+            "link": "Privacy policy",
+            "href": window.location.href.includes('aziende') ? "/privacyAzienda" : "/privacy",
+            "deny": "No"
+        },
+        onInitialise: function (status) {
+            console.log(status)
+            if (status == cookieconsent.status.allow) OptInTutto();
+        },
+        onStatusChange: function (status) {
+            if (this.hasConsented()) OptInTutto(); else OptOutTutto();
+        }
+    });
+
+    function isCookieAllowed() {
+        return getCookie('cookieconsent_status') == "allow";
+    }
+
+    function OptOutTutto() {
+
+    }
+
+    if(isCookieAllowed()){
+        document.getElementById('fbPixel').src = "https://www.facebook.com/tr?id=764901930730008&ev=PageView&noscript=1";
+    }
+
+
+
+    function OptInTutto() {
+
+        optIn();
+
+        document.getElementById('fbPixel').src = "https://www.facebook.com/tr?id=764901930730008&ev=PageView&noscript=1";
+
+
+
+
+        // Paste here your scripts that use cookies requiring consent. See examples below
+
+        // Google Analytics, you need to change 'UA-00000000-1' to your ID
+
+
+
+        // Facebook Pixel Code, you need to change '000000000000000' to your PixelID
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '764901930730008');
+        fbq('track', 'PageView');
+    }
+
+    function runfbq(track, type) {
+        if (isCookieAllowed()) {
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                n.queue = []; t = b.createElement(e); t.async = !0;
+                t.src = v; s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '764901930730008');
+            fbq('track', 'PageView');
+            fbq('track', 'CompleteRegistration');
+        }
+    }
+
+
+    function rungtag(azione, nome, meta) {
+
+        if (isCookieAllowed()) {
+            const gtag = getGtagAPI();
+            if (azione === 'event') {
+                gtag('event', nome, meta);
+                postHttps('/aziende/event', `nome=${nome}&${encodeParams(meta)}&data=${new Date().toGMTString()}`);
+            }
+        }
+    }
+
+    function onLoad() {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var params = url.search;
+
+        if (params.includes('develop') || url.hostname.includes('localhost')) return 0;
+
+        let paramsObj = {};
+        if (params.length > 2) {
+            params.split('&').forEach(function (param) {
+                param = param.split('=');
+                param = param.map(function (element) {
+                    return element.replace('?', '');
+                })
+                paramsObj[param[0]] = param[1];
+            })
+        } else {
+            paramsObj = {
+                utm_source: 'direct',
+            };
+        }
+
+        paramsObj.hostname = url.hostname;
+        paramsObj.pathname = url.pathname;
+        paramsObj.data = new Date().toGMTString();
+
+        postHttps('/aziende/land', `${encodeParams(paramsObj)}`)
+    }
+    onLoad();
+</script>

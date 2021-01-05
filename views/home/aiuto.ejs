@@ -1,0 +1,140 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/aiuto.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+    <%- include('../includes/nomeUtente.ejs') %>
+
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+
+            <div class="titolo"><span style="color: #FF9052;">Dhesìo</span> <span
+                    style="color: #274674;">Influencer</span></div>
+
+            <div class="grigio">
+                è la piattaforma gratuita per gli Influencer in cui puoi:
+            </div>
+
+            <div class="aiuto_grid">
+                <div class="blu" style="font-size:17px">1)</div>
+                <div>
+                    <div class="blu">
+                        Collezionare sul tuo profilo le collaborazioni e pubblicità effettuate, in modo da creare un tuo
+                        "curriculum"
+                    </div>
+                    <div class="arancione">Descrivi ciò che hai fatto e dai una valutazione all'azienda con cui hai
+                        collaborato, in modo da valorizzare tutto il lavoro svolto finora.
+                    </div>
+                </div>
+                <div><img src="/images/aiuto1.png" alt=""></div>
+            </div>
+            <div class="aiuto_grid">
+                <div class="blu" style="font-size:17px">2)</div>
+                <div>
+                    <div class="blu">
+                        Accedere ad informazioni utili sulle aziende prima di effettuare collaborazioni in modo da
+                        prevenire situazioni spiacevoli
+                    </div>
+                    <div class="arancione">
+                        Cerca qui le aziende che ti hanno proposto collaborazioni e leggi le recensioni di altri
+                        Influencer così da avere opinioni preziose sempre a portata di mano.
+                    </div>
+                    <div class="arancione">
+                        Lascia tu stesso recensioni per accrescere il numero di aziende recensite ed essere utile alla
+                        community contribuendo alla creazione di un gruppo unito di Influencer che si supporta l'uno con
+                        l'altro.
+                    </div>
+                </div>
+                <div><img src="/images/aiuto2.png" alt=""></div>
+            </div>
+
+            <div class="nero" style="margin-bottom: 15px;">
+                Stiamo creando un ambiente sicuro in cui puoi esprimere liberamente la tua opinione e raccontare agli
+                altri la tua esperienza
+            </div>
+
+            <div class="arancione" style="text-align: center;">
+                NON aver paura di scrivere recensioni negative!
+            </div>
+
+            <div class="nero" style="padding-left:10px; padding-right:10px;margin-bottom: 15px;">
+                Qui ognuno ha la missione di aiutare gli altri, come una grande famiglia che si supporta a vicenda.
+            </div>
+
+            <div style="text-align: center; margin-bottom: 15px;">
+                <img src="/images/festa.png" alt="" style="width:70px">
+            </div>
+
+            <div class="arancione_medio" style="text-align: center; margin-bottom: 15px;">
+                <img src="/images/negozioOrange.png" style="width:20px"> E le aziende?
+            </div>
+
+            <div class="nero_piccolo" style="margin-bottom: 15px;">
+                Al momento non possono "rispondere" alle recensioni. Più avanti le faremo entrare in maniera più attiva.
+            </div>
+
+            <div class="nero_piccolo contorno_arancione" >
+                Questo perchè vogliamo tutelarvi da situazioni impari e concedervi una maggiore autorevolezza.
+            </div>
+
+            <div class="arancione" style="margin-bottom: 0px;">
+                In che modo?
+            </div>
+
+            <div class="nero_piccolo">
+                <span class="sottolineato_arancione">Più Influencer</span> condividono la tua opinione, <span
+                    class="sottolineato_arancione">più avrà valore la tua recensione,</span> indebolendo
+                così un'eventuale risposta "di ripicca" da parte di quell'azienda.
+            </div>
+
+            <div class="blu" style="margin-bottom: 0px;">
+                In ogni caso
+            </div>
+            <div class="nero_piccolo">
+                Continua ad inserire collaborazioni e ad interagire con gli altri perchè, quando daremo accesso alle
+                aziende, avrai maggior <span class="sottolineato_blu">visibilità</span> e <span
+                    class="sottolineato_blu">opportunità di nuove collaborazioni.</span>
+            </div>
+
+
+            <% if (isAuthenticated) { %>
+                <div class="spacca2">
+                  <div>
+                    <form action="/logout" method="post">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <button class="buttonCustom" type="submit">Logout</button>
+                    </form>
+                  </div>
+                  <div></div>
+                  <div class="aiutopiange">
+                    
+                  </div>
+                  <div>
+                    <form action="/Eliminazione_account" method="get" >
+                      <button class="buttonCustom" type="submit" style="font-size:10px;height: 45px; text-align:left">&nbsp;&nbsp;elimina account</button>
+                    </form>
+                  </div>
+                </div>
+                <% } else {%>
+                  
+                <a href="/influencer/registrazione">
+                  <br>
+                  <div class="centralo">
+                    <div></div>
+                    <div class="questocrea">
+                      Crea il tuo account
+                    </div>
+                  </div>
+                </a>
+                <% } %>
+
+        </div>
+        <div></div>
+    </div>
+
+    <%- include('../includes/end.ejs') %>

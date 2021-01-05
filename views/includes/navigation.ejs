@@ -1,0 +1,104 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <div class="fahome">
+                    <a class="<%= path === '/' ? 'active' : '' %>" href="/"><i class='fas fa-home' style='font-size:30px'></i></a>
+                </div>
+            </li>
+            <li class="main-header__item">
+                <% if(path === '/signup' || path === '/login'){ %>
+                <% } else { %>
+                    <!--
+                <div class="dropdown-ext">
+                    <div class="dropdown">
+                        <button id="b1">Category</button>
+
+                        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                $('button').click(function(event){
+                                    if(event.target.id==='b1'){
+                                    $('ul').toggleClass('active')}
+                                    
+                                })
+                            })
+                        </script>
+
+
+                        <ul>
+                            <li><a href="/category/Electronics">Electronics<br><img src="/images/electronics.jpg" alt="electronics"></a></li> 
+                            <li><a href="/category/TravelEvent">Travel or Event<br><img src="/images/travel.jpg" alt="travel"></a></li> 
+                            <li><a href="/category/Aladin">Aladin<br><img src="/images/gettone222.png" alt="aladin"></a></li> 
+                            <li><a href="/category/Fashion">Fashion<br><img src="/images/fashion.jpg" alt="fashion"></a></li> 
+                            <li><a href="/category/Other">Other<br><img src="/images/gettone111.png" alt="other"></a></li> 
+                        </ul>
+                    </div>
+                </div>-->
+                <% } %>
+            </li>
+        </ul>
+        <ul class="main-header__item-list">
+            <li class="logo">
+                <img src="/logo.png" alt="logo">
+            </li>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item" style="
+                z-index: +1;">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login" >Login</a>
+                </li>
+                <li class="main-header__item" style="
+                z-index: +1;">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item" style="
+                z-index: +1;">
+                    <a href="/profile">profile</a>
+
+                </li>
+                <li class="main-header__item" style="
+                z-index: +1;">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+<!--
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+        </li>
+        <% if (isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">My lottery</a>
+            </li>
+        <% } %>
+        <% if (!isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+            </li>
+        <% } else { %>
+            <li class="mobile-nav__item">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+-->
+<br><br><br>

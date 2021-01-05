@@ -1,0 +1,1327 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/registrazione.css">
+</head>
+
+<body>
+  <%- include('../singlepage/navbar3.ejs') %>
+
+
+  <div class="tutto2">
+    <div></div>
+    <div class="benvenuto">
+
+        <div id="benvenutoSuDhesio">
+          <h1>Benvenuto su Dhesìo <span style="color: #274674;">Influencer</span>. </h1>
+          <div class="benvenuto_paragraph paragraph--orange">Proteggiti da aziende sconosciute che ti propongono pubblicità o
+            collaborazioni</div>
+          <div class="cosafarecondhesio">
+            <div><img class="bulletArrow" src="/images/bulletArrow.png" alt=""></div>
+            <div class="arrowText"> Leggi le recensioni di altri Influencer che hanno avuto già avuto un' esperienza con loro
+            </div>
+        
+<!--             <div><img class="bulletArrow" src="/images/bulletArrow.png" alt=""></div>
+            <div class="arrowText">Lascia tu stesso recensioni utili per aiutare la community e accumulare punti</div>-->
+          </div> 
+        
+          <div class="benvenuto_paragraph paragraph--blu">
+            <div>Valorizza il lavoro che svolgi</div>
+          </div>
+        
+          <div class="cosafarecondhesio">
+            <div><img class="bulletArrow" src="/images/bulletArrowBlu.png" alt=""></div>
+            <div class="arrowText">Accumula le collaborazioni/pubblicità che fai creando una bio utile da mostrare alle prossime
+              aziende</div>
+        
+<!--             <div><img class="bulletArrow" src="/images/bulletArrowBlu.png" alt=""></div>
+            <div class="arrowText">Recenscisci e fatti recensire dalle aziende per guadagnare punti e ottenere maggior
+              visibilità</div> -->
+          </div>
+<!--           <div class="scrittePiccoleMedie"><span class="informationCircle">i</span> Cosa sono i punti?</div>
+          <div class="scrittePiccole">Lasciando recensioni, ottenendo a tua volta recensioni positive dalle aziende, o
+            semplicemente esprimendo la tua opinione, guadagnerai dei punti che ti faranno avanzare nella Influencer. </div> -->
+        </div>
+        
+        <div class="creaAccount" style="padding-top:10%">
+          <div class="creadiv2">
+            <div>
+              <div class="accountcreaancora">
+                <span style="padding-top:3px">Crea il tuo account</span><img src="/images/giu.png" style="width: 20px;">
+              </div>
+            </div>
+            <div>
+              <div class="prev" id="prevBtn">
+                <button type="button" class="buttonCustom" onclick="nextPrev(-1)"><img src="/images/backArrow.png"
+                    style="width: 100%;"></button>
+                <div class="scrittePiccole">back</div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+
+
+
+      <form id="regForm" action="/influencer/registrazione" method="POST" enctype="multipart/form-data">
+        
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+          <div class="yourinfo"><span style="font-size: 10.5px;">YOUR</span> <span style="font-size: 9px;">INFO</span></div>
+
+          <% if (locals.giaPresente) { if (giaPresente) { %>
+            <p class="erroreRegistrazioneInfluencer" id="errNicknameTikTok" style="color: red;text-align: center">Sicuro che non ti sei già registrato? Controlla di aver inserito correttamente i tuoi dati e nel caso contattaci</p>
+          <% }} %>
+
+          <div class="gridinputLine">
+            <div>
+              <div class="backinputline"><img src="/images/nome.png"></div>
+            </div>
+          <div class="textInput" >
+            <input type="text" id="nome" name="nome" placeholder="Nome e Cognome" value="<% if(locals.nome){ %><%= nome %><% } %>">
+          </div>
+          </div>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errNome">Metti un nome valido</p>
+
+          <div class="gridinputLine">
+          <div>
+            <div class="backinputline"><img src="/images/tiktok.png"></div>
+          </div>
+            <div class="textInput">
+                <input type="text" id="nicknameTikTok" style="text-transform: lowercase" name="nicknameTikTok" placeholder="Nome utente TikTok" value="<% if(locals.nicknameTikTok){ %><%= nicknameTikTok %><% } %>">
+              </div>
+            </div>
+              <p hidden class="erroreRegistrazioneInfluencer" id="errNicknameTikTok">Metti un nickname valido</p>
+
+          <div class="gridinputLine">
+            <div>
+              <div class="backinputline"><img src="/images/instagram.png"></div>
+            </div> 
+            <div class="textInput">
+              <input type="text" id="nicknameInstagram" style="text-transform: lowercase" name="nicknameInstagram" placeholder="Nome utente Instagram" value="<% if(locals.nicknameInstagram){ %><%= nicknameInstagram %><% } %>">
+            </div>
+          </div> 
+            <p hidden class="erroreRegistrazioneInfluencer" id="errNicknameInstagram">Metti un nickname valido</p>
+          
+            <div class="cliccasuuna">
+          </div>
+          <p class="registrazione_titolotab">Sesso</p>
+          <div class="sessogrid">
+            <div id="scrittaMaschio" class="onclick" onclick="Maschio()">M</div>
+            <div id="lineSepa"></div>
+            <div id="scrittaFemmina" class="onclick" onclick="Femmina()">F</div>
+          </div>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errSesso"> scegli sesso</p>
+          <p><input type="hidden" id="sesso" placeholder="Sesso" oninput="this.className = ''" name="sesso"
+          value="<% if(locals.sesso) { %><%= sesso %><% } %>"></p>
+
+          <p class="registrazione_titolotab">Età</p>
+          <div class="followerkgrid">
+          <div class="etagrid1 etagrid">
+            
+            <div id="scrittaEta1" class="onclick" onclick="e1()">16-17</div>
+            <div></div>
+            <div id="scrittaEta2" class="onclick" onclick="e2()">18-19</div>
+            <div></div>
+            <div id="scrittaEta3" class="onclick" onclick="e3()">20-21</div>
+            
+          </div>
+          <div ></div>
+          <div class="etagrid2 etagrid">
+            
+            <div id="scrittaEta4" class="onclick" onclick="e4()">22-24</div>
+            <div></div>
+            <div id="scrittaEta5" class="onclick" onclick="e5()">>24</div>
+            
+          </div>
+        </div>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errEta"> scegli eta</p>
+          <p><input id="eta" type="hidden" placeholder="Eta" oninput="this.className = ''" name="eta"
+          value="<% if(locals.eta){ %><%= eta %><% } %>"></p>
+
+        </div>
+        <div hidden class="tab2">
+          <div class="yourinfo"><span style="font-size: 10.5px;">UPLOAD</span> <span style="font-size: 9px;">FOTO</span></div>
+          <div class="scrittePiccoleMedie" style="text-align:left; padding-top:3%">Inserisci la stessa di Tiktok o Instagram <img src="/images/fotodfg.png" style="width:30px"> </div>
+          <div class="scrittePiccole">Inserisci una foto quadrata. <br>
+            Se non ce l'hai pronta in galleria puoi ritagliarla dal tuo telefono e riprendere da questo passaggio.</div>
+          <div style="text-align: center;">
+
+            <p id="status"></p>
+            <div class="imaginet-grid">
+            <div id="imaginet-left"></div>
+            <div id="imaginet" class="circular">
+                <label id="labelinput" for="file-selector"><img id="output"><img style="width:auto; height:100%" src="/images/singlepage/loadImage.png" alt=""></label>
+                <input type="file" id="file-selector" name="image">
+                
+            </div>
+            <div id="imaginet-right"></div>
+        </div>
+        <p hidden class="erroreRegistrazioneInfluencer" id="errImaginet"> inserisci foto</p>
+        </div>
+        <p><input id="margin-left" type="hidden" placeholder="margin-left" oninput="this.className = ''" name="marginleft"
+          value="<% if(locals.marginleft){ %><%= marginleft %><% } %>"></p>
+        <p><input id="margin-top" type="hidden" placeholder="margin-top" oninput="this.className = ''" name="margintop"
+          value="<% if(locals.margintop){ %><%= margintop %><% } %>"></p>
+        <p><input id="landscape" type="hidden" placeholder="landscape" oninput="this.className = ''" name="landscape"
+          value="<% if(locals.landscape){ %><%= landscape %><% } %>"></p>
+        </div>
+
+        <div class="tab">
+          <div class="yourinfo"><span style="font-size: 10.5px;">FANBASE</span> <span style="font-size: 9px;">info</span></div>
+          <div class="scrittePiccoleMedie" style=" padding-top:3%">Raccontaci un po' delle fantastiche persone che ti seguono <img src="/images/pipol.png" style="width:20px"> </div>
+          <div class="scrittePiccole" style="text-align:center;">(Più avanti potrai aggiornare tutte le info)</div>
+          <p class="registrazione_titolotab" style="margin-top: 4%;">N.Followers&nbsp;su&nbsp;TikTok</p>
+          <div class="followerkgrid">
+            <div class="followerkgrid1">
+              <div id="scritta10k" class="onclick" onclick="k10()">10-50k</div>
+              <div></div>
+              <div id="scritta50k" class="onclick" onclick="k50()">50k-100k</div>
+              <div></div>
+              <div id="scritta100k" class="onclick" onclick="k100()">100k-500k</div>
+            </div>
+            <div></div>
+            <div class="followerkgrid2">
+              <div id="scritta500k" class="onclick" onclick="k500()">500k-1M</div>
+              <div></div>
+              <div id="scritta1000k" class="onclick" onclick="k1000()">>1M</div>
+            </div>
+          </div>
+          <p><input type="hidden" id="followers" placeholder="followers" oninput="this.className = ''" name="followers"
+          value="<% if(locals.followers) { %><%= followers %><% } %>"></p>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errFollowers"> inserisci followers</p>
+
+          <p class="registrazione_titolotab">N.Followers&nbsp;su&nbsp;Instagram</p>
+          <div class="followerkgrid">
+            <div class="followerkgrid1">
+              <div id="scritta10kI" class="onclick" onclick="kI10()">10-50k</div>
+              <div></div>
+              <div id="scritta50kI" class="onclick" onclick="kI50()">50k-100k</div>
+              <div></div>
+              <div id="scritta100kI" class="onclick" onclick="kI100()">100k-500k</div>
+            </div>
+            <div></div>
+            <div class="followerkgrid2">
+              <div id="scritta500kI" class="onclick" onclick="kI500()">500k-1M</div>
+              <div></div>
+              <div id="scritta1000kI" class="onclick" onclick="kI1000()">>1M</div>
+            </div>
+          </div>
+          <p><input type="hidden" id="followersI" placeholder="followersI" oninput="this.className = ''" name="followersI"
+          value="<% if(locals.followersI) { %><%= followersI %><% } %>"></p>
+          <p hidden class="erroreRegistrazioneInfluencer" id="errFollowersI"> inserisci followers</p>
+
+          <p class="registrazione_titolotab">Età&nbsp;prevalente&nbsp;Fanbase</p>
+          <div class="scrittePiccole" style="color: rgba(249, 95, 98, 0.91); text-align:center;">*Puoi scegliere fino a due opzioni</div>
+          <div class="followerkgrid">
+            <div class="followerkgrid1">
+              <div id="feta14" class="onclick" onclick="fe14()">&lt;14</div>
+              <div></div>
+              <div id="feta15" class="onclick" onclick="fe15()">15-17</div>
+              <div></div>
+              <div id="feta18" class="onclick" onclick="fe18()">18-19</div>
+            </div>
+            <div></div>
+            <div class="followerkgrid1">
+              <div id="feta20" class="onclick" onclick="fe20()">20-25</div>
+              <div></div>
+              <div id="feta26" class="onclick" onclick="fe26()">26-30</div>
+              <div></div>
+              <div id="feta30" class="onclick" onclick="fe30()">30+</div>
+              </div>
+              </div>
+              <p><input type="hidden" id="feta1" placeholder="feta" oninput="this.className = ''" name="feta"
+                  value="<% if(locals.feta1) { %><%= feta1 %><% } %>"></p>
+              <p><input type="hidden" id="feta2" placeholder="feta" oninput="this.className = ''" name="feta"
+                  value="<% if(locals.feta2) { %><%= feta2 %><% } %>"></p>
+              <p hidden class="erroreRegistrazioneInfluencer" id="errFeta">inserisci età followers</p>
+              
+              <p class="registrazione_titolotab marginfollowergrid1">Sesso&nbsp;prevalente&nbsp;Fanbase</p>
+              <div class="followerkgrid1">
+                <div id="fscrittaMaschio" class="onclick" onclick="fMaschio()">M</div>
+                <div></div>
+                <div id="fscrittaFemminaMaschio" class="onclick" onclick="fFemminaMaschio()">M/F</div>
+                <div></div>
+                <div id="fscrittaFemmina" class="onclick" onclick="fFemmina()">F</div>
+              </div>
+              <div class="scrittePiccole" style="text-align: center;">(più o meno 50 e 50)</div>
+              <p><input type="hidden" id="fsesso" placeholder="fSesso" oninput="this.className = ''" name="fsesso"
+                value="<% if(locals.fsesso) { %><%= fsesso %><% } %>"></p>
+                <p hidden class="erroreRegistrazioneInfluencer" id="errFSesso">inserisci sesso followers</p>
+
+              <div class="scrittePiccoleMedie" style="text-align: left">C'è qualcosa di specifico per la quale il tuo pubblico ti riconosce?</div><!-- 
+              <div class="scrittePiccole">(Se i tuoi contenuti sono di <span style=" color: #FF9052;">"puro intrattenimento"</span> puoi semplicemente saltare questo passaggio.) </div>
+              <div class="scrittePiccole"><span style=" color: #FF9052;">es. Doppiaggi, POV, Balli, Prank, Trend...</span></div> -->
+
+              <div class="followerkgrid1" style="margin-top: 1%;">
+                <div id="interessi1" class="onclick" onclick="interessi1()">Sport</div>
+                <div></div>
+                <div id="interessi2" class="onclick" onclick="interessi2()">Musica</div>
+                <div></div>
+                <div id="interessi3" class="onclick" onclick="interessi3()">Gaming</div>
+              </div>
+              <div class="followerkgrid1" style="margin-top: 1%;">
+                <div id="interessi4" class="onclick" onclick="interessi4()">Business</div>
+                <div></div>
+                <div id="interessi5" class="onclick" onclick="interessi5()">Intrattenimento</div>
+                <div></div>
+                <div id="interessi6" class="onclick" onclick="interessi6()">Cibo</div>
+                </div>
+                <p><input type="hidden" id="finteressi1" placeholder="fInteressi1" oninput="this.className = ''" name="fInteressi"
+                  value="<% if(locals.finteressi1) { %><%= finteressi1 %><% } %>"></p>
+                <p><input type="hidden" id="finteressi2" placeholder="fInteressi2" oninput="this.className = ''" name="fInteressi"
+                  value="<% if(locals.finteressi2) { %><%= finteressi2 %><% } %>"></p>
+                  <p hidden class="erroreRegistrazioneInfluencer" id="errFinteressi">inserisci questo campo</p>
+
+
+
+        </div>
+        <div class="tab">
+
+          <div class="scrittePiccoleMedie" style="padding-right:20px"><img src="/images/lucchetto.png" style="width:16px"> Password</div>
+          <div class="scrittePiccole" style="padding: 1% 0px; text-align: center">
+            (La password può essere diversa da quella usata per TikTok o Instagram)
+          </div>
+          <div class="textInput passwordRegistrazione">
+          <p style="margin-top:15px"><input id="pwd1"  placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
+          <p><input id="pwd2" placeholder="Conferma Password..." oninput="this.className = ''" name="confermapassword"
+              type="password"></p>
+            </div>
+
+              <div class="message" id="message">
+                <h3>La password deve contenere i seguenti:</h3>
+                <p id="letter" class="invalid">Una lettera minuscola</p>
+                <p id="capital" class="invalid">una maiuscola</p>
+                <p id="number" class="invalid">un numero</p>
+                <p id="length" class="invalid">minimo 8 caratteri</p>
+              </div>
+              
+              <div class="message" id="message2">
+                <p id="uguale" class="invalid">uguale a quella sopra</p>
+                <p id="letter2" class="invalid">una lettera minuscola</p>
+                <p id="capital2" class="invalid">una maiuscola</p>
+                <p id="number2" class="invalid">un numero</p>
+                <p id="length2" class="invalid">minimo 8 caratteri</p>
+              </div>
+
+                      
+<script>
+  var myInput = document.getElementById("pwd1");
+  var myInput2 = document.getElementById("pwd2");
+  var letter = document.getElementById("letter");
+  var capital = document.getElementById("capital");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+  var uguale = document.getElementById("uguale"); 
+  
+  
+  // When the user clicks outside of the password field, hide the message box
+  myInput.onfocus = function() {
+    document.getElementById("message2").style.display = "block";
+  }
+  myInput2.onfocus = function() {
+    document.getElementById("message2").style.display = "block";
+  }
+
+  myInput.onkeyup = function() {
+
+    // Validate lowercase letters
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {  
+    letter2.classList.remove("invalid");
+    letter2.classList.add("valid");
+    } else {
+    letter2.classList.remove("valid");
+    letter2.classList.add("invalid");
+    }
+
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {  
+    capital2.classList.remove("invalid");
+    capital2.classList.add("valid");
+    } else {
+    capital2.classList.remove("valid");
+    capital2.classList.add("invalid");
+    }
+
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {  
+    number2.classList.remove("invalid");
+    number2.classList.add("valid");
+    } else {
+    number2.classList.remove("valid");
+    number2.classList.add("invalid");
+    }
+
+    // Validate length
+    if(myInput.value.length >= 8) {
+    length2.classList.remove("invalid");
+    length2.classList.add("valid");
+    } else {
+    length2.classList.remove("valid");
+    length2.classList.add("invalid");
+    }
+
+    if(myInput2.value==myInput.value){
+    uguale.classList.remove("invalid");
+    uguale.classList.add("valid");
+    } else {
+    uguale.classList.remove("valid");
+    uguale.classList.add("invalid");
+    }
+    }
+      
+  myInput2.onkeyup = function() {
+
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {  
+      letter2.classList.remove("invalid");
+      letter2.classList.add("valid");
+    } else {
+      letter2.classList.remove("valid");
+      letter2.classList.add("invalid");
+    }
+    
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {  
+      capital2.classList.remove("invalid");
+      capital2.classList.add("valid");
+    } else {
+      capital2.classList.remove("valid");
+      capital2.classList.add("invalid");
+    }
+  
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {  
+      number2.classList.remove("invalid");
+      number2.classList.add("valid");
+    } else {
+      number2.classList.remove("valid");
+      number2.classList.add("invalid");
+    }
+    
+    // Validate length
+    if(myInput.value.length >= 8) {
+      length2.classList.remove("invalid");
+      length2.classList.add("valid");
+    } else {
+      length2.classList.remove("valid");
+      length2.classList.add("invalid");
+    }
+
+    if(myInput2.value==myInput.value){
+        uguale.classList.remove("invalid");
+        uguale.classList.add("valid");
+      } else {
+        uguale.classList.remove("valid");
+        uguale.classList.add("invalid");
+      }
+  }
+  
+  </script>
+
+
+          <div class="tabidinsta">
+            <div class="errorini">
+              <p hidden>La Password deve essere di almeno 5 caratteri</p>
+            </div>
+            <div class="errorini">
+              <p hidden>Le Password non coincidono</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tab">
+          <div class="scrittePiccoleMedie" style="padding-right:20px"><img src="/images/email.png" style="width:16px"> email</div>
+          <div class="scrittePiccoleMedie" style="margin-top:3%; margin-bottom:1%">Non ti manderemo NESSUNA email<br>Servirà solo nel caso dimenticassi la password</div>
+          <div class="textInput emailRegistrazione">
+            <input type="text" id="email" name="email" placeholder="email" value="<% if(locals.email){ %><%= email %><% } %>">
+          </div>
+        </div>
+
+        <div style="overflow:auto;">
+          <div style="text-align: center; padding-bottom: 1rem;">
+
+            <button class="buttonCustom btnRegistrazione" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </div>
+        </div>
+
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center; padding-top: 2%; ">
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10%" aria-valuemin="0"
+              aria-valuemax="100" style="width:10%">
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+      <div id="termini" class="termini" style="display: none;">
+        <div class="termini1">
+          Premendo su "fatto!" dichiari di aver letto e accettato
+        </div>
+        <div class="termini2">
+          <a href="/regolamento" target="_blank">Termini del Servizio</a> & <a href="/privacy" target="_blank">Privacy
+            Policy</a>
+        </div>
+      </div>
+
+    </div>
+    <div></div>
+  </div>
+
+
+  <script>
+    //immagine
+
+    const status = document.getElementById('status');
+      const output = document.getElementById('output');
+      const imaginet = document.getElementById('imaginet')
+      const imaginetleft = document.getElementById('imaginet-left');
+      const landscape = document.getElementById('landscape');
+      let marginimaginet = 0;
+      const imaginetright = document.getElementById('imaginet-right');
+
+        function msx(){
+            marginimaginet = marginimaginet-10;
+            output.style.marginLeft = marginimaginet+'px';
+            document.getElementById('margin-left').value = marginimaginet;
+        }
+        function mdx() {
+            marginimaginet = marginimaginet+10;
+            output.style.marginLeft = marginimaginet+'px';
+            document.getElementById('margin-left').value = marginimaginet;
+        }
+
+        function mdw() {
+            marginimaginet = marginimaginet-10;
+            output.style.marginTop = marginimaginet+'px';
+            document.getElementById('margin-top').value = marginimaginet;
+        }
+
+        function mup() {
+            marginimaginet = marginimaginet+10;
+            output.style.marginTop = marginimaginet+'px';
+            document.getElementById('margin-top').value = marginimaginet;
+        }
+
+      if (window.FileList && window.File && window.FileReader) {
+        document.getElementById('file-selector').addEventListener('change', event => {
+          output.src = '';
+          status.textContent = '';
+          const file = event.target.files[0];
+          if (!file.type) {
+            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            return;
+          }
+          if (!file.type.match('image.*')) {
+            status.textContent = 'Error: The selected file does not appear to be an image.'
+            return;
+          }
+          const reader = new FileReader();
+          reader.addEventListener('load', event => {
+            output.style.marginTop = 0;
+            output.style.marginLeft = 0;
+            marginimaginet = 0;
+            document.getElementById('margin-left').value = 0;
+            document.getElementById('margin-top').value = 0;
+
+            output.src = event.target.result;
+            setTimeout(function(){ 
+            if (output.naturalWidth>=output.naturalHeight) {
+                landscape.value = "landscape";
+                imaginet.classList.add('circular--landscape');
+                imaginet.classList.remove('circular--portrait');
+                /* imaginetleft.innerHTML="sx";
+                imaginetright.innerHTML="dx"; */
+                imaginetleft.removeEventListener('click',mdw);
+                imaginetright.removeEventListener('click',mup);
+                imaginetleft.addEventListener('click',msx);
+                imaginetright.addEventListener('click',mdx);
+            } else {
+                landscape.value = "portrait";
+                imaginet.classList.remove('circular--landscape');
+                imaginet.classList.add('circular--portrait');
+                /* imaginetleft.innerHTML="up";
+                imaginetright.innerHTML="dw"; */
+                imaginetleft.removeEventListener('click',msx);
+                imaginetright.removeEventListener('click',mdx);
+                imaginetleft.addEventListener('click',mdw);
+                imaginetright.addEventListener('click',mup);
+            } 
+             }, 100);
+/*             if (output.naturalWidth>=output.naturalHeight) {
+                imaginet.classList.add('circular--landscape');
+                imaginet.classList.remove('circular--portrait');
+                imaginetleft.innerHTML="sx";
+                imaginetright.innerHTML="dx";
+                imaginetleft.removeEventListener('click',mdw);
+                imaginetright.removeEventListener('click',mup);
+                imaginetleft.addEventListener('click',msx);
+                imaginetright.addEventListener('click',mdx); 
+            } else {
+                imaginet.classList.remove('circular--landscape');
+                imaginet.classList.add('circular--portrait');
+                imaginetleft.innerHTML="up";
+                imaginetright.innerHTML="dw";
+                imaginetleft.removeEventListener('click',msx);
+                imaginetright.removeEventListener('click',mdx);
+                imaginetleft.addEventListener('click',mdw);
+                imaginetright.addEventListener('click',mup); 
+            }  */
+
+            
+
+          });
+          reader.readAsDataURL(file);
+        }); 
+      }
+
+
+    //============================================================
+    // Gestione tab
+    var currentTab = <% if(locals.tab){ %><%= tab %><% } else {%>0<% } %>; // Current tab is set to be the first tab (0)
+
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+      // This function will display the specified tab of the form...
+      var x = document.getElementsByClassName("tab");
+      x[n].style.display = "block";
+      //... and fix the Previous/Next buttons:
+      console.log(n)
+      if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("aiutoid").removeAttribute("hidden");
+      }
+      if (n == 1) {
+        document.getElementById("prevBtn").style.display = "inline";
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("aiutoid").setAttribute("hidden","");
+      }
+      if (n > 1) {
+        document.getElementById("prevBtn").style.display = "inline";
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("aiutoid").setAttribute("hidden","");
+      }
+      if (n == (x.length - 1)) {
+        document.getElementById("nextBtn").innerHTML = "fatto!";
+        document.getElementById("aiutoid").setAttribute("hidden","");
+        document.getElementById("termini").style.display = "inline";
+      } 
+      else {
+        document.getElementById("nextBtn").innerHTML = "next";
+      }
+      //... and run a function that will display the correct step indicator:
+      fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+      // This function will figure out which tab to display
+      var x = document.getElementsByClassName("tab");
+      // Exit the function if any field in the current tab is invalid:
+      if (n == 1 && !validateForm()) return false;
+      // Hide the current tab:
+      x[currentTab].style.display = "none";
+      // Increase or decrease the current tab by 1:
+      
+      
+      currentTab = currentTab + n;
+      
+      // if you have reached the end of the form...
+
+      if (currentTab >= x.length) {
+        // ... the form gets submitted:
+        document.getElementById("regForm").submit();
+        document.body.style.display = "none";
+        return false;
+      }
+      // Otherwise, display the correct tab:
+     
+      showTab(currentTab);
+      
+    }
+
+    function validateForm() {
+      // This function deals with validation of the form fields
+      
+      var x, y, i, valid = true;
+      var valid2 = true;
+      x = document.getElementsByClassName("tab");
+      y = x[currentTab].getElementsByTagName("input");
+      erroriNellaTab = x[currentTab].getElementsByClassName("erroreRegistrazioneInfluencer");
+
+      for (i = 0; i < erroriNellaTab.length; i++) {
+        erroriNellaTab[i].setAttribute("hidden","");
+      }
+      for (i = 0; i < y.length; i++) {
+        
+        if(y[i].id == "pwd1"){
+          var upperCaseLetters = /[A-Z]/g;
+          var numbers = /[0-9]/g;
+          var lowerCaseLetters = /[a-z]/g;    
+          let myInput = document.getElementById("pwd1");
+          let myInput2 = document.getElementById("pwd2");
+          if(!(myInput.value.match(lowerCaseLetters) && myInput.value.match(upperCaseLetters) && myInput.value.match(numbers) && myInput.value.length >= 8 && myInput2.value==myInput.value)){
+            document.getElementById("message2").style.display = "block";
+            return false;
+          }
+        }
+        if(y[i].id == "nome" && y[i].value == ""){
+          document.getElementById("errNome").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "nicknameInstagram" && y[i].value == ""){
+          document.getElementById("errNicknameInstagram").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "nicknameTikTok" && y[i].value == ""){
+          document.getElementById("errNicknameTikTok").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "sesso" && y[i].value == ""){
+          document.getElementById("errSesso").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "eta" && y[i].value == ""){
+          document.getElementById("errEta").removeAttribute("hidden");
+          return false;
+        }
+/*         if(y[i].id == "file-selector" && output.src==""){
+          document.getElementById("errImaginet").removeAttribute("hidden");
+          return false;
+        } */
+        if(y[i].id == "followers" && y[i].value == ""){
+          document.getElementById("errFollowers").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "feta1"  && (y[i].value == "" && document.getElementById("feta2").value == "")){
+          document.getElementById("errFeta").removeAttribute("hidden");
+          console.log('ciao');
+          return false;
+        }
+        if(y[i].id == "followersI" && y[i].value == ""){
+          document.getElementById("errFollowers").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "fsesso" && y[i].value == ""){
+          document.getElementById("errFSesso").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "fsesso" && y[i].value == ""){
+          document.getElementById("errFSesso").removeAttribute("hidden");
+          return false;
+        }
+        if(y[i].id == "finteressi1" && (y[i].value == "" && document.getElementById("finteressi2").value == "")){
+          document.getElementById("errFinteressi").removeAttribute("hidden");
+          return false;
+        }
+      }
+     
+      // If the valid status is true, mark the step as finished and valid:
+
+
+      return valid && valid2; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+      // This function removes the "active" class of all steps...
+      var x = document.getElementsByClassName("progress-bar");
+      //... and adds the "active" class on the current step:
+      var lunghezza = 10 + n * 30;
+      x[0].style.width = lunghezza + "%";
+    }
+
+    function Maschio() {
+      document.getElementById("sesso").value = 'M'
+      document.getElementById("scrittaMaschio").classList.add("selezionato");
+      document.getElementById("scrittaFemmina").classList.remove("selezionato"); 
+    }
+
+    function Femmina() {
+      document.getElementById("sesso").value = 'F'
+      document.getElementById("scrittaMaschio").classList.remove("selezionato");
+      document.getElementById("scrittaFemmina").classList.add("selezionato"); 
+    }
+
+    function fMaschio() {
+      document.getElementById("fsesso").value = 'M'
+      document.getElementById("fscrittaMaschio").classList.add("selezionato");
+      document.getElementById("fscrittaFemmina").classList.remove("selezionato"); 
+      document.getElementById("fscrittaFemminaMaschio").classList.remove("selezionato"); 
+    }
+
+    function fFemmina() {
+      document.getElementById("fsesso").value = 'F'
+      document.getElementById("fscrittaMaschio").classList.remove("selezionato");
+      document.getElementById("fscrittaFemmina").classList.add("selezionato"); 
+      document.getElementById("fscrittaFemminaMaschio").classList.remove("selezionato"); 
+    }
+
+    function fFemminaMaschio() {
+      document.getElementById("fsesso").value = 'F'
+      document.getElementById("fscrittaMaschio").classList.remove("selezionato");
+      document.getElementById("fscrittaFemmina").classList.remove("selezionato"); 
+      document.getElementById("fscrittaFemminaMaschio").classList.add("selezionato"); 
+    }
+
+    function e1() {
+      document.getElementById("eta").value = 'e1'
+      document.getElementById("scrittaEta2").classList.remove("selezionato");
+      document.getElementById("scrittaEta3").classList.remove("selezionato");
+      document.getElementById("scrittaEta4").classList.remove("selezionato");
+      document.getElementById("scrittaEta5").classList.remove("selezionato");
+      document.getElementById("scrittaEta1").classList.add("selezionato"); 
+    }
+    function e2() {
+      document.getElementById("eta").value = 'e2'
+      document.getElementById("scrittaEta3").classList.remove("selezionato");
+      document.getElementById("scrittaEta1").classList.remove("selezionato");
+      document.getElementById("scrittaEta4").classList.remove("selezionato");
+      document.getElementById("scrittaEta5").classList.remove("selezionato");
+      document.getElementById("scrittaEta2").classList.add("selezionato"); 
+    }
+    function e3() {
+      document.getElementById("eta").value = 'e3'
+      document.getElementById("scrittaEta2").classList.remove("selezionato");
+      document.getElementById("scrittaEta1").classList.remove("selezionato");
+      document.getElementById("scrittaEta4").classList.remove("selezionato");
+      document.getElementById("scrittaEta5").classList.remove("selezionato");
+      document.getElementById("scrittaEta3").classList.add("selezionato"); 
+    }
+    function e4() {
+      document.getElementById("eta").value = 'e4'
+      document.getElementById("scrittaEta2").classList.remove("selezionato");
+      document.getElementById("scrittaEta3").classList.remove("selezionato");
+      document.getElementById("scrittaEta1").classList.remove("selezionato");
+      document.getElementById("scrittaEta5").classList.remove("selezionato");
+      document.getElementById("scrittaEta4").classList.add("selezionato"); 
+    }
+    function e5() {
+      document.getElementById("eta").value = 'e5'
+      document.getElementById("scrittaEta2").classList.remove("selezionato");
+      document.getElementById("scrittaEta3").classList.remove("selezionato");
+      document.getElementById("scrittaEta1").classList.remove("selezionato");
+      document.getElementById("scrittaEta4").classList.remove("selezionato");
+      document.getElementById("scrittaEta5").classList.add("selezionato"); 
+    }
+
+    function k10() {
+      document.getElementById("followers").value = '10k'
+      document.getElementById("scritta10k").classList.add("selezionato");
+      document.getElementById("scritta50k").classList.remove("selezionato");
+      document.getElementById("scritta100k").classList.remove("selezionato");
+      document.getElementById("scritta500k").classList.remove("selezionato");
+      document.getElementById("scritta1000k").classList.remove("selezionato"); 
+    }
+    function k50() {
+      document.getElementById("followers").value = '50k'
+      document.getElementById("scritta10k").classList.remove("selezionato");
+      document.getElementById("scritta50k").classList.add("selezionato");
+      document.getElementById("scritta100k").classList.remove("selezionato");
+      document.getElementById("scritta500k").classList.remove("selezionato");
+      document.getElementById("scritta1000k").classList.remove("selezionato"); 
+    }
+    function k100() {
+      document.getElementById("followers").value = '100k'
+      document.getElementById("scritta10k").classList.remove("selezionato");
+      document.getElementById("scritta50k").classList.remove("selezionato");
+      document.getElementById("scritta100k").classList.add("selezionato");
+      document.getElementById("scritta500k").classList.remove("selezionato");
+      document.getElementById("scritta1000k").classList.remove("selezionato"); 
+    }
+    function k500() {
+      document.getElementById("followers").value = '500k'
+      document.getElementById("scritta10k").classList.remove("selezionato");
+      document.getElementById("scritta50k").classList.remove("selezionato");
+      document.getElementById("scritta100k").classList.remove("selezionato");
+      document.getElementById("scritta500k").classList.add("selezionato");
+      document.getElementById("scritta1000k").classList.remove("selezionato"); 
+    }
+    function k1000() {
+      document.getElementById("followers").value = '1000k'
+      document.getElementById("scritta10k").classList.remove("selezionato");
+      document.getElementById("scritta50k").classList.remove("selezionato");
+      document.getElementById("scritta100k").classList.remove("selezionato");
+      document.getElementById("scritta500k").classList.remove("selezionato");
+      document.getElementById("scritta1000k").classList.add("selezionato"); 
+    }
+
+    //================================================
+
+    function kI10() {
+      document.getElementById("followersI").value = '10k'
+      document.getElementById("scritta10kI").classList.add("selezionato");
+      document.getElementById("scritta50kI").classList.remove("selezionato");
+      document.getElementById("scritta100kI").classList.remove("selezionato");
+      document.getElementById("scritta500kI").classList.remove("selezionato");
+      document.getElementById("scritta1000kI").classList.remove("selezionato"); 
+    }
+    function kI50() {
+      document.getElementById("followersI").value = '50k'
+      document.getElementById("scritta10kI").classList.remove("selezionato");
+      document.getElementById("scritta50kI").classList.add("selezionato");
+      document.getElementById("scritta100kI").classList.remove("selezionato");
+      document.getElementById("scritta500kI").classList.remove("selezionato");
+      document.getElementById("scritta1000kI").classList.remove("selezionato"); 
+    }
+    function kI100() {
+      document.getElementById("followersI").value = '100k'
+      document.getElementById("scritta10kI").classList.remove("selezionato");
+      document.getElementById("scritta50kI").classList.remove("selezionato");
+      document.getElementById("scritta100kI").classList.add("selezionato");
+      document.getElementById("scritta500kI").classList.remove("selezionato");
+      document.getElementById("scritta1000kI").classList.remove("selezionato"); 
+    }
+    function kI500() {
+      document.getElementById("followersI").value = '500k'
+      document.getElementById("scritta10kI").classList.remove("selezionato");
+      document.getElementById("scritta50kI").classList.remove("selezionato");
+      document.getElementById("scritta100kI").classList.remove("selezionato");
+      document.getElementById("scritta500kI").classList.add("selezionato");
+      document.getElementById("scritta1000kI").classList.remove("selezionato"); 
+    }
+    function kI1000() {
+      document.getElementById("followersI").value = '1000k'
+      document.getElementById("scritta10kI").classList.remove("selezionato");
+      document.getElementById("scritta50kI").classList.remove("selezionato");
+      document.getElementById("scritta100kI").classList.remove("selezionato");
+      document.getElementById("scritta500kI").classList.remove("selezionato");
+      document.getElementById("scritta1000kI").classList.add("selezionato"); 
+    }
+
+    //================================================
+
+    const feta1 = document.getElementById("feta1");
+    const feta2 = document.getElementById("feta2");
+    let feta1ToEdit = true;
+
+    function fe14(){
+      if (feta1.value=="feta14") { 
+        document.getElementById("feta14").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta14") {
+        document.getElementById("feta14").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta14';
+          document.getElementById("feta14").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta14';
+          document.getElementById("feta14").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta14';
+          document.getElementById("feta14").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta14';
+          document.getElementById("feta14").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+
+    function fe15(){
+      if (feta1.value=="feta15") { 
+        document.getElementById("feta15").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta15") {
+        document.getElementById("feta15").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta15';
+          document.getElementById("feta15").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta15';
+          document.getElementById("feta15").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta15';
+          document.getElementById("feta15").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta15';
+          document.getElementById("feta15").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+
+    function fe18(){
+      if (feta1.value=="feta18") { 
+        document.getElementById("feta18").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta18") {
+        document.getElementById("feta18").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta18';
+          document.getElementById("feta18").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta18';
+          document.getElementById("feta18").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta18';
+          document.getElementById("feta18").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta18';
+          document.getElementById("feta18").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+
+    function fe20(){
+      if (feta1.value=="feta20") { 
+        document.getElementById("feta20").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta20") {
+        document.getElementById("feta20").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta20';
+          document.getElementById("feta20").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta20';
+          document.getElementById("feta20").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta20';
+          document.getElementById("feta20").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta20';
+          document.getElementById("feta20").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+
+    function fe26(){
+      if (feta1.value=="feta26") { 
+        document.getElementById("feta26").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta26") {
+        document.getElementById("feta26").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta26';
+          document.getElementById("feta26").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta26';
+          document.getElementById("feta26").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta26';
+          document.getElementById("feta26").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta26';
+          document.getElementById("feta26").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+
+    function fe30(){
+      if (feta1.value=="feta30") { 
+        document.getElementById("feta30").classList.remove("selezionato"); 
+        feta1ToEdit = true;
+        feta1.value = '';
+      } else if (feta2.value=="feta30") {
+        document.getElementById("feta30").classList.remove("selezionato"); 
+        feta1ToEdit = false;
+        feta2.value = '';
+      } else if (feta1ToEdit) {
+        if(feta1.value==''){
+          feta1.value = 'feta30';
+          document.getElementById("feta30").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta1.value).classList.remove("selezionato"); 
+          feta1.value = 'feta30';
+          document.getElementById("feta30").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      } else {
+        if(feta2.value==''){
+          feta2.value = 'feta30';
+          document.getElementById("feta30").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        } else {
+          document.getElementById(feta2.value).classList.remove("selezionato"); 
+          feta2.value = 'feta30';
+          document.getElementById("feta30").classList.add("selezionato"); 
+          feta1ToEdit = !feta1ToEdit;
+        }
+      }
+    }
+    
+    //=====================
+    //=====================
+
+    
+    const finteressi1 = document.getElementById("finteressi1");
+    const finteressi2 = document.getElementById("finteressi2");
+    let finteressi1ToEdit = true;
+
+    function interessi1(){
+      if (finteressi1.value=="interessi1") { 
+        document.getElementById("interessi1").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi1") {
+        document.getElementById("interessi1").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi1';
+          document.getElementById("interessi1").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi1';
+          document.getElementById("interessi1").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi1';
+          document.getElementById("interessi1").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi1';
+          document.getElementById("interessi1").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+    function interessi2(){
+      if (finteressi1.value=="interessi2") { 
+        document.getElementById("interessi2").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi2") {
+        document.getElementById("interessi2").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi2';
+          document.getElementById("interessi2").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi2';
+          document.getElementById("interessi2").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi2';
+          document.getElementById("interessi2").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi2';
+          document.getElementById("interessi2").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+    function interessi3(){
+      if (finteressi1.value=="interessi3") { 
+        document.getElementById("interessi3").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi3") {
+        document.getElementById("interessi3").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi3';
+          document.getElementById("interessi3").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi3';
+          document.getElementById("interessi3").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi3';
+          document.getElementById("interessi3").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi3';
+          document.getElementById("interessi3").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+    function interessi4(){
+      if (finteressi1.value=="interessi4") { 
+        document.getElementById("interessi4").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi4") {
+        document.getElementById("interessi4").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi4';
+          document.getElementById("interessi4").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi4';
+          document.getElementById("interessi4").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi4';
+          document.getElementById("interessi4").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi4';
+          document.getElementById("interessi4").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+    function interessi5(){
+      if (finteressi1.value=="interessi5") { 
+        document.getElementById("interessi5").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi5") {
+        document.getElementById("interessi5").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi5';
+          document.getElementById("interessi5").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi5';
+          document.getElementById("interessi5").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi5';
+          document.getElementById("interessi5").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi5';
+          document.getElementById("interessi5").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+    function interessi6(){
+      if (finteressi1.value=="interessi6") { 
+        document.getElementById("interessi6").classList.remove("selezionato"); 
+        finteressi1ToEdit = true;
+        finteressi1.value = '';
+      } else if (finteressi2.value=="interessi6") {
+        document.getElementById("interessi6").classList.remove("selezionato"); 
+        finteressi1ToEdit = false;
+        finteressi2.value = '';
+      } else if (finteressi1ToEdit) {
+        if(finteressi1.value==''){
+          finteressi1.value = 'interessi6';
+          document.getElementById("interessi6").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi1.value).classList.remove("selezionato"); 
+          finteressi1.value = 'interessi6';
+          document.getElementById("interessi6").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      } else {
+        if(finteressi2.value==''){
+          finteressi2.value = 'interessi6';
+          document.getElementById("interessi6").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        } else {
+          document.getElementById(finteressi2.value).classList.remove("selezionato"); 
+          finteressi2.value = 'interessi6';
+          document.getElementById("interessi6").classList.add("selezionato"); 
+          finteressi1ToEdit = !finteressi1ToEdit;
+        }
+      }
+    }
+
+
+  </script>
+
+  <%- include('../includes/end.ejs') %>

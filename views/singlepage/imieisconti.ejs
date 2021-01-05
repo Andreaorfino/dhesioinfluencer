@@ -1,0 +1,120 @@
+<%- include('head.ejs') %>
+<link rel="stylesheet" href="/css/sconti.css">
+</head>
+
+<body>
+
+  <%- include('navbar2.ejs') %>
+
+  <div class="tutto2">
+    <div></div>
+    <div class="centroaiuto">
+      <% if (!autenticato) { %>
+      <div class="orsacchiotto">
+        <img src="/images/singlepage/teddybear.png">
+      </div>
+      <div class="scritta_non_loggato">
+        Qui è dove accumulerai I TUOI CODICI sconto, basterà partecipare al contest che ti interessa!
+      </div>
+
+      <div class="nicknameTikTok" style="visibility: visible; text-align: center; height: auto; ">
+        <div class="nicknameTikTok-inserisci">Inserisci il tuo nome utente TikTok</div>
+      <form method="post" action="/postButtamiDentroSconti" style="width:80%; margin:auto">
+        <input type="text" name="nicknameTikTok">
+        <input type="hidden" name="urlEvento" value="<%= urlEvento %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btnCustom buttonCustom" type="submit">CONFERMA</button>
+      </form>
+    </div>
+      <% } else { %>
+      <%- include('nomeutente.ejs') %>
+      <div class="imieisconti-titolo">I miei sconti <img src="/images/singlepage/teddybear.png" style="width: 30px;">
+      </div>
+
+      <div class="tutti_sconti" style="margin-bottom: 4%;">
+
+
+
+
+        <div class="brand"> <span style="padding-left: 15%;">Brand</span></div>
+        <div class="codice">Codice</div>
+        <div class="sconto">Sconto</div>
+        <div class="scadenza">Scade&nbsp;tra</div>
+
+
+
+
+
+      </div>
+
+
+      <% var lotteriaVecchia = '';
+      const comprate = [];
+      const nonComprate = []; %>
+      <% for(var i = 0 ; i<user.cart.items.length ; i++){ %>
+      <% if ((user.cart.items[i].productId)&&(user.cart.items[i].productId.nomeBuono)) { %>
+
+
+
+      <% if ((user.cart.items[i].productId._id==lotteriaVecchia)) { %>
+      <% } else { %>
+      <% var cista=false; %>
+      <% for( let j = 0; j < user.bought.items.length; j++ ) { %>
+      <% if (user.bought.items[j].productId._id.toString()==user.cart.items[i].productId._id.toString()) { %>
+      <% cista=true; %>
+      <% } %>
+      <% } %>
+      <%    var scadenza = new Date(user.cart.items[i].productId.scadenzaBuono);
+        giorniRimanenti = Math.round((scadenza.getTime() - new Date().getTime())/(1000*60*60*24))
+     %>
+      <% lotteriaVecchia = user.cart.items[i].productId._id %>
+      <% if ((giorniRimanenti>0)||(cista)) { %>
+      <% user.cart.items[i].productId.scadenza=giorniRimanenti; %>
+      <% user.cart.items[i].productId.cista = cista; %>
+      <% if(cista){comprate.push(user.cart.items[i].productId);}else{nonComprate.push(user.cart.items[i].productId);} %>
+
+
+      <% } %>
+      <% } %>
+
+      <% } %>
+      <% } %>
+
+      <!-- inizio -->
+      <% nonComprate.sort((a,b) => (a.scadenza > b.scadenza) ? 1 : ((b.scadenza > a.scadenza) ? -1 : 0)); %>
+      <% tuttiSconti = nonComprate.concat(comprate); %>
+      <% tuttiSconti.forEach(element => { %>
+
+
+      <div class="tutti_sconti <% if (!element.cista) { %>campi<% } else { %>campi2<% } %>">
+
+        <div class="brand sconti_verticalCenter"><img
+            src="/images/singlepage/L/L-<%= element.fornitore  %>.png"><span style="overflow:hidden; font-size: 13px;"><%= element.fornitore  %></span>
+        </div>
+        <div class="codice codice<% if(!element.cista){ %>2<% } %> sconti_verticalCenter">
+          <span class="insideCodice"><%= element.nomeBuono %></span> </div>
+        <div class="sconto sconti_verticalCenter"><span><%= element.valoreBuono  %></span> </div>
+
+        <div class="scadenza sconti_verticalCenter"><% if(element.cista){ %><img
+            src="/images/singlepage/F/F-dormePerTerra.png"><% } else { %><%= element.scadenza %>g<% } %>
+        </div>
+
+
+      </div>
+      <div class="sconti_sito"><% if (!element.cista) { %><img
+          src="/images/singlepage/frecciadestraarancione.png"><% } else { %><img
+          src="/images/singlepage/frecciadestraverde.png"><% } %> 
+          By <img style="border-radius: 50%;" src="https://i.ibb.co/sRwBm7k/cecilia-Cantarano.png"> CeciliaCantarano</div>
+      <%  }); %>
+      <!-- fine -->
+
+ 
+	<div style="font-size:11px">
+		Se il codice è troppo lungo scorri con il ditino<img src="/images/singlepage/maninascorri.png" style="width:20px;margin-left:5px">
+	</div>
+	<% } %>
+    </div>
+    <div></div>
+  </div>
+
+  <%- include('end.ejs') %>

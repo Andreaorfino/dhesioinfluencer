@@ -1,0 +1,67 @@
+.grigio {
+    color: #47525E;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.blu {
+    color: #274674;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.arancione {
+    color: #FF9052;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.benvenuto img {
+    width: 30px;
+}
+
+.aiuto_grid {
+    display: grid;
+    grid-template-columns: min-content auto 33px;
+    grid-column-gap: 12px;
+}
+
+.titolo {
+    font-size: 27.5px;
+    margin-top: 40px;
+}
+
+.nero {
+    text-align: center;
+    color: #47525E;
+    font-size: 16.5px;
+}
+
+.nero_piccolo {
+    color: #47525E;
+    font-size: 13.5px;
+}
+
+.contorno_arancione {
+    border: 1.5px solid #FF9052;
+    border-radius: 1.5px;
+    margin-bottom: 15px;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 10px 15px 10px;
+}
+
+.arancione_medio {
+    color: #FF9052;
+    font-size: 17.5px;
+}
+
+.sottolineato_arancione {
+    border-bottom: 1px solid #FF9052;
+    border-radius: 1px;
+}
+
+.sottolineato_blu {
+    border-bottom: 1px solid #274674;
+    border-radius: 1px;
+}

@@ -1,0 +1,61 @@
+.form_azienda-titolo{
+    color: #FF9052;
+    font-family: Josefin Sans;
+    font-size: 23px;
+    text-align: center;
+    margin-bottom: 10px
+}
+
+.form_azienda_form{
+    background-color: rgba(0, 166, 255, 0.05);
+    padding: 20px 15px 0px 15px
+}
+
+button.buttonCustom{
+    padding: 10px 15px 10px 15px;
+    border: 2px solid #FF9052;
+    border-radius: 4px
+}
+
+#azienda{
+    padding: 5px;
+    width: 200px;
+    border: none;
+}
+
+#settore{
+    padding: 5px;
+    width: 200px;
+    border: none;
+    background: white;
+}
+
+.proposta-nome_fornitore{
+    color: #343f4baf;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: oblique;
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+
+.proposta-titolo{
+    color: #274674;
+  font-size: 14px;
+  background-color:white;
+  width: min-content;
+  margin: 5px 12px 5px 8px;
+  padding: 2px 6px 2px 6px;
+  border-radius:4px
+}
+
+.proposta-descrizione{
+    color: #5a6978da;
+    font-size: 12px;
+}
+
+.proposta-sfondo{
+    background-color: rgba(0, 166, 255, 0.05);
+    padding: 4px 15px 4px 8px;
+    border-radius: 4px
+}

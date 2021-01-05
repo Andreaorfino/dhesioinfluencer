@@ -1,0 +1,56 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar2.ejs') %>
+
+
+
+
+  <div class="tutto2">
+    <div></div>
+    <div>
+      <div style="padding: 30px;"></div>
+      <div class="seiSicuro">
+        <h1>Upload fileeeeee</h1>
+      </div>
+      <div style="padding: 20px;"></div>
+
+      <div class="utentecancella" >eddaje, emmettilo sto cosooo!!!!
+      </div>
+      <div class="testoelimina">
+        
+      
+      
+      <div style="text-align: center;">
+        <form action="/admin/uppolo" method="post" enctype="multipart/form-data">
+            <p>Metti sto file<br> okkio ar nome piskelleeeeéé</p>
+   
+            <input type="file" id="image" name="image"  style="padding: 10px">
+
+
+
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button style="margin: 20px"type="submit">UPPA STO COSO</button>
+    
+        </form>
+      </div>
+      <div >
+      
+      <% if(fatto=="Fattooooo") { %>
+        <%= fatto %><br><%= immagine %>
+      <img src="/images/singlepage/<% if (immagine.charAt(0) == 'L') { %>L/<%= immagine %><%} else if (immagine.charAt(0) == 'P') {%>P/<%= immagine %><% } else { %><%= immagine %><% }  %>
+      
+      " style="width: 100%;">
+      <% }  %>
+    </div>
+    </div>
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('end.ejs') %>

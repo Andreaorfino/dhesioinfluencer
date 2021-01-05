@@ -1,0 +1,63 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/aziende.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+    <%- include('../includes/nomeUtente.ejs') %>
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+            <div class="aziende">
+                <div style="margin-bottom: 10px; margin-top: 20px;"><img src="/images/negozioOrange.png" alt=""></div>
+                Aziende
+            </div>
+            <div class="leggiRecenzioni" style="margin-bottom: 10px;">
+                Leggi le recensioni di altri Influencer per avere dei pareri utili 
+in vista di una possibile collaborazione con una di queste aziende
+            </div>
+
+            <div class="aggiornamentoContinuo" style="margin-bottom: 20px;">
+                La lista è in continuo aggiornamento. 
+            </div>
+
+            <div class="blu_line" style="margin-bottom: 20px;"></div>
+
+
+            <% for( let i = 0; i < fornitori.length; i++ ) { %>
+                <% if (fornitori[i].rating!=""&&fornitori[i].rating!="0") { %>
+                    <div class="grid_line" style="margin-bottom: 3px;">
+                        <div class="nomeazienda">
+                            <%= fornitori[i].nome %> 
+                        </div>
+                        <div>
+                            <div class="rating rating_incollab" style="margin:0px">
+                                <% var stelline = fornitori[i].rating/fornitori[i].collaborazioni.length  %> 
+                                <% for( let i = 0; i < stelline - 0.5; i++ ) { %>
+                                <img src="/images/starFull.png" style="width:12px;">
+    
+                                <% } %>
+                                <% for( let i = 0; i <= 5 - stelline - 0.5; i++ ) { %>
+                                <img src="/images/starEmpty.png" style="width:12px;">
+    
+                                <% } %>
+                            </div>
+                            <div>
+                                <div class="collaborazioni_nrecenzioni">
+                                    <%= fornitori[i].collaborazioni.length %>&nbsp;recension<% if (fornitori[i].collaborazioni.length==1) { %>e<% } else { %>i<% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leggi"><a href="/aziende/profilo/<%= fornitori[i].nome %>">leggi</a></div>
+                    </div>
+                <% } %>
+            <% } %>
+
+        </div>
+        <div></div>
+    </div>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,106 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar.ejs') %>
+
+
+
+  <div class="tutto">
+    <div></div>
+    <div>
+      <% var numeroLotterieVisibiliAperte = 0; %> 
+      <% for( let i = 0; i < prodotti.length; i++ ) { %>
+        <% if ((new Date(prodotti[i].visibile) - new Date((new Date()).getTime()+3600000*2))<0)  { %>
+          <% numeroLotterieVisibiliAperte++; %> 
+        <% } %> 
+      <% } %>
+
+      <%- include('nomeutente.ejs') %>
+      <% if (!autenticato) { %>
+       
+        <% if(numeroLotterieVisibiliAperte>0) { %>
+      <p style="text-align: center; padding-bottom: 2%;">Siamo una start up creata da 3 ragazzi. <br>Organizziamo contest insieme a dei brand di abbigliamento in cui, oltre alla possibilità di vincere premi, distribuiamo buoni sconto per tutti i partecipanti. <br>Tutto questo gratis.
+        </p>
+      <% } %> 
+        <% } %>
+
+      <% if(prodotti.length<1) { %>
+      <% var frasi = [
+      "Mm... sembra non ci sia niente di attivo ora, approfitta per fare un po\' di attività fisica...",
+      "Mm... sembra non ci sia niente di attivo per il momento",
+      "Sembra non ci sia nulla a cui partecipare.. Netflix?",
+      "A breve rilasceremo nuovi eventi",
+      "A breve rilasceremo nuovi eventi",
+      "A breve rilasceremo nuovi eventi",
+      "Stiamo cucinando nuovi eventi, ti avvertiamo noi quando è pronto",
+      "Presto rilasceremo nuovi eventi"
+      ]; %>
+      <% var imgfrasi = [
+        "F-sollevaPesi.png",
+        "F-guardaConBinocolo.png",
+        "F-guardaTV.png",
+        "F-appesoAnelli.png",
+        "F-prendePallaConMani.png",
+        "F-altalena.png",
+        "F-cucina.png",
+        "F-stretching.png"
+      ]; %>
+      <div class="frasinolotterie">
+
+
+        <div style="padding-right: 6px;">
+          Mm... sembra non ci sia niente di attivo per il momento
+        </div>
+        <div><img src="/images/singlepage/F/F-guardaConBinocolo.png"></div>
+
+
+      </div>
+      <% } %>
+      <% var mostraFrasetta = true; var nLotterieAperte = 0;%>
+      <% for(var i=0; i<prodotti.length; i++) { %>
+        <% if ((new Date(prodotti[i].visibile) - new Date((new Date()).getTime()+3600000*2))<0)  { %>
+
+          <%- include('evento.ejs', {prodotto: prodotti[i], n: i, mostraFrasetta: mostraFrasetta, dettagliaperta: "dettagliaperta"}) %>
+
+        <%  nLotterieAperte++; %>
+        <% if(prodotti[i].joined) {mostraFrasetta = false} %>
+
+        <% } else if (autenticato) { %>
+
+          <% if (user.nickname=='franco.126') {%>
+            |invisibile fino a <%= prodotti[i].visibile %><br>|<br>V
+            <%- include('elements.ejs', {prodotto: prodotti[i], n: i, mostraFrasetta: mostraFrasetta, dettagliaperta: "dettagliaperta"}) %>
+          <% } %>
+
+          <% if ((user.nickname=='id_instagram')||(user.nickname=='id_instagram2') ) {%>
+            <%- include('elements.ejs', {prodotto: prodotti[i], n: i, mostraFrasetta: mostraFrasetta, dettagliaperta: "dettagliaperta"}) %>
+          <% } %>
+
+        <% } %>
+      <% } %>
+      <% for(var i=lotterieFinite.length-1; i>=0; i--) { %>
+
+        
+        <% if (lotterieFinite[i].valore==99999) {%>
+          <% if (autenticato) {%>
+            <% if (user.nickname=='franco.126') {%>
+              questa è invisibile è solo per vedere come si vede chiusa
+              <%- include('elements.ejs', {prodotto: lotterieFinite[i], n:(i+prodotti.length), primoElemento: (i==lotterieFinite.length-1&&nLotterieAperte==0)}) %>
+            <% } %>
+          <% } %>
+        <% } else { %>
+        <%- include('evento.ejs', {prodotto: lotterieFinite[i], n:(i+prodotti.length), primoElemento: (i==lotterieFinite.length-1&&nLotterieAperte==0)}) %>
+        <% } %>
+      <% } %>
+
+      <div class="index_coda">Seguici su Insta per non perdere i prossimi contest <a href="https://instagram.com/dhesio_">@dhesio_</a></div>
+    </div>
+    <div></div>
+  </div>
+
+
+
+  <%- include('end.ejs') %>

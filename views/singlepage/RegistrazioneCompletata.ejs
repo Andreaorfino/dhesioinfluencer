@@ -1,0 +1,81 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <div class="navbar" style="background-color: white;">
+  
+    <div class="listasotto" >
+      <div style="text-align: center;">
+        
+      </div>
+    <div></div>
+    <div><img src="/images/singlepage/logo.png"></div>
+    <div></div>
+      <div>
+       
+
+      </div>
+    
+  </div>
+ 
+</div>
+  <div style="padding: 4rem;"></div>
+
+  <div class="tutto2">
+    <div></div>
+    <div class="centroaiuto">
+      <h1 style="text-align: left;">Benvenuto su Dhesìo</h1>
+      <div class="medio">
+        <p style="font-size:18px">partecipa <u><strong>gratis</strong></u> agli eventi proposti.</p>
+      </div>
+      <p style="margin-bottom: 35px;">L'iscrizione è aperta solo a profili che rappresentano persone.
+        Pagine e/o profili sospetti verranno esclusi dalle estrazioni.</p>
+      <div class="accountcrea">
+        Crea il tuo account <img src="/images/singlepage/v.png" style="width: 22px;">
+      </div>
+      <div class="benvenutotizio">
+        <div class="benvenutotizioscritta">
+          Benvenuto/a tra noi <span><%= nickname %></span>, <br>grazie per la fiducia.
+        </div>
+      </div>
+      <div class="registrazioneghirlanda">
+        <% if (isCoccarda){ %>
+        <div class="registrazioneghirlandascritta">
+          Wow! Sei uno dei nostri primi 1000 utenti, hai ottenuto questa coccarda blu che ti darà vantaggi esclusivi, per sempre.
+        </div>
+        <div class="registrazioneghirlandaimmagine">
+          &nbsp;<img src="/images/singlepage/<%= coccarda %>" style="width: 23px;">
+        </div>
+        <% } %>
+      </div>
+      <div class="partecipare" >Ora accedi e partecipa al contest!</div>
+    
+      <div class="barracompleta" >
+        <div class="progress" style="margin-top:40px; margin-top:10px;">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+            aria-valuemax="100" style="width:100%; background-color: #77D353;">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="rcgb">
+        <div><img src="/images/singlepage/frecciaverde.png" style="width: 60px; margin: 20px;"></div>
+      <div class="bottoneaccedi" style="text-align: center; margin:1rem;">
+        <form action="/accedi" method="post">
+          <input type="hidden" name="nuovo" type="number" value="1">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn" type="submit"><img
+            src="/images/singlepage/accedi.png" style="width: 100px;"></button>
+          </form>
+          </div>
+          <div></div>
+          </div>
+
+    </div>
+    <div></div>
+  </div>
+
+
+  <%- include('end.ejs') %>

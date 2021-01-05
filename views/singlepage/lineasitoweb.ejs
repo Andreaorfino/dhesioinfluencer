@@ -1,0 +1,13 @@
+<% if(prodotto.chiusa){ %>
+    <div class="sitowebchiusa">
+      <a href="<%= prodotto.imageUrl %>" target="_blank" rel="noopener noreferrer">
+        <%= prodotto.sito %>
+      </a>
+    </div>
+  <% } else { %>
+  <div class="sitoweb">
+    <a href="<%= prodotto.imageUrl %>" target="_blank" rel="noopener noreferrer">
+        <%= prodotto.sito %>
+    </a>
+  </div>
+  <% } %> 

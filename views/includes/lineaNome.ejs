@@ -1,0 +1,35 @@
+<% 
+    var intervalli = ['10k', '50k', '100k', '500k', '1000k'];
+    var intervalliVeri = ['10k&#8209;50k', '50k&#8209;100k', '100k&#8209;500k', '500k&#8209;1M', '>1M'];
+    var tiktokFollowers = intervalliVeri[intervalli.findIndex(function (x) { return collaborazione.autore.numeroFollowersTiktok==x})];
+    var instagramFollowers = intervalliVeri[intervalli.findIndex(function (x) { return collaborazione.autore.numeroFollowersInstagram==x})];
+%> 
+
+
+
+<div class="collaborazione-recensione_lineaNome">
+    <div class="imagecircle_collaborazione circular--<%= collaborazione.autore.landscape %>"><img
+            src="<%if(!collaborazione.autore.eliminato) {%><%= collaborazione.autore.urlImage %><% } else { %>/images/gray.png<% } %>" alt=""></div>
+    <div style="padding-top: 4px"><%if(!collaborazione.autore.eliminato) {%><a href="/influencer/profilo/<%= collaborazione.autore.nicknameAccesso %>" style="color: #343F4B"><%= collaborazione.autore.nicknameAccesso %></a><% } else { %><nobr>Utente eliminato</nobr><% } %></div>
+    <div style="padding-top: 3px"><% if (collaborazione.autore.verificato) { %><img src="/images/verificato.png" alt="" width="100%"><% } %></div>
+
+</div>
+
+    <div class="recensione_stat">
+        <div><img src="/images/like.png" alt="">&nbsp;&nbsp;<div class="profilo_numero_like-<%= collaborazione.autore.nicknameAccesso %>" style="display:inline-block; transform:translateY(1.5px)"><%= collaborazione.autore.nLike||0 %></div> </div>
+    <div class="tiktok_recenzione_stat social_stat">
+        <img src="/images/tiktok.png" alt="">&nbsp;<span
+                id="backTiktok"><%- tiktokFollowers %></span></div>
+    
+    <div class="instagram_recenzione_stat social_stat">
+            <img src="/images/instagram.png" alt="">&nbsp;<span
+                id="backInstagram"><%- instagramFollowers %></span></div>
+
+    <div style="font-size: 11px; color: #000000c9">
+        <%= collaborazione.autore.collaborazioni.length %>&nbsp;collab<!-- orazion<%= collaborazione.autore.collaborazioni.length==1 ? 'e' : 'i' %> -->
+    </div>
+    
+    </div>
+
+
+

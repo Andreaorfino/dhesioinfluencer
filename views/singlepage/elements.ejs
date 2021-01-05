@@ -1,0 +1,221 @@
+<div id="overlay<%= n %>" class="elemento">
+
+
+  <div class="firstline">
+    <div class="logonegozio">
+      <img src="/images/singlepage/L/L-<%= prodotto.fornitore %>.png">
+    </div>
+    <div class="nomenegozio">
+      <%= prodotto.fornitore %>
+    </div>
+    <div class="timeout">
+      <% if(prodotto.chiusa){ %>
+      <p>END</p>
+      <% } else { %>
+      <span id="hours<%= n %>" style="text-align: left;"></span><span id="minutes<%= n %>"
+        style="text-align: center;"></span><small><span id="seconds<%= n %>" style="text-align: right;"></span></small>
+      <% } %>
+    </div>
+  </div>
+  <div>
+    <% if(user.nickname=='franco.126'){ %>
+    <a href="/admin/utenti/<%= prodotto._id %>">utenti</a>
+    <% } %>
+  </div>
+  <div class="oggettino">
+    <div class="prodotto">
+      <% if (prodotto.tipoLotteria=="gift") { %>
+
+      <%- include('lineadettagli.ejs') %>
+
+      <div class="immagineUrl"><img src="/images/singlepage/P/P-<%= prodotto.fornitore %>.png"></div>
+      <% if(prodotto.chiusa){ %>
+      <div class="vincitore">
+        <div></div>
+        <div>
+          <% if(prodotto.hasCoccarda!=0) {%>
+          <img src="/images/singlepage/coccarda<%= prodotto.hasCoccarda %>.png">
+          <% } %>
+        </div>
+        <div class="vincitore-link"><a
+            href="https://www.instagram.com/<%= prodotto.instagramid %>"><%= prodotto.instagramid %></a></div>
+
+        <div></div>
+      </div>
+      <% } else { %>
+      <div class="valoreGift">
+        <% if(autenticato){ if((user.nickname=='id_instagram2')||(user.nickname=='id_instagram')){ %> Premio X
+        <% }else{ %> Gift Card <%= prodotto.valore %>€ <% }} else {%> Gift Card <%= prodotto.valore %>€ <% } %> </div>
+      <% } %>
+      <div class="cartaImmagine">
+        <% if(autenticato){ if((user.nickname=='id_instagram2')||(user.nickname=='id_instagram')){ %> <img
+          src="/images/singlepage/paccoregalo.png"> <% }else{ %><img
+          src="/images/singlepage/C/C-card<%= prodotto.valore %>.png"><% }} else {%> <img
+          src="/images/singlepage/C/C-card<%= prodotto.valore %>.png"> <% } %> </div>
+      <% if (!prodotto.chiusa) { %>
+
+
+      <div class="soldini">
+        <div></div>
+        <div><img src="/images/singlepage/S/S-soldino<%= prodotto.valore %>.png"></div>
+        <div style="margin: 9%;"><%= prodotto.valore %></div>
+        <div></div>
+        <div></div>
+      </div>
+      <% } else { %>
+      <div style="margin: 9%;"></div>
+      <% } %>
+      <% } else { %>
+
+      <%- include('lineadettagli.ejs') %>
+
+      <div class="lotteria-fisica_immagineUrl"><img src="/images/singlepage/P/P-<%= prodotto.fornitore %>.png"></div>
+
+      <% if(prodotto.chiusa){ %>
+      <div class="vincitore">
+        <div></div>
+        <div>
+          <% if(prodotto.hasCoccarda!=0) {%>
+          <img src="/images/singlepage/coccarda<%= prodotto.hasCoccarda %>.png">
+          <% } %>
+        </div>
+        <div class="vincitore-link"><a
+            href="https://www.instagram.com/<%= prodotto.instagramid %>"><%= prodotto.instagramid %></a></div>
+
+        <div></div>
+      </div>
+
+      <% } %>
+      <div class="lotteria-fisica_nome" <% if(prodotto.chiusa){ %> style="margin-top: 4%;" <% } %>>
+        <%= prodotto.nome %>
+      </div>
+      <% if(!prodotto.chiusa){ %>
+      <div class="lotteria-fisica_sottotitolo">
+        <%= prodotto.sottotitolo %>
+      </div>
+      <% } %>
+      <div class="lotteria-fisica_immagine" <% if(prodotto.chiusa){ %> style="margin-top: 2%;margin-bottom: 3%;"
+        <% } %>><img src="/images/singlepage/PF/<%= prodotto.prodottoFisico %>.png"></div>
+      <% } %>
+
+    </div>
+    <div class="barra">
+      <% if(prodotto.chiusa){ %>
+      <div class="progress">
+
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= prodotto.barra %>"
+          aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color: #77D353;">
+        </div>
+      </div>
+      <% } else { %>
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= prodotto.barra %>"
+          aria-valuemin="0" aria-valuemax="100" style="width:<%= prodotto.barra %>%">
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+  <div class="pulsante">
+    <% if(prodotto.chiusa){ %>
+    <% if (autenticato) { %>
+    <% if (prodotto.joined) { %>
+    <div style="padding-bottom: 1rem;"></div>
+    <% } else  { %>
+    <% } %>
+    <% } else { %>
+    <% if(primoElemento) { %>
+    <div class="questoevento">
+      <p>questo contest si è appena concluso,</p>
+      <a href="/registrazione">
+        <div class="centralo">
+          <div></div>
+          <div class="questocrea">
+            Crea il tuo account
+          </div>
+        </div>
+      </a>
+      <p style="margin-bottom: 3px;">per partecipare ai prossimi</p>
+      <div class="viavver">
+        <p>(ti avvertiremo con le nostre Insta stories <a href="https://www.instagram.com/dhesio_/">@dhesio_</a>)</p>
+      </div>
+    </div>
+    <% } %>
+
+    <% } %>
+    <% } else { %>
+    <% if (autenticato) { %>
+    <% if (prodotto.joined) { %>
+    <img src="/images/singlepage/joined.png">
+    <% if(mostraFrasetta) { %>
+    <div class="frasettaJoin" style="padding-top: 5px;">
+
+
+      <div>Ben fatto! Vai a guardare la sezione “I miei sconti”</div>
+      <div><img style="width:70%" src="/images/singlepage/teddybear.png"></div>
+
+
+    </div>
+    <div class="frasettaJoin">
+
+
+      <div style="padding-top: 6px;"><%= prodotto.frase1 %></div>
+      <div><img src="/images/singlepage/F/F-<%= prodotto.fraseimg1 %>.png"></div>
+
+
+    </div>
+
+
+
+
+
+    <% } %>
+    <% } else { %>
+    <% if (chance<1) { %>
+    <img src="/images/singlepage/no.png">
+    <% } else { %>
+    <% if (user.nickname=='id_instagram2') { %>
+    <a href="/registrazione"><img src="/images/singlepage/partecipa.png"></a>
+    <% } else { %>
+    <form action="/cart" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btnCustom buttonCustom" type="submit"><img src="/images/singlepage/partecipa.png"></button>
+      <input type="hidden" name="productId" value="<%= prodotto._id %>">
+      <input type="hidden" name="urlPagina" value="<%= urlPagina %>">
+    </form>
+    <% } %>
+    <% } %>
+    <% } %>
+    <% } else { %>
+    <img onclick="nicknameTikTok<%= n %>()" src="/images/singlepage/partecipa.png">
+    <div id="form<%= n %>" class="nicknameTikTok">
+      <form method="post" action="/postButtamiDentro">
+        <input type="text" name="nicknameTikTok">
+        <input type="hidden" name="urlPagina" value="<%= urlPagina %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="productId" value="<%= prodotto._id %>">
+        <button class="btnCustom buttonCustom" type="submit">fatto</button>
+      </form>
+    </div>
+    <% } %>
+    <% } %>
+
+
+
+
+
+
+  </div>
+</div>
+<div style="padding-bottom: 3rem;"></div>
+
+<script>
+  function nicknameTikTok<%= n %> (){
+    var elem = document.getElementById("form<%= n %>");
+    elem.style.height = "80px";
+    elem.style.visibility = "visible";
+  }
+</script>
+
+<%- include('timer.ejs',{n:n}) %>

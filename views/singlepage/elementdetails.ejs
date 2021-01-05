@@ -1,0 +1,132 @@
+<div class="elementodettagli">
+
+  <div class="firstline">
+    <div class="logonegozio">
+      <img src="/images/singlepage/L/L-<%= prodotto.fornitore %>.png">
+    </div>
+    <div class="nomenegozio">
+      <%= prodotto.fornitore %>
+    </div>
+    <div class="timeout">
+      <% if(prodotto.chiusa){ %>
+      <p>END</p>
+      <% } else { %>
+      <span id="hours" style="text-align: left;"></span><span id="minutes"
+        style="text-align: center;"></span><small><span id="seconds" style="text-align: right;"></span></small>
+      <% } %>
+    </div>
+  </div>
+
+
+  <div class="oggettino">
+    <div class="prodotto">
+      <% if (prodotto.tipoLotteria=="gift") { %>
+      <div class="sesso">
+        <div></div>
+        <div class="sesso-maschio">
+          <% if(prodotto.sesso.includes('M')){ %>
+          <div class="sesso-maschio_si">M</div>
+          <% } else { %>
+          <div class="sesso-maschio_no">M</div>
+          <% } %>
+        </div>
+        <div class="sesso-barra">
+          <svg height="22" width="2">
+            <line x1="0" y1="0" x2="0" y2="200" style="stroke:rgb(0,0,0);stroke-width:1.5" />
+          </svg>
+        </div>
+        <div class="sesso-femmina">
+          <% if(prodotto.sesso.includes('F')){ %>
+          <div class="sesso-femmina_si">F</div>
+          <% } else { %>
+          <div class="sesso-no">F</div>
+          <% } %>
+        </div>
+        <div></div>
+      </div>
+      <% if(prodotto.via.length>1) {%>
+      <div class="via">
+        <div></div>
+        <div class="via-immagine">
+          
+          <img src="/images/singlepage/posizione.png">
+          
+        </div>
+        <div class="via-indirizzo">
+          &nbsp;<%= prodotto.via %>
+        </div>
+        <div></div>
+      </div>
+      <% } %>
+      <div class="zona">
+        <%= prodotto.zona %>
+      </div>
+      <div class="scopri">
+        <% if(prodotto.chiusa){ %>
+        <span style="color:rgb(109, 192, 76);">Scopri le novità in store</span> 
+        <% } else { %>
+        Scopri cosa puoi regalarti
+        <% } %>
+      </div>
+
+      <%- include('lineasitoweb.ejs') %>
+
+      <div class="cartaImmagine"><img src="/images/singlepage/C/C-card<%= prodotto.valore %>.png"></div>
+      <% if (!prodotto.chiusa) { %>
+      <div class="soldini">
+        <div></div>
+        <div><img src="/images/singlepage/S/S-soldino<%= prodotto.valore %>.png"></div>
+        <div style="margin: 7%;"><%= prodotto.valore %></div>
+        <div></div>
+      </div>
+      <% } else { %>
+        <div style="margin: 9%;"></div>
+       <% } %>
+      <% } else { %>
+        <div class="dettagli-lotteria-fisica_descrizionesopra">
+          <%= prodotto.descrizionesopra %>
+        </div>
+        <div class="dettagli-lotteria-fisica_descrizionesopra2">
+          <%= prodotto.descrizionesopra2 %>
+        </div>
+        <div class="dettagli-lotteria-fisica_frecciagiu">
+          <img src="/images/singlepage/giu.png">
+        </div>
+        <%- include('lineasitoweb.ejs') %>
+        <div class="dettagli-lotteria-fisica_descrizionesotto">
+          <%= prodotto.descrizionesotto %>
+        </div>
+        <div class="dettagli-lotteria-fisica_immagine"><img src="/images/singlepage/PF/<%= prodotto.prodottoFisico %>.png"></div>
+
+      <% } %> 
+
+    </div>
+
+
+    <div class="barra">
+      <% if(prodotto.chiusa){ %>
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+          aria-valuemax="100" style="width:100%; background-color: #77D353;">
+        </div>
+      </div>
+      <% } else { %>
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= prodotto.barra %>"
+          aria-valuemin="0" aria-valuemax="100" style="width:<%= prodotto.barra %>%">
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="pulsante">
+    <form action="/" method="get">
+      <% if(prodotto.chiusa){ %>
+        <button class="buttonCustom btnCustom" type="submit"><img src="/images/singlepage/backChiusa.jpeg"></button>
+        <% } else { %>
+      <button class="buttonCustom btnCustom" type="submit"><img src="/images/singlepage/back.png"></button>
+      <% } %>
+    </form>
+  </div>
+</div>
+

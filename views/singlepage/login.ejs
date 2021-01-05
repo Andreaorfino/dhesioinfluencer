@@ -1,0 +1,62 @@
+<%- include('head.ejs') %>
+
+</head>
+
+<body>
+
+  <%- include('navbar4.ejs') %>
+
+  <div class="tutto">
+    <div></div>
+    <div class="login">
+      <% if(nuovo) { %>
+      <div class="bentornato" style="color: #77D353;">
+        <h1>Benvenuto</h1>
+      </div>
+      <div class="underbentornato">
+        <h2>Inizia a partecipare</h2>
+      </div>
+      <div class="seguici">
+        Seguici su Insta se non vuoi perdere i prossimi contest <a href="https://www.instagram.com/dhesio_/" style="text-decoration: none;">@dhesio_</a>
+      </div>
+      <div class="ominoletto">
+        <img src="/images/singlepage/F/F-salta.png">
+      </div>
+      <% } else { %>
+        <div class="bentornato">
+          <h1>Bentornato</h1>
+        </div>
+        <div class="underbentornato">
+          <h2>Piacere di rivederti</h2>
+        </div>
+        <div class="ominoletto">
+          <img src="/images/singlepage/F/F-alzatiDalLetto.png">
+        </div>
+      <% } %>
+
+      <div class="loginform">
+        <form id="logForm" action="/login" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <p><input placeholder="nome utente Instagram..." oninput="this.className = ''" name="nickname" value="<%= nickname %>" style="text-transform: lowercase;"></p>
+          <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
+          <div class="messaggettilogin">
+          <p>Password dimenticata? contattaci in <a href="https://www.instagram.com/dhesio_/?hl=it">direct</a></p>
+          <% if (error) { %>
+            <div class="errorini"><p>Credenziali di accesso non corrette</p></div>
+            <% } %>
+          </div>
+          <div class="loginbtn"><button class="buttonCustom" type="submit" >Accedi</button></div>
+        </form>
+      </div>
+
+
+
+      <div class="giaaccount" style="text-align: center; margin-top: 30%;">
+        <p>oppure <a href="/registrazione">Crea il tuo Account</a></p>
+      </div>
+
+    </div>
+    <div></div>
+  </div>
+
+  <%- include('end.ejs') %>

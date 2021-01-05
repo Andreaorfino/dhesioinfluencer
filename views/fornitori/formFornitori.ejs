@@ -1,0 +1,109 @@
+<%- include('../singlepage/head.ejs') %>
+<link rel="stylesheet" href="/css/registrazione.css">
+<link rel="stylesheet" href="/css/profilo.css">
+<link rel="stylesheet" href="/css/fornitori.css">
+
+</head>
+
+<body>
+
+    <%- include('../singlepage/navbar3.ejs') %>
+
+
+
+    <div class="tutto2">
+        <div></div>
+        <div class="benvenuto">
+            <div style="height: 20px;"></div>
+            <div class="form_azienda-titolo"><%= locals.inserita ? 'la lotteria è stata inserita' : 'Inserisci la tua proposta di collaborazione' %></div>
+
+            <% if (locals.inserita) { %>
+                <div class="influencer-collaborazione_titolo"><span style="color:black">Titolo: </span><%= propostaCollaborazione.titolo  %> </div>
+                <div class="influencer-collaborazione_hint_big"><span style="color:black">Nome azienda: </span><%= propostaCollaborazione.fornitore %> </div>
+                <div class="influencer-collaborazione_hint"><span style="color:black">Descrizione: </span><%= propostaCollaborazione.descrizione  %> </div>
+            <div style="height: 10px;"></div>
+            <% } %>
+
+            <form id="collaborazione" action="/aziende/InserisciCollaborazione" method="post" class="form_azienda_form">
+                <div class="influencer-nomedata_nome">
+                <input list="fornitori" name="fornitore" id="azienda" placeholder="nome Azienda"
+                     style="text-transform: capitalize">
+                <datalist id="fornitori">
+                    <% for( let i = 0; i < fornitori.length; i++ ) { %>
+                    <option value="<%= fornitori[i].nome %>">
+                        <% } %>
+                </datalist>
+
+                <input list="settoreList" name="Settore" id="settore" placeholder="Settore (Beauty, Food...)">
+                <datalist id="settoreList">
+                    <option value="Beauty">
+                    <option value="Food">
+                    <option value="Abbigliamento">
+                    <option value="Tech">
+                    <option value="Aggiungiamone">
+                </datalist>
+                </div>
+
+                <div class="influencer-collaborazione_titolo">Titolo della collaborazione</div>
+
+                <div class="influencer-collaborazione_hint_big">Riassumi ciò che dovrà fare l'Influencer</div>
+                <div class="influencer-collaborazione_hint">es. "2 Video TikTok" o "Storia su Instagram"</div>
+                <div><textarea id="titolo" placeholder="max 100 caratteri" maxlength="100" oninput="this.className = ''"
+                        name="titolo" value="" rows="2"></textarea></div>
+
+                <div class="influencer-collaborazione_titolo">Descrizione</div>
+
+                <div class="influencer-collaborazione_hint_big">1. Da chi deve essere effettutato?</div>
+                <div class="influencer-collaborazione_hint">es. "Microinfluencer (circa 10k) di sesso maschile  con età compresa tra i 18/21 con pubblico prevalentemente maschile con età compreso tra i 20/25 anni" </div>
+                <div><textarea id="descrizione" placeholder="max 300 caratteri" maxlength="300"
+                    oninput="this.className = ''" name="descrizione" value="" rows="3"></textarea></div>
+
+                <div class="influencer-collaborazione_hint_big">2. Indica dove vuoi essere contattato</div>
+
+                <div class="influencer-collaborazione_hint">es. "Mandaci un Direct su instagram @nomeutente oppure scrivici alla seguente email azienda@prova.com</div>
+                <div><textarea id="descrizione" placeholder="max 300 caratteri" maxlength="300"
+                        oninput="this.className = ''" name="descrizione" value="" rows="3"></textarea></div>
+
+                <div class="influencer-collaborazione_hint_big">3. Spiega il contenuto della collaborazione e cosa ti piacerebbe far arrivare al pubblico</div>
+
+                <div class="influencer-collaborazione_hint">Dai spazio alle tue emozioni, a ciò che rappresnta per te il tuo brand e prodotto che offri. Fai capire all'Influencer il messaggio, poi ci penserà lui a trovare il modo più creativo per diffonderlo!</div>
+                <div><textarea id="descrizione" placeholder="max 1000 caratteri" maxlength="1000"
+                        oninput="this.className = ''" name="descrizione" value="" rows="7"></textarea></div>
+
+                <div class="influencer-collaborazione_hint_big">4. Includi dettagli sul compenso</div>
+
+                <div class="influencer-collaborazione_hint"> Se preferisci non dichiarare l'importo esatto, puoi semplicemente specificare la modalità del compenso offerto (prodotto omaggio o pagamento)</div>
+                <div><textarea id="descrizione" placeholder="max 200 caratteri" maxlength="200"
+                        oninput="this.className = ''" name="descrizione" value="" rows="2"></textarea></div>
+
+                         
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <div hidden id="errore-compila_tutti_campi" class="influencer-collaborazione_hint_big" style="color:red; opacity:0.8">
+                    Compila tutti i campi
+                </div>
+
+                <div class="loginbtn"><button class="buttonCustom" type="button" onclick="controllaEInvia()">Inoltra</button></div>
+            </form>
+
+
+        </div>
+        <div></div>
+    </div>
+    <script>
+        var fornitore = document.getElementById('azienda');
+        var titolo = document.getElementById('titolo');
+        var descrizione = document.getElementById('descrizione');
+        var tuttiInput = [fornitore, titolo, descrizione];
+        
+        function controllaEInvia() {
+            let controllo = true;
+            for (let i = 0; i < tuttiInput.length; i++) {
+                controllo = controllo && (tuttiInput[i].value != '');
+            }
+            controllo ? document.getElementById('collaborazione').submit() : document.getElementById('errore-compila_tutti_campi').removeAttribute("hidden");
+        }
+    </script>
+
+    <%- include('../includes/end.ejs') %>

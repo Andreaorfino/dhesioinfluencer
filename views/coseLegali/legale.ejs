@@ -1,0 +1,59 @@
+<html>
+
+<head>
+ 
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= pageTitle %></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/singlePage.css">
+  <link rel="icon" href="/images/singlepage/logo.png">
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title><%=pageTitle %></title>
+</head>
+
+
+
+<body>
+  <div class="navbar" style="background-color: white;">
+
+    <div class="listasotto">
+      <div style="text-align: center;">
+
+      </div>
+      <div></div>
+      <div></div>
+      <div><a href="/"><img src="/images/singlepage/logo.png"></a></div>
+      <div></div>
+      <div>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div style="padding: 2.6rem;"></div>
+  <div style="margin: 15px;">
+    <%if('Privacy Policy Influencer' == pageTitle){ %>
+      <%- include('PPA.html') %> 
+    <% } else if(pageTitle == 'Privacy Policy Aziende') { %>
+      <%- include('PPAGIUSTO.html') %>
+    <% } else { %>
+      <%- include('TCA.ejs') %>
+    <% } %>
+
+  </div>
+</body>
+
+</html>

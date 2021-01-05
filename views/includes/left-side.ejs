@@ -1,0 +1,35 @@
+<div class="coin">
+    <% if (isAuthenticated) { %>
+    <div class="coin_dailyChance">
+        <%-include('../includes/chance.ejs') %>
+        <h3>Chance Left</h3>
+    </div>
+    <br>
+    <table class="table-coin">
+        <tr>
+            <td>
+                <div class="coin_normalCoinLeft">
+                    <%-include('../includes/coin1.ejs') %>
+                </div>
+            </td>
+            <td>
+                <h2><%= coinNormal %></h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin_specialCoinLeft">
+                    <%-include('../includes/coin2.ejs') %>
+                </div>
+            </td>
+            <td>
+                <h2><%= coinSpecial %></h2>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div class="get_Coin">
+        <a href="/payment"><img src="/images/getCoin.png" alt="getCoin"></a>
+    </div>
+    <% } %>
+</div>

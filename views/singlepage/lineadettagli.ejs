@@ -1,0 +1,12 @@
+<% if(prodotto.chiusa){ %>
+    <div class="dettagliadestravinta">
+      <div class="vintada">vinto da:</div>
+      <div></div>
+      <div><a href="/dettagli/<%= prodotto._id %>"><img src="/images/singlepage/dettagliChiusa.png"></a></div>
+    </div>
+    <% } else { %>
+    <div class="dettagliadestra">
+      <div></div>
+      <div><a href="/dettagli/<%= prodotto._id %>"><img src="/images/singlepage/dettagliAperta.png"></a></div>
+    </div>
+    <% } %>

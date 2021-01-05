@@ -1,0 +1,157 @@
+.scene {
+  width: 100%;
+  perspective: 600px;
+}
+
+.card {
+  width: 100%;
+}
+
+.card__face {
+    width: 100%;
+  }
+
+.card__face--front img {
+    width: 100%;
+    border-radius: 1.5px;
+    border-radius: 1.5px;
+}
+
+
+.card__face--back {
+    display: none;
+    border: 1px solid rgba(255, 144, 82, 0.6);;
+}
+
+.dot {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+.dot_win{
+  background-color: #77D353
+}
+
+.dot_open{
+  background-color: rgba(255, 144, 82, 0.95);
+}
+
+.undercard-cosapuoivincere{
+ 
+  font-size: 12px;
+}
+
+.vincitoreEbarra_open {
+  transform: translateY(-15px);
+}
+
+.vincitoreEbarra_win{
+  transform: translateY(-50px);
+}
+
+.vincitoreInfluenzer-vincitore{
+  color: #77D353cc;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 4px;
+  height: 0px;
+}
+
+.undercard-cosapuoivincere_open{
+  color: #ff9252cc;
+}
+
+.undercard-listacosapuoivincere{
+  display: grid;
+  grid-template-columns: min-content auto;
+  color: #343f4bce;
+  font-size: 14px;
+}
+
+.undercard{
+  padding-top: 2px;
+  padding-left: 4px;
+  background-color: rgba(19, 206, 102, 0);
+  border-bottom: 1px solid; 
+  border-left: 1px solid; 
+  border-right: 1px solid;
+  text-align:left;
+ 
+}
+
+.undercard_open{  
+  border-color:  rgba(255, 144, 82, 0.6);
+  transform: translateY(-16px);
+}
+
+.undercard_win{  
+  border-color:  #77D353;
+  transform: translateY(-51px);
+}
+
+.vincitoreInfluenzer{
+  height: 35px;
+  color: #274674;
+  font-size: 19.5px;
+  background-color: #FFFDFA;
+  border: 1px solid #77D353;
+  border-top-left-radius: 1.5px;
+  border-top-right-radius: 1.5px;
+  transform: translateY(2px)
+}
+
+.vincitoreInfluenzer_grid{
+  display: grid;
+  grid-template-columns:1fr 20px auto 1fr;
+}
+
+.vincitoreInfluenzer_grid img{
+  padding-top: 3px;
+  width: 100%;
+}
+
+.nicknameTikTok{
+  margin-top: 3%;
+  visibility: hidden;
+  height: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: height 0.5s, visibility 1s, opacity 0.5s ease-out;  
+}
+
+.nicknameTikTok-inserisci{
+  color: #47525E;
+  font-size: 12px;
+}
+
+.nicknameTikTok input {
+  background: url(/images/singlepage/tiktok.png) no-repeat 4px;
+  background-size: 20px ;
+  border: 1px solid #FF9052;
+  border-radius: 1.5px;
+  height:30px;
+  padding-left: 30px;
+}
+
+.nicknameTikTok button{
+  color: #030608;
+  font-size: 12px;
+}
+
+.nicknameTikTok button{
+  outline: none;
+}
+.nicknameTikTok button:active{
+  outline: none;
+}
+
+.haigiapartecipato{
+  margin-top: 10px;
+  color: #77D353cc;
+  font-size: 12px;
+}

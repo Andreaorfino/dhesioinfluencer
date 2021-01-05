@@ -1,0 +1,165 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="centered">
+        <br>
+        <br>
+        <br>
+
+        
+
+        <div class="product-main-grid">
+            <div> </div>
+            <div class="product-grid">
+
+                <div class="product-grid_slider-joid">
+                    <h3 style="text-align: left"><%= product.genere %></h3>
+                    <div class="subscriber" >
+                        <div class="slidecontainer">
+                            <input type="range" min="0" max="<%= product.ticket %>" value="<%= product.ticketPresi %>"
+                                class="slider" id="myRange" style="width:70%">
+                        </div>
+                    </div>
+                    <br><br>
+                    <% if (isAuthenticated) { %>
+                    <% if (!product.isPresent) { %>
+                        <form action="/cart" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn" type="submit"><h3>Join</h3></button>
+                            <!--<button class="btn" type="submit"><i class='far fa-heart' style='font-size:20px'></i></button>-->
+                            <input type="hidden" name="productId" value="<%= product._id %>">
+                        </form>
+                        
+                    <% } else { %>
+                        Joined
+<!--                     <form action="/cart-delete-item" method="POST" ">
+                        <input type="hidden" value="<%= product._id %>" name="productId">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="btn danger" type="submit"><h3>Quit</h3></button>
+                    </form> -->
+                    <% } %>
+                    <% if (!isFavorite) { %>
+                        <form action="/favorite" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn" type="submit"><i class='far fa-heart' style='font-size:20px'></i></button>
+                            <input type="hidden" name="productId" value="<%= product._id %>">
+                        </form>
+                        <% } else { %>
+                            <form action="/delete-favorite" method="POST">
+                                <input type="hidden" value="<%= product._id %>" name="productId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn danger" type="submit">Unlove</button>
+                            </form>
+                        <% } %>
+                    <% } %>
+                </div>
+
+
+
+                <div class="product-grid_smallProduct">
+
+                    <div class="w3-content w3-display-container">
+                            <% if (product.consolazione.items.length > 0) { %>
+                        <% product.consolazione.items.forEach( sp => { %>
+                        <div class="mySlides">
+                            <img src="/images/<%= sp.productId.imageUrl %>" alt="<%= sp.productId.title %>">
+                            <div>
+                                <p><%= sp.productId.title %></p>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                        <% } else { %>
+                            <% } %>
+                    </div>
+
+                </div>
+
+                <div class="product-grid_image">
+                    <div class="image">
+                        <img src="/images/<%= product.imageUrl %>" alt="<%= product.title %>">
+                    </div>
+                </div>
+
+                <div class="product-grid_info">
+                    <h3><%=product.fornitore %></h3>
+                    <div class="product-grid_info_art">
+                        <div class="product-grid_info_art_content">
+                            <h2><%= product.title %></h2>
+                            <p><%= product.description %></p>
+                        </div>
+                    </div>
+                    <h2>Points: <%= product.price %></h2>
+                </div>
+
+                
+                <div class="comment">
+                    <div class="comment_list">
+                        <ul>
+                            <% if (product.comments.items.length > 0) { %>
+                                <h3>Comments</h3>
+                                <% product.comments.items.forEach( sp => { %>
+                                    <li>
+                                        <strong><%= sp.autore %></strong>: <%= sp.testo %>
+                                    </li>
+                                <% }) %>
+                            <% } else { %>
+                                
+                            <% } %>
+                            <br>
+                            <li>
+                                <div class="comment_edit">
+                                    <% if (isAuthenticated) { %>
+                                        <form class="comment-form" action="/comment" method="POST">
+                                            <div class="form-comment-control">
+                                                <input 
+                                                    type="text" 
+                                                    name="comment" 
+                                                    id="comment" >
+                                            </div>
+                                            <br>
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <button class="btn" type="submit">Comment</button>
+                                            <input type="hidden" name="productId" value="<%= product._id %>">
+                                        </form>
+                                    <% } else { %>
+                                        <h3>Login to comment</h3>
+                                    <% } %>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div> </div>
+        </div>
+
+
+
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                if (n > x.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = x.length }
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                x[slideIndex - 1].style.display = "block";
+            }
+        </script>
+
+    </main>
+    <%- include('../includes/end.ejs') %>

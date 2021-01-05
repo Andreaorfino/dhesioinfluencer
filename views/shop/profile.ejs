@@ -1,0 +1,118 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <main>
+
+    <div class="centered">
+        <br>
+        <br><br>
+        <br>
+
+      <div class="profile-grid-first">
+
+        <div>
+
+        </div>
+
+        <div class="profile-pic">
+          <div class="profile-pic_box">
+          <form class="product-form" action="/updatePicProfile" method="POST" enctype="multipart/form-data">
+            <div class="form-control">
+              <label for="image">
+                <div class="profile-pic"><img src="<%= user.profilePic %>" alt="<%= user.profilePic %>"></div>
+              </label>
+              <input type="file" name="image" id="image">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="userName" value="<%= user.email %>">
+            <button class="btn" type="submit">Update</button>
+          </form>
+        </div>
+        </div>
+
+        <div class="profile-info">
+            <div class="profile-info_box">
+          <h1><%= user.nickname %></h1>
+          <br>
+          <i>Bonus Point: </i> <%= user.specialPoint%>
+            </div>
+        </div>
+
+        <div class="profile-win-statistics">
+          <div class="profile-win-statistics_box">
+            <img src="images/lamp.png" alt="lamp">  0
+            <br>
+            <img src="images/bear.png" alt="bear">  0
+          </div>
+        </div>
+
+        <div class="profile-getCoin">
+            <div class="profile-getCoin_box">
+          <div class="get_Coin">
+            <a href="/payment"><img src="/images/getCoin.png" alt="getCoin"></a>
+            <div class="profile-getCoin_under">
+              <span class="dot-y"></span> <%= user.coinSpecial %>
+              <span class="dot-b"></span> <%= user.coinNormal %>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div>
+
+        </div>
+
+      </div>
+
+      <hr color="gray" width="60%">
+
+      <div class="lottery">
+
+        <div class="grid_joined_title">
+          Your Lottery
+        </div>
+        <div class="rightSide_joined">
+          <% if (uSproducts.length > 0) { %>
+          <ul class="rightSide_joined_list">
+            <% uSproducts.forEach(p => { %>
+            <li class="rightSide_joined_list_item"><%= p.productId.title %>
+              <a href="/products/<%= p.productId._id %>" class="btn"><i class='fas fa-info'></i></a>
+            </li>
+            <% }) %>
+          </ul>
+          <% } else { %>
+          <p class="ap">
+            <h2 style="text-align: center">No lottery</h2>
+          </p>
+          <% } %>
+        </div>
+
+      </div>
+
+      <hr color="gray" width="60%">
+
+      <div class="interes">
+        <% if (interessi.length > 0) { %>
+        <h3>Interessi <%= interessi.length %></h3>
+        <div class="interes-grid" style="grid-template-columns:<%= grid %>;">
+          <% interessi.forEach( int => { %>
+          <div class="interes-slot">
+            <strong><%= int %></strong>
+<!--             <br><br>
+            <img src="images/<%= int %>.jpg" alt="<%= int %>"> -->
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+
+        <% } %>
+      </div>
+
+    </div>
+
+  </main>
+  <%- include('../includes/end.ejs') %>

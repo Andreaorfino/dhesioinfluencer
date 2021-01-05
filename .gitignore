@@ -1,0 +1,9 @@
+node_modules
+old
+htmltry.html
+montatutto.sh
+.DS_Store
+.vscode
+*.ss
+pulisci.sh
+.env

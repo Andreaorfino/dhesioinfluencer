@@ -1,0 +1,1127 @@
+@media screen and (max-width: 520px) {
+  .tutto {
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    padding-top: 0.2rem;
+    flex: 1 0 auto;
+  }
+  .tutto2 {
+    display: grid;
+    grid-template-columns: 0.7fr 10fr 0.7fr;
+    padding-top: 0.2rem;
+    flex: 1 0 auto;
+  }
+}
+
+@media screen and (min-width: 521px) {
+  .tutto {
+    display: grid;
+    grid-template-columns: 1fr 300px 1fr;
+    padding-top: 0.2rem;
+    flex: 1 0 auto;
+  }
+  .tutto2 {
+    display: grid;
+    grid-template-columns: 1fr 450px 1fr;
+    padding-top: 0.2rem;
+    flex: 1 0 auto;
+  }
+}
+
+.elemento {
+  text-align: center;
+  display: unset;
+}
+
+.elementodettagli {
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  margin-bottom: 10px;
+  height: 50px;
+  z-index: 100;
+}
+
+.navbar img {
+  width: 40px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  vertical-align: center;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li {
+  vertical-align: middle;
+  text-align: center;
+  padding: 4px 16px;
+  vertical-align: center;
+  width: 100px;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: rgba(28, 34, 45, 0.9);
+}
+
+.navbar li:last-child {
+  border-right: none;
+}
+
+footer {
+  flex-shrink: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgba(255, 146, 82, 0.856);
+  text-align: center;
+  font-size: 12px;
+}
+
+.nomenegozio {
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Josefin Sans;
+  font-style: oblique;
+  font-weight: 400;
+  line-height: 20px;
+  padding-top: 1rem;
+  letter-spacing: -1px;
+  font-size: 15.5px;
+  text-align: left;
+}
+
+.firstline {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px 3fr 60px;
+  height: 2rem;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.timeout {
+  color: rgba(71, 82, 94, 0.83);
+  padding-top: 0.5rem;
+  padding-left: 0.2rem;
+  display: block;
+  background-color: rgba(255, 144, 82, 0.06);
+  border-radius: 4px;
+  height: 30px;
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.prodotto {
+  padding: 0rem;
+}
+
+.prodotto img {
+  width: 100%;
+}
+
+.oggettino {
+  border: 1px solid rgba(132, 146, 166, 0.15);
+  border-radius: 1.5px;
+}
+
+.underline {
+  border-bottom: 1px solid rgba(255, 144, 82, 0.71);
+  width: 2rem;
+}
+
+.underline2 {
+  color: #47525E;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(255, 144, 82, 0.71);
+  width: 100%;
+}
+
+.underline2 a {
+  color: #47525E;
+}
+
+.listasotto {
+  padding-top: 0.5rem;
+  display: grid;
+  height: 48px;
+  grid-template-columns: 70px 70px 2fr 80px 2fr 65px 70px 5px;
+  text-align: center;
+  line-height: 13px;
+}
+
+.listasotto img {
+  text-align: center;
+  width: 40px;
+}
+
+.pulsante img {
+  width: 80px;
+}
+
+.logonegozio img {
+  width: 34px;
+}
+
+.progress {
+  margin-bottom: 0;
+  border-radius: 1.5px;
+  background-color: rgba(255, 144, 82, 0.09);
+  -webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0);
+  height: 15px;
+}
+
+.progress-bar-warning {
+  background-color: rgba(255, 144, 82, 0.95);
+  border-radius: 1.5px;
+  box-shadow: inset 0px 0px 0 rgba(0, 0, 0, .15);
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  border: 0.5px solid #FF9052;
+  background-color: rgba(255, 157, 100, 0.479);
+  border-radius: 7px;
+  color: rgba(71, 82, 94, 0.52);
+  font-family: Josefin Sans;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 19.5px;
+  text-align: left;
+}
+
+/* Mark input boxes that gets an error on validation: */
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+
+.tab {
+  display: none;
+}
+
+.tab p {
+  color: rgba(71, 82, 94, 0.4);
+  font-family: Josefin Sans;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 18.5px;
+  text-align: left;
+  margin-top: 30px;
+}
+
+button {
+  border: 1px solid #FF9052;
+  border-radius: 2px;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.buttonCustom {
+  background-color: transparent;
+}
+
+.btnCustom {
+  border: 0px;
+}
+
+.listasotto button {
+  background-color: rgb(255, 255, 255, 0);
+}
+
+button:hover {}
+
+.btn {
+  border: 0px;
+}
+
+#prevBtn {}
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: rgba(255, 146, 82, 0.452);
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.sessogrid {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 10fr 1fr 10fr;
+  text-align: center;
+}
+
+.sessogrid img {
+  width: 70%;
+}
+
+.back img {
+  width: 25px;
+}
+
+.giaaccount a {
+  border-bottom: 2px solid rgba(255, 144, 82, 0.71);
+  width: 2rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.giaaccount p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.bentornato {
+  color: #FF9052;
+  text-align: center;
+}
+
+.underbentornato h2 {
+  text-align: center;
+  font-size: 22px;
+}
+
+.ominoletto {
+  text-align: center;
+  padding: 2rem;
+}
+
+.ominoletto img {
+  width: 60px;
+}
+
+.loginbtn {
+  text-align: center;
+  padding: 3rem;
+}
+
+.loginform p {
+  padding: 1rem;
+  margin-bottom: 0px;
+}
+
+.messaggettilogin p {
+  padding-top: 0rem;
+}
+
+.utenteautenticato {
+  text-align: center;
+  color: rgba(255, 144, 82, 0.7);
+  font-size: 15px;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 2fr auto auto 2fr;
+}
+
+.utenteautenticato img {
+  width: 13px;
+}
+
+p {
+  color: rgba(71, 82, 94, 0.75);
+  font-family: Josefin Sans;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: left;
+}
+
+.centroaiuto h3 {
+  color: #FF9052;
+  font-family: Josefin Sans;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19.5px;
+  text-align: left;
+  margin-bottom: 3px;
+}
+
+.centroaiuto h6 {
+  color: rgba(71, 82, 94, 0.76);
+  font-family: Josefin Sans;
+  font-size: 8.5px;
+  font-weight: 400;
+  line-height: 11px;
+  text-align: left;
+}
+
+.centroaiuto h2 {
+  color: #FF9052;
+  font-family: Josefin Sans;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 33.5px;
+  text-align: left;
+}
+
+.centroaiuto h1 {
+  color: #FF9052;
+  font-family: Josefin Sans;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+}
+
+.centroaiuto button {
+  border: 0px;
+  color: #47525E;
+  font-size: 13px;
+  padding: 0px;
+}
+
+span.piccolotitolo {
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.timeout p {
+  color: rgba(71, 82, 94, 0.83);
+  font-family: Josefin Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.5px;
+  text-align: center;
+  padding-top: 3px;
+}
+
+small {
+  font-size: 9px;
+}
+
+.footer-desio {
+  padding-bottom: 1rem;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.partecipare {
+  color: rgba(71, 82, 94, 0.4);
+  font-family: Josefin Sans;
+  font-size: 14.5px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 18.5px;
+  text-align: left;
+}
+
+.registrazioneghirlanda {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  margin-bottom: 45px;
+}
+
+.registrazioneghirlandascritta {
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: left;
+}
+
+.benvenutotizio {
+  margin-bottom: 35px;
+  margin-top: 35px;
+}
+
+.benvenutotizioscritta span {
+  color: #FF9052;
+  font-family: Josefin Sans;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+}
+
+
+
+.accountcrea {
+  border: 1px solid #77D353;
+  border-radius: 3px;
+  width: 160px;
+  padding: 0.4rem;
+  color: #343F4B;
+  font-family: Josefin Sans;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16.5px;
+  text-align: center;
+}
+
+.termini1 {
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+  opacity: 0.42;
+  text-align: center;
+}
+
+.termini2 {
+  font-family: Josefin Sans;
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 13.5px;
+  opacity: 0.71;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tabidinsta p {
+  color: rgba(71, 82, 94, 0.7);
+  font-family: Josefin Sans;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+  margin-top: 0;
+}
+
+.cliccasuuna p {
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 13.5px;
+  text-align: left;
+  margin: 0px;
+  margin-top: 3%;
+}
+
+.questoevento {
+  text-align: center;
+  padding: 0;
+}
+
+.questoevento p {
+  color: rgba(71, 82, 94, 0.815);
+  font-family: Josefin Sans;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+}
+
+.questocrea {
+  color: #343F4B;
+  font-family: Josefin Sans;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16.5px;
+  text-align: center;
+  border: 1px solid #FF9052;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  padding-top: 12px;
+  height: 46px;
+  text-decoration: none;
+}
+
+.questocrea a:hover {
+  text-decoration: none;
+}
+
+.viavver p {
+  color: rgba(71, 82, 94, 0.589);
+  font-family: Josefin Sans;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.centralo {
+  display: grid;
+  grid-template-columns: 1fr 130px 1fr;
+}
+
+.immagineerrore500 {
+  text-align: center;
+  padding-top: 90px;
+}
+
+.immagineerrore500 img {
+  width: 190px;
+}
+
+.immagineerrore404 {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.immagineerrore404 img {
+  width: 230px;
+}
+
+.descrizionerrore {
+  padding-top: 50px;
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 18.5px;
+}
+
+.codiceerr {
+  text-align: center;
+  padding-top: 100px;
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 18.5px;
+  opacity: 0.7;
+}
+
+.logcanc {
+  text-align: center;
+  font-family: Josefin Sans;
+}
+
+.presto {
+  color: #FF9052;
+  font-size: 26px;
+  padding-top: 80px;
+}
+
+.nomelogout {
+  font-size: 22.5px;
+  font-style: oblique;
+  color: #FF9052;
+}
+
+.logouteff {
+  color: rgb(123, 125, 128);
+  font-size: 11px;
+  line-height: 14px;
+  padding-top: 110px;
+}
+
+.giro {
+  color: #47525E;
+  font-size: 16.5px;
+  padding-top: 20px;
+}
+
+.ominociao img {
+  width: 50px;
+}
+
+.ominociao {
+  padding-top: 20px;
+}
+
+.fastaddio img {
+  width: 200px
+}
+
+.fastaddio {
+  padding-top: 20px;
+}
+
+.tornerai {
+  color: #343F4B;
+  font-size: 8px;
+}
+
+.spacca2 {
+  display: grid;
+  grid-template-columns: 90px 1fr 22.5px 120px;
+  padding-top: 30px;
+}
+
+.aiutopiange img {
+  width: 100%;
+}
+
+.aiutopiange button {
+  padding: 0px;
+}
+
+.creadiv2 {
+  display: grid;
+  grid-template-columns: 1fr 20px;
+}
+
+.prev button {
+  border: 0px;
+  padding: 0px;
+}
+
+.errorini {
+  color: red;
+}
+
+.errorini p {
+  color: red;
+}
+
+.rcgb {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.frasettaJoin {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 11px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.frasettaJoin img {
+  width: 85%
+}
+
+.frasinolotterie {
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 10px;
+  text-align: left;
+  line-height: 14px;
+  margin: 10px;
+}
+
+.frasinolotterie img {
+  width: 100%
+}
+
+.seiSicuro {
+  color: #FF9052;
+  font-size: 26px;
+}
+
+.zonabimbi {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.testoelimina {
+  color: #47525E;
+  font-size: 17px;
+  padding: 10px;
+  border-right: 4px solid #FF9052;
+  border-left: 4px solid #FF9052;
+}
+
+.zonabimbi img {
+  text-align: center;
+  width: 90px;
+}
+
+.utentecancella {
+  color: #FF9052;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.dettagliadestra {
+  display: grid;
+  grid-template-columns: 17fr 50px;
+  transform: translateY(0px);
+  height: 0px;
+}
+
+.dettagliadestra img {
+  width: 100%;
+}
+
+.cartaImmagine img {
+  width: 30%;
+  margin-top: 4%;
+  margin-bottom: 2%;
+}
+
+.soldini {
+  display: grid;
+  grid-template-columns: 1fr 22px 40px 1fr 1.5px;
+  color: #47525E;
+  font-family: Arvo;
+  font-size: 23px;
+  font-weight: 700;
+  padding-bottom: 2%;
+}
+
+.soldini img {
+  width: 100%;
+}
+
+.valoreGift {
+  color: #47525E;
+  font-family: Josefin Sans;
+  font-size: 14px;
+  padding-top: 6%;
+  padding-bottom: 1%;
+}
+
+.dettagliaperta {
+  background-color: rgba(0, 166, 255, 0.15);
+  border-radius: 4px;
+}
+
+.immagineUrl {
+  text-align: center;
+}
+
+.immagineUrl img {
+  width: 60%;
+}
+
+.dettagliadestravinta {
+  display: grid;
+  grid-template-columns: 9fr 8fr 4fr;
+}
+
+.dettagliadestravinta img {
+  width: 100%;
+}
+
+.vintada {
+  text-align: left;
+  color: #77D353;
+  font-family: Josefin Sans;
+  font-size: 16px;
+  margin: 6px;
+}
+
+.vincitore {
+  display: grid;
+  grid-template-columns: 1fr 15px auto 1fr;
+  color: #274674;
+  font-family: Josefin Sans;
+  font-size: 19.5px;
+  background-color: rgba(255, 144, 82, 0.06);
+  border-top: 1.5px solid #77D353;
+  border-bottom: 1.5px solid #77D353;
+  padding: 2%;
+  margin-top: 3%;
+}
+
+.vincitore img {
+  width: 15px;
+}
+
+.vincitore a {
+  color: #274674;
+}
+
+.vincitore a:hover {
+  color: #476dd4;
+  text-decoration: none;
+}
+
+.aggiungilotteria input {
+  text-align: center;
+}
+
+.vincitore-link {
+  padding-top: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.sesso {
+  display: grid;
+  grid-template-columns: 1fr 20px 2px 20px 1fr;
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 5%;
+  padding-bottom: 2%;
+}
+
+.via {
+  display: grid;
+  grid-template-columns: 1fr 17px auto 1fr;
+}
+
+.via-immagine img {
+  width: 100%
+}
+
+.sitoweb {
+  background-color: rgba(255, 144, 82, 0.06);
+  border-top: 1.5px solid #FF9052;
+  border-bottom: 1.5px solid #FF9052;
+  padding: 3%;
+  margin-top: 3%;
+  font-size: 15px;
+}
+
+.sitowebchiusa {
+  background-color: rgba(255, 144, 82, 0.06);
+  border-top: 1.5px solid #77D353;
+  border-bottom: 1.5px solid #77D353;
+  padding: 3%;
+  margin-top: 3%;
+  font-size: 15px;
+}
+
+.scopri {
+  color: rgba(255, 146, 82, 0.849);
+  font-size: 10px;
+}
+
+.zona {
+  color: rgb(107, 110, 114);
+  font-size: 11px;
+  padding-bottom: 4%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+
+.via-indirizzo {
+  color: #47525E;
+  font-size: 13px;
+  padding-top: 3%;
+}
+
+.sesso-no {}
+
+.sesso-maschio {
+  text-align: left;
+}
+
+.sesso-maschio_no {
+  color: rgba(103, 107, 110, 0.26);
+}
+
+.sesso-maschio_si {
+  color: #005684;
+}
+
+.sesso-femmina_si {
+  color: #FFB6E1;
+}
+
+/* .sitoweb a{
+  color: #274674;
+  text-decoration: underline;
+} */
+
+.sitoweb a:hover {
+  color: #476dd4;
+  text-decoration: none;
+}
+
+.aggiungilotteria p {
+  margin: 0px;
+  padding-top: 8px;
+  padding-left: 4px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.footer-destra {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.lotteria-fisica_immagineUrl img {
+  width: 60%;
+}
+
+.lotteria-fisica_nome {
+  margin-top: 8%;
+  color: #47525E;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: -1%;
+}
+
+.lotteria-fisica_sottotitolo {
+  font-size: 11.5px;
+  color: #47525E;
+}
+
+.lotteria-fisica_immagine {
+  margin-top: 7%;
+  margin-bottom: 7%;
+}
+
+.lotteria-fisica_immagine img {
+  width: 75%;
+}
+
+.dettagli-lotteria-fisica_descrizionesopra {
+  color: #47525E;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 8%;
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-bottom: 1%;
+}
+
+.dettagli-lotteria-fisica_frecciagiu img {
+  width: 7%;
+}
+
+.dettagli-lotteria-fisica_descrizionesotto {
+  color: #47525E;
+  font-size: 12px;
+  margin-top: 6%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.dettagli-lotteria-fisica_immagine {
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.dettagli-lotteria-fisica_immagine img {
+  width: 75%;
+}
+
+.dettagli-lotteria-fisica_descrizionesopra2 {
+  color: #47525E;
+  font-size: 9.5px;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.index_coda {
+  text-align: center;
+}
+
+.seguici {
+  text-align: center;
+  font-size: 14px;
+  color: #47525E;
+  margin: 4%;
+}
+
+.registrazione_creaAccount-pocotempo {
+  margin-top: 2%;
+  color: #47525E;
+  font-size: 10.5px;
+  margin-bottom: 2%;
+}
+
+p.registrazione_titolotab {
+  margin-top: 5%;
+}
+
+.navbar_riquadro {
+  border: 1px solid #FF9052;
+  margin-top: 3px;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.navbar_riquadro_blu {
+  border: 1px solid #100389;
+  margin-top: 3px;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.notification:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 144, 82, 0.95);
+  ;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  margin-left: 66px;
+  margin-top: 4px;
+}
+
+
+.circular--landscape img {
+  width: auto;
+  height: 100%;
+}
+
+.circular--portrait img {
+  width: 100%;
+  height: auto;
+}
+
+.imagecircle {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img.verificato{
+  width: 15px;
+}

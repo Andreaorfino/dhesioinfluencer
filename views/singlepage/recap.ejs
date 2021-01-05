@@ -1,0 +1,96 @@
+<%- include('head.ejs') %>
+
+<style>
+    th,
+    td {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    table,
+    th,
+    td {
+        border: 0.5px solid rgb(129, 129, 129);
+        border-collapse: collapse;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+    <%- include('navbar2.ejs') %>
+    <div style="padding: 30px;"></div>
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr;">
+        <div></div>
+        <div class="centroaiuto" style="text-align: center;">
+
+
+
+            <table style="text-align: left;">
+                <tr>
+                    <th>Nome Instagram</th>
+                    <% 
+                    numeroLotterie = lotterie.length;
+                    const fidelityStats = []; 
+                    for(var k = 0; k<numeroLotterie+1; k++){ fidelityStats.push(0)} %>
+
+                    <%  const attiviSettimana = []; 
+                        
+                        for(var i = 0; i<numeroLotterie/2; i++){ attiviSettimana.push(0)}
+                    for(var i=0; i<numeroLotterie; i++) { %>
+                    <th>
+                        <%= lotterie[i].fornitore %> - n° <%= i %>
+                    </th>
+                    <% } %>
+                    <th>Hanno partecipato a:</th>
+                </tr>
+
+                <% for(var i=0 ; i<utenti.length ; i++){ 
+                    const attivoSettimana = []; 
+
+                    
+                    numeroPartecipazioni = 0;
+                        for(var k = 0; k<attiviSettimana.length; k++){ attivoSettimana.push(0)}%>
+                <tr>
+                    <td>
+                        <%= utenti[i].nickname %>
+                    </td>
+                    <% for(var j=0; j<numeroLotterie; j++) {  %>
+
+                    <td>
+
+                        <% var x="";  for(var f=0; f<utenti[i].cart.items.length; f++) { %>
+                        <% if(lotterie[j].instagramid == utenti[i].nickname) { x= "Vinta"; attivoSettimana[Math.floor(j/2)] = attivoSettimana[Math.floor(j/2)]+1; numeroPartecipazioni++; %>
+
+                        <% break } else {if(lotterie[j]._id.toString() == utenti[i].cart.items[f].productId.toString()) { x= "Partecipato"; attivoSettimana[Math.floor(j/2)] = attivoSettimana[Math.floor(j/2)]+1; numeroPartecipazioni++; %>
+
+                        <% break } else { x = "no" %>
+                        <% }} %>
+                        <% } %>
+                        <%= x %>
+                    </td>
+                    <% } %>
+                    <td>
+                        <%= numeroPartecipazioni %> su <%= numeroLotterie %>
+                        <% fidelityStats[numeroPartecipazioni]++; %>
+                    </td>
+		<td>
+			<%= utenti[i].bought.items.length %>comprato
+		</td>
+                </tr>
+                <% 
+                for(var k = 0; k<attivoSettimana.length; k++){ if(attivoSettimana[k]>0){attiviSettimana[k]=attiviSettimana[k]+1} }
+                } %>
+            </table>
+
+        </div>
+        <div style="padding-left: 5%;">----> <% for(var i =0; i<attiviSettimana.length; i++){ %> attivi settimana
+            <%= i+1 %> : <%=attiviSettimana[i] %>; <% } %>
+            <div><% for(var k = 0; k<numeroLotterie+1; k++){ %> <div>hanno partecipato a <%= k %> lotterie:
+                    <%= fidelityStats[k] %> persone</div> <% } %></div>
+        </div>
+    </div>
+
+    <%- include('end.ejs') %>
